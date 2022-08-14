@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;0,800;1,300&family=DM+Serif+Display&display=swap');
+
+body {
+    font-family: 'Albert Sans', sans-serif;
+    padding: 0;
+
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+.body {
+    margin: 2.5rem;
+    margin-top: 5vh;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Serif Display', serif;
+    font-weight: 300;
+}
+a {
+    color: #28374d;
+    transition: all 1s;
+}
+a:hover {
+    color: #fff;
+}
+* {
+    margin: 0;
+}
+button {
+    color: black;
+    border: 2px solid black;
+    border-radius: .25rem;
+    margin-top: 3px;
+    margin-bottom: 3px;
+    box-shadow: 3px 3px 0 black;
+}
+button:hover {
+    margin-top: 6px;
+    margin-bottom: 0;
+}
+.module {
+    color: #000;
+
+}
+.module h3 {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
+
+@media screen and (mim-width: 600px) {
+
+    .module {
+        width: 40vw;
+    }
+}
+
