@@ -1,6 +1,13 @@
 <script lang="ts">
     import { tasks } from './store'
-    let list = []
+
+    type ItemType = {
+        task: string,
+        isComplete: boolean,
+        date: Date
+    }
+
+    let list: ItemType[] = []
     const unsubscribe = tasks.subscribe(val => list = val)
 
     let newTask = ''
@@ -12,7 +19,7 @@
         //localStorage.setItem('todo', JSON.stringify(list))
         newTask = ''
     }
-    function markDone(item) {
+    function markDone(item: ItemType) {
             item.isComplete = !item.isComplete
             tasks.updateOne(item)
             tasks.subscribe(val => list = val)
@@ -24,8 +31,6 @@
         )
         tasks.set(filtered)
         list = filtered
-
-        //list = list //to update
     }
     
 </script>

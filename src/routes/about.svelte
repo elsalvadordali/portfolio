@@ -29,7 +29,7 @@
 		<h3>I'm Tijana</h3>
 		<p>and I'm <b>obsessed</b> with web development.</p>
 		<p>
-			I'm currently a a Computer Science student at WGU to round out my
+			I'm currently a Computer Science student at WGU to round out my
 			 knowledge so I can be a more <s>badass</s> balanced computer enginneer.
 		</p>
 		<p>

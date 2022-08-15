@@ -1,10 +1,8 @@
-## Calendar app
+# Calculator app
 
-I wanted to create this for like a year... but kept getting sidetracked due to my studies.
+It's a basic calculator app in JS.
 
-This is sort of a base that I want to build up eventually.
+### TODO
 
-# TODO
-
-- Enable user to change colors, fonts, borders
-- Store user data in a database
+- Debug... if a bug shows up
+- I could expand the functionality I suppose

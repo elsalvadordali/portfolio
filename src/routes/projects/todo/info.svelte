@@ -25,6 +25,7 @@
         <h3>Next Steps</h3>
         <p>I guess the only feature 'missing' is to be able to edit items in the todo list</p>
     </div>
+    <a href='https://github.com/elsalvadordali/portfolio/tree/main/src/routes/projects/todo'>Code on Github</a>
 </div>
 
 <style>

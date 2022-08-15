@@ -5,7 +5,7 @@
 </script>
   
   <div class="flip-card">
-    <MenuBar url='https://bunnymoney.app/' bind:show={show} title={'bunny money'} />
+    <MenuBar url='/projects/bunnymoney' bind:show={show} title={'bunny money'} />
     {#if show}
       <div class="flip-card-inner">
         <div class="flip-card-front">

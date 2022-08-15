@@ -1,0 +1,221 @@
+{
+  ".svelte-kit/runtime/client/start.js": {
+    "file": "immutable/start-19818ce2.js",
+    "src": ".svelte-kit/runtime/client/start.js",
+    "isEntry": true,
+    "imports": [
+      "_index-f104f474.js",
+      "_index-664c2ae0.js"
+    ],
+    "dynamicImports": [
+      "src/routes/__layout.svelte",
+      ".svelte-kit/runtime/components/error.svelte",
+      "src/routes/about.svelte",
+      "src/routes/index.svelte",
+      "src/routes/projects/calculator/calculator.svelte",
+      "src/routes/projects/calculator/index.svelte",
+      "src/routes/projects/calculator/info.svelte",
+      "src/routes/projects/calendar/calendar.svelte",
+      "src/routes/projects/calendar/index.svelte",
+      "src/routes/projects/calendar/info.svelte",
+      "src/routes/projects/parts/weather.svelte",
+      "src/routes/projects/todo/index.svelte",
+      "src/routes/projects/todo/info.svelte",
+      "src/routes/projects/todo/todo.svelte"
+    ]
+  },
+  "src/routes/__layout.svelte": {
+    "file": "immutable/pages/__layout.svelte-0f7dd5b3.js",
+    "src": "src/routes/__layout.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js"
+    ],
+    "css": [
+      "immutable/assets/pages/__layout.svelte-66278d18.css"
+    ]
+  },
+  ".svelte-kit/runtime/components/error.svelte": {
+    "file": "immutable/error.svelte-18d8031f.js",
+    "src": ".svelte-kit/runtime/components/error.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js"
+    ]
+  },
+  "src/routes/about.svelte": {
+    "file": "immutable/pages/about.svelte-c45d5af3.js",
+    "src": "src/routes/about.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js"
+    ],
+    "css": [
+      "immutable/assets/pages/about.svelte-62f99f8d.css"
+    ]
+  },
+  "src/routes/index.svelte": {
+    "file": "immutable/pages/index.svelte-1d0349ac.js",
+    "src": "src/routes/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js",
+      "src/routes/about.svelte",
+      "src/routes/projects/calendar/calendar.svelte",
+      "_index-664c2ae0.js",
+      "src/routes/projects/todo/todo.svelte",
+      "src/routes/projects/calculator/calculator.svelte",
+      "_todo.svelte_svelte_type_style_lang-6c26cf17.js"
+    ],
+    "css": [
+      "immutable/assets/pages/index.svelte-a34f5811.css"
+    ]
+  },
+  "src/routes/projects/calendar/calendar.svelte": {
+    "file": "immutable/pages/projects/calendar/calendar.svelte-3a808148.js",
+    "src": "src/routes/projects/calendar/calendar.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js",
+      "_todo.svelte_svelte_type_style_lang-6c26cf17.js",
+      "_index-664c2ae0.js"
+    ],
+    "css": [
+      "immutable/assets/pages/projects/calendar/calendar.svelte-36362f7f.css"
+    ]
+  },
+  "src/routes/projects/todo/todo.svelte": {
+    "file": "immutable/pages/projects/todo/todo.svelte-ad4e6891.js",
+    "src": "src/routes/projects/todo/todo.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js",
+      "_todo.svelte_svelte_type_style_lang-6c26cf17.js",
+      "_index-664c2ae0.js"
+    ]
+  },
+  "src/routes/projects/calculator/calculator.svelte": {
+    "file": "immutable/pages/projects/calculator/calculator.svelte-7763b3fd.js",
+    "src": "src/routes/projects/calculator/calculator.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js"
+    ],
+    "css": [
+      "immutable/assets/pages/projects/calculator/calculator.svelte-dfcd94d1.css"
+    ]
+  },
+  "src/routes/projects/calculator/index.svelte": {
+    "file": "immutable/pages/projects/calculator/index.svelte-f31e5369.js",
+    "src": "src/routes/projects/calculator/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js",
+      "src/routes/projects/calculator/calculator.svelte"
+    ],
+    "css": [
+      "immutable/assets/pages/projects/calculator/index.svelte-44d7d1fa.css"
+    ]
+  },
+  "src/routes/projects/calculator/info.svelte": {
+    "file": "immutable/pages/projects/calculator/info.svelte-6ba6bf3c.js",
+    "src": "src/routes/projects/calculator/info.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js"
+    ],
+    "css": [
+      "immutable/assets/pages/projects/calculator/info.svelte-ebc79b27.css"
+    ]
+  },
+  "src/routes/projects/calendar/index.svelte": {
+    "file": "immutable/pages/projects/calendar/index.svelte-9c1298d6.js",
+    "src": "src/routes/projects/calendar/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js",
+      "src/routes/projects/calendar/calendar.svelte",
+      "_todo.svelte_svelte_type_style_lang-6c26cf17.js",
+      "_index-664c2ae0.js"
+    ],
+    "css": [
+      "immutable/assets/pages/projects/calendar/index.svelte-28c260a2.css"
+    ]
+  },
+  "src/routes/projects/calendar/info.svelte": {
+    "file": "immutable/pages/projects/calendar/info.svelte-34162da5.js",
+    "src": "src/routes/projects/calendar/info.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js"
+    ],
+    "css": [
+      "immutable/assets/pages/projects/calendar/info.svelte-054cb149.css"
+    ]
+  },
+  "src/routes/projects/parts/weather.svelte": {
+    "file": "immutable/pages/projects/parts/weather.svelte-51a97cac.js",
+    "src": "src/routes/projects/parts/weather.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js"
+    ]
+  },
+  "src/routes/projects/todo/index.svelte": {
+    "file": "immutable/pages/projects/todo/index.svelte-2dca1df8.js",
+    "src": "src/routes/projects/todo/index.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js",
+      "src/routes/projects/todo/todo.svelte",
+      "_todo.svelte_svelte_type_style_lang-6c26cf17.js",
+      "_index-664c2ae0.js"
+    ],
+    "css": [
+      "immutable/assets/pages/projects/todo/index.svelte-e08f12a1.css"
+    ]
+  },
+  "src/routes/projects/todo/info.svelte": {
+    "file": "immutable/pages/projects/todo/info.svelte-ee2e8a35.js",
+    "src": "src/routes/projects/todo/info.svelte",
+    "isEntry": true,
+    "isDynamicEntry": true,
+    "imports": [
+      "_index-f104f474.js"
+    ],
+    "css": [
+      "immutable/assets/pages/projects/todo/info.svelte-6a8bcff0.css"
+    ]
+  },
+  "_index-f104f474.js": {
+    "file": "immutable/chunks/index-f104f474.js"
+  },
+  "_index-664c2ae0.js": {
+    "file": "immutable/chunks/index-664c2ae0.js",
+    "imports": [
+      "_index-f104f474.js"
+    ]
+  },
+  "_todo.svelte_svelte_type_style_lang-6c26cf17.js": {
+    "file": "immutable/chunks/todo.svelte_svelte_type_style_lang-6c26cf17.js",
+    "imports": [
+      "_index-664c2ae0.js"
+    ],
+    "css": [
+      "immutable/assets/todo.svelte_svelte_type_style_lang-5670f39b.css"
+    ]
+  }
+}

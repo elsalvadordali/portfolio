@@ -29,6 +29,7 @@
         perspective: 1000px;
         background-color: #fee074;
         break-inside: avoid;
+        margin-top: 1rem;
     }
 
     .flip-card-inner {
