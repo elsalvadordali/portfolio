@@ -36,10 +36,7 @@
         justify-content: center;
         gap: 1rem;
     }
-    .one {
-        height: 60vh;
-        width: 100%;
-    }
+ 
     @media screen and (min-width: 1300px) {
         .padding {
             display: block;

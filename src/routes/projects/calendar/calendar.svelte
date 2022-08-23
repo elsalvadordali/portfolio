@@ -1,5 +1,5 @@
 <script lang="ts">
-    import Todo from '../todo/todo.svelte'
+    import Addevent from './_addevent.svelte'
     import { tasks } from '../todo/store'
     const monthLengthArr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
     let currMonth = new Date().getMonth() + 1
@@ -8,9 +8,10 @@
     let startDate = new Date(now + '/' + '1')
     const today = new Date()
 
-    
+    let openTodo = false
+    let currDay
 
-    let month: Day[] = []
+    //let month: Day[] = []
     const memo = {}
 
     type Day = {
@@ -79,15 +80,23 @@
         } else currMonth++
         createMonth()
     }
+    function open(day) {
+        console.log('clicked')
+        currDay = day
+        openTodo = true
+    }
 </script>
 
-    <div class='calendar'>
+
+{#if openTodo}
+<Addevent />
+{/if}
         <div class='menu'>
             <button on:click={e => previousMonth()}> {'<<'} </button> 
             <h3>{currYear + '/' + currMonth}</h3>
             <button on:click={e => nextMonth()}>{'>>'} </button>
         </div>
-        <div class='grid' on:click={e => console.log('clickde', e.target.id)}>
+        <div class='grid'>
             
             {#each memo[now] as day}
                 
@@ -96,25 +105,14 @@
                 {:else if day.date === undefined}
                 <div class='no-day'></div>
                 {:else if day.tasks.length > 0} 
-                <div class={'tasks-' + day.tasks.length}>{day.date}</div>
+                <div class={'tasks-' + day.tasks.length} on:click={() => open(day)}>{day.date}</div>
                 {:else}
-                <div class='day' id={day.year + '-' + day.month + '-' + day.date}><date>{day.date}</date></div>
+                <div class='day' id={day.year + '-' + day.month + '-' + day.date} on:click={() => open(day)}><date>{day.date}</date></div>
                 {/if}
             {/each}
         </div>
-    </div>
 
 <style>
-    .calendar {
-        width: 100%;
-        height: 100%;
-        color: black;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: center;
-        align-items: center;
-    }
-    
     .grid {
         border: 2px solid black;
         display: grid;
@@ -122,28 +120,21 @@
         gap: .5vw;
         margin: .5rem;
         box-sizing: border-box;
-        height: 70vw;
+        height: fit-content;
         width: 100%;
-        max-height: 340px;
         max-width: 340px;
         padding: 1rem;
         border-radius: .5rem;
-
     }
     .grid div {
         padding: .125rem;
         display: flex;
         justify-content: center;
-        height: 28px;
+        height: 32px;
     }
-    
     .day {
         border: 2px solid black;
         border-radius: .25rem;
-    
-    }
-    .flip-card-back .calendar .grid {
-        height: fit-content;
     }
     .day:hover, .today:hover {
         background-color: #e5e7fd;
@@ -156,8 +147,12 @@
         justify-self: flex-start;
         padding: .5rem;
         width: calc(100% - 1.5rem);
-        margin: .5rem;
-        max-width: 1100px;
+        margin: 0;
+        max-width: 340px;
+    }
+    .menu h3 {
+        margin: 0;
+        font-size: 2rem;
     }
     .no-day {
         background-color: transparent;
@@ -166,7 +161,6 @@
         border: 2px solid black;
         background-color: #f5e7fd;
         border-radius: .25rem;
-
     }
     button {
         background-color: transparent;
@@ -179,6 +173,4 @@
         padding: .25rem .5rem;
         font-family: 'DM Serif Display', serif;
     }
-
-    
 </style>

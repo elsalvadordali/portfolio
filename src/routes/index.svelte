@@ -20,11 +20,6 @@
 		<p>Created by Tijana Jung 2022, using <a href='https://undraw.co/'>undraw.co illustrations</a></p>
 	</footer>
 <style>
-	body {
-		margin: 0;
-		background-color: #f1afa8;
-    	color: #000;
-	}
 	.body {
 		display: flex;
 		flex-flow: column nowrap;
@@ -38,10 +33,6 @@
 		}
 	}
 	@media (prefers-color-scheme: dark) {
-    body {
-        background-color: #000;
-        color: #f1afa8;
-    }
     a {
         color: #f1afa8;
     }

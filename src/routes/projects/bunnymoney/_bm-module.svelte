@@ -32,6 +32,7 @@
           perspective: 1000px;
           background-color: #f5cbd9;
           break-inside: avoid;
+          margin-top: 1rem;
       }
   
       .flip-card-inner {
