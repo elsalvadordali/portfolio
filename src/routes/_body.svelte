@@ -3,15 +3,18 @@
     import Todo from './projects/todo/_todo-module.svelte'
     import Calendar from './projects/calendar/_cal-module.svelte'
     import Bunny from './projects/bunnymoney/_bm-module.svelte'
+    import Sujiko from './projects/sujiko/_sujiko-module.svelte'
 </script>
 
 <aside>
     <h2>Projects</h2>
     <div class='padding'>
         <Calculator />
+        <Bunny />
+        <Sujiko />
         <Todo />
         <Calendar />
-        <Bunny />
+        
     </div>
 </aside>
 
