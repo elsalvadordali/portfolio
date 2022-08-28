@@ -18,7 +18,7 @@
         height: 100vh;
         margin: 0;
         box-sizing: border-box;
-        background-color: #fee074;
+        background-color: #e8d6eb;
         padding: 0;
         display: flex;
         justify-content: center;

@@ -30,7 +30,7 @@
           background-color: transparent;
           width: 360px;
           perspective: 1000px;
-          background-color: #f5cbd9;
+          background-color: #f28539;
           break-inside: avoid;
           margin-top: 1rem;
       }

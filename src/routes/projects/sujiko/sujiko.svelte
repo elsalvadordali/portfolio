@@ -92,8 +92,6 @@
             if (areEqual) {
               won = true
               clearInterval(dangTimer)
-              
-
             } else console.log('try again')
         }
     }
@@ -106,33 +104,32 @@
     <link rel="manifest" href="/todo/manifest.json">
 </svelte:head>
 
-<div>
-    {num}
-    <div>
-        <div class='location'>
+<div class='container'>
+    
             {#each grid as n, i} 
-            <button on:click={() => location = i} class={location === i ? 'highlight loc' : 'loc'}>{grid[i] > 0 ? grid[i] : ''}</button>
+            <button on:click={() => location = i} class={location === i ? 'highlight loc loc-' + (i + 1): 'loc loc-' + (i + 1)}>{grid[i] > 0 ? grid[i] : ''}</button>
             {/each}
-        </div>
-        <div class='sums'>
-            {#each sums as sum}
-            <div class='sum'>
-                <h2>{sum}</h2>
-            </div>
+            {#each sums as sum, i}
+                <div class={'sum sum-' + (i + 1)}>
+                    <h2>{sum}</h2>
+                </div>
             {/each}
-        </div>
-    </div>
+        
+    
     <div class='numbers'>
         {#each grid as n, i}
-        <button on:click={() => num = i + 1} class={num === i + 1 ? 'highlight' : ''}><p class={grid.includes(i + 1) ? 's' : ''}>{i + 1}</p></button>
+        <button on:click={() => num = i + 1} class={num === i + 1 ? 'highlight grid-' + i + 1  : ''}>
+            <p class={grid.includes(i + 1) ? 's' : ''}>{i + 1}</p>
+        </button>
         {/each}
-        <button on:click={() => num = null} ><p>erase</p></button>
     </div>
     <div class='center'>
-        <button on:click={() => hint()}>hint</button>
+        <button on:click={() => num = null} >erase</button>
         <p>{timer}</p>
+        <button on:click={() => hint()}>hint</button>
     </div>
 </div>
+
 {#if won}
 <div class="module">
     YOU WON!
@@ -143,6 +140,9 @@
 
 <style>
     .numbers {
+        grid-row-start: 10;
+        grid-column-start: 1;
+        grid-column-end: 11;
         display: flex;
         width: 340px;
         justify-content: space-between;
@@ -153,12 +153,14 @@
     .numbers button p {
         margin: 0;
     }
-    .location {
+    .container {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(9, 1fr);
+        grid-template-rows: repeat(11, 1fr);
+        height: 490px;
     }
     .loc {
-        height: 112px;
+        width: 100%;
         background-color: transparent;
         box-shadow: none;
         margin: 0;
@@ -166,9 +168,9 @@
         font-size: 2rem;
     }
     .sums {
-        position: absolute;
-        top: 75px;
-        left: calc(50vw - 115px);
+        position: relative;
+        top: -86px;
+        left: 0px;
         width: 230px;
         height: 220px;
         display: flex;
@@ -176,8 +178,7 @@
         justify-content: space-between;
     }
     .sum {
-        width: 50%;
-        height: 49%;
+
         display: flex;
         flex-wrap: row nowrap;
         justify-content: center;
@@ -195,6 +196,7 @@
         justify-content: center;
         align-items: center;
         z-index: 5;
+        margin: 0;
     }
     .highlight {
         background-color: aquamarine;
@@ -203,8 +205,11 @@
         text-decoration: line-through;
     }
     .center {
+        grid-row-start: 11;
+        grid-column-start: 1;
+        grid-column-end: 10;
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
         align-items: center;
         height: 120px;
         width: 330px;
@@ -222,11 +227,11 @@
         background-color: white;
         padding: 1rem;
         box-sizing: border-box;
-        position: absolute;
+        position: relative;
         z-index: 100;
         left: calc(50vw - 160px);
         top: 35vh;
-        height: 42vh;
+        height: 550px;
         width: 320px;
         border: 2px solid black;
         box-shadow: 2px 2px 0 black;
@@ -241,5 +246,83 @@
     }
     .module button {
         padding: .5rem 1rem;
+    }
+    .loc-1 {
+        grid-row-start: 1;
+        grid-column-start: 1;
+        grid-row-end: 4;
+        grid-column-end: 4;
+    }
+    .loc-2 {
+        grid-row-start: 1;
+        grid-column-start: 4;
+        grid-row-end: 4;
+        grid-column-end: 7;
+    }
+    .loc-3 {
+        grid-row-start: 1;
+        grid-column-start: 7;
+        grid-row-end: 4;
+        grid-column-end: 10;
+    }
+    .loc-4 {
+        grid-row-start: 4;
+        grid-column-start: 1;
+        grid-row-end: 7;
+        grid-column-end: 4;
+    }
+    .loc-5 {
+        grid-row-start: 4;
+        grid-column-start: 4;
+        grid-row-end: 7;
+        grid-column-end: 7;
+    }
+    .loc-6 {
+        grid-row-start: 4;
+        grid-column-start: 7;
+        grid-row-end: 7;
+        grid-column-end: 10;
+    }
+    .loc-7 {
+        grid-row-start: 7;
+        grid-column-start: 1;
+        grid-row-end: 10;
+        grid-column-end: 4;
+    }
+    .loc-8 {
+        grid-row-start: 7;
+        grid-column-start: 4;
+        grid-row-end: 10;
+        grid-column-end: 7;
+    }
+    .loc-9 {
+        grid-row-start: 7;
+        grid-column-start: 7;
+        grid-row-end: 10;
+        grid-column-end: 10;
+    }
+    .sum-1 {
+        grid-row-start: 3;
+        grid-row-end: 5;
+        grid-column-start: 3;
+        grid-column-end: 5;
+    }
+    .sum-2 {
+        grid-row-start: 3;
+        grid-row-end: 5;
+        grid-column-start: 6;
+        grid-column-end: 8;
+    }
+    .sum-3 {
+        grid-row-start: 6;
+        grid-row-end: 8;
+        grid-column-start: 3;
+        grid-column-end: 5;
+    }
+    .sum-4 {
+        grid-row-start: 6;
+        grid-row-end: 8;
+        grid-column-start: 6;
+        grid-column-end: 8;
     }
 </style>

@@ -9,7 +9,7 @@
   {#if show}
     <div class="flip-card-inner">
         <div class="flip-card-front">
-          <h1>Todo list</h1>
+          <h1>Sujiko</h1>
         </div>
       <div class="flip-card-back">
         <Sujiko />
@@ -27,7 +27,7 @@
     background-color: transparent;
     width: 360px;
     perspective: 1000px;
-    background-color: #fee074;
+    background-color: #d9f743;
     break-inside: avoid;
   }
   .flip-card-inner {
@@ -49,14 +49,14 @@
   }
 
   .flip-card-front {
-    color: white;
+    color: black;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .flip-card-back {
-    background-color: #fee074;
-    color: white;
+    background-color: #d9f743;
+    color: black;
     transform: rotateY(180deg);
     display: flex;
     justify-content: center;
