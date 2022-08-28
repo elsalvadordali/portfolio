@@ -15,5 +15,6 @@ let show = true
         display: flex;
         justify-content: center;
         align-items: center;
+        background-color: #5d7599;
     }
 </style>

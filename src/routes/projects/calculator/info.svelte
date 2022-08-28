@@ -48,7 +48,7 @@
         font-size: 2rem;
     }
     .all {
-        background-color: #9deac8;
+        background-color: #81b29a;
         padding: 1rem;
         width: calc(100vw - 2rem);
         box-sizing: content-box;

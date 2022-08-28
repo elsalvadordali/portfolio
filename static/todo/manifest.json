@@ -8,32 +8,32 @@
     "description": "A simple todo list with persistent storage",
     "icons": [
       {
-        "src": "todo/todo-48.png",
+        "src": "img/todo-48.png",
         "sizes": "48x48",
         "type": "image/png"
       },
       {
-        "src": "todo/todo-72.png",
+        "src": "img/todo-72.png",
         "sizes": "72x72",
         "type": "image/png"
       },
       {
-        "src": "todo/todo-96.png",
+        "src": "img/todo-96.png",
         "sizes": "96x96",
         "type": "image/png"
       },
       {
-        "src": "todo/todo-144.png",
+        "src": "img/todo-144.png",
         "sizes": "144x144",
         "type": "image/png"
       },
       {
-        "src": "todo/todo-168.png",
+        "src": "img/todo-168.png",
         "sizes": "168x168",
         "type": "image/png"
       },
       {
-        "src": "icon.png",
+        "src": "img/icon.png",
         "sizes": "192x192",
         "type": "image/png"
       }

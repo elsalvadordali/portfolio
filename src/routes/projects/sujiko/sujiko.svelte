@@ -41,22 +41,15 @@
     }
     function hint() {
         let isGivingHint = true
-        let i = 0
-        while (isGivingHint && i < 9) {
-            console.log('hint')
-            const randomNumber = Math.floor(Math.random() * 9)
-
-            // DONT FORGET TO MOVE IF FOUND NUMBER TO PREVENT DUPLICATES
-            if (grid[randomNumber] && grid[randomNumber] != numbers[randomNumber]) {
-                const index = grid.indexOf(grid[randomNumber])
-                grid[index] = grid
-                grid[randomNumber] = numbers[randomNumber]
-                isGivingHint = false
-            } else {
-                grid[randomNumber] = numbers[randomNumber]
+        let random = Math.floor(Math.random() * 9)
+        while (isGivingHint) {
+            if (grid[random] === numbers[random]) random = Math.floor(Math.random() * 9)
+            else {
+                grid[random] = numbers[random]
                 isGivingHint = false
             }
-            i++
+            // DONT FORGET TO MOVE IF FOUND NUMBER TO PREVENT DUPLICATES
+       
         }
 
     }
@@ -64,10 +57,12 @@
         grid = new Array(9).fill(0)
         seconds = 0
         timer = '0:00'
-        dangTimer()
+        clearInterval(dangTimer)
+        dangTimer
         //numbers = new Array(9)
-        generateRandomOrder()
         won = false
+
+        generateRandomOrder()
     }
     const numbers = generateRandomOrder()
 
@@ -105,7 +100,6 @@
 </svelte:head>
 
 <div class='container'>
-    
             {#each grid as n, i} 
             <button on:click={() => location = i} class={location === i ? 'highlight loc loc-' + (i + 1): 'loc loc-' + (i + 1)}>{grid[i] > 0 ? grid[i] : ''}</button>
             {/each}
@@ -118,8 +112,8 @@
     
     <div class='numbers'>
         {#each grid as n, i}
-        <button on:click={() => num = i + 1} class={num === i + 1 ? 'highlight grid-' + i + 1  : ''}>
-            <p class={grid.includes(i + 1) ? 's' : ''}>{i + 1}</p>
+        <button on:click={() => num = i + 1} class={grid.includes(i + 1) ? 'num s' : 'num'}>
+            {i + 1}
         </button>
         {/each}
     </div>
@@ -132,7 +126,7 @@
 
 {#if won}
 <div class="module">
-    YOU WON!
+    YOU WON IN ONLY {seconds >=  2 ? timer + ' SECOND!' : timer + ' SECONDS!'} 
     <h5 class='giant'>🎉</h5>
     <button on:click={() => reset()}>play again</button>
 </div>
@@ -144,11 +138,10 @@
         grid-column-start: 1;
         grid-column-end: 11;
         display: flex;
-        width: 340px;
         justify-content: space-between;
     }
     .numbers button {
-        padding: .25rem .5rem;
+        padding: .5rem .75rem;
     }
     .numbers button p {
         margin: 0;
@@ -158,6 +151,8 @@
         grid-template-columns: repeat(9, 1fr);
         grid-template-rows: repeat(11, 1fr);
         height: 490px;
+        width: 340px;
+
     }
     .loc {
         width: 100%;
@@ -166,6 +161,7 @@
         margin: 0;
         z-index: 2;
         font-size: 2rem;
+        
     }
     .sums {
         position: relative;
@@ -199,10 +195,10 @@
         margin: 0;
     }
     .highlight {
-        background-color: aquamarine;
+        background-color: #81b29a;
     }
     .s {
-        text-decoration: line-through;
+        background-color: #e07a5f;
     }
     .center {
         grid-row-start: 11;
@@ -227,11 +223,10 @@
         background-color: white;
         padding: 1rem;
         box-sizing: border-box;
-        position: relative;
+        position: absolute;
         z-index: 100;
         left: calc(50vw - 160px);
         top: 35vh;
-        height: 550px;
         width: 320px;
         border: 2px solid black;
         box-shadow: 2px 2px 0 black;

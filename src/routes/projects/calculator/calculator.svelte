@@ -58,7 +58,6 @@ function calculate(char: string) {
 
 <style>
     .module {
-        background-color: #9deac8;
         width: 100%;
         height: 100%;
         margin: 0;
@@ -82,6 +81,7 @@ function calculate(char: string) {
         height: 24%;
         margin-top: 1rem;
         margin-bottom: 1rem;
+        margin-left: .25rem;
         background-color: transparent;
         outline: none;
         border: 2px solid #000;
@@ -90,7 +90,7 @@ function calculate(char: string) {
         font-size: 2rem;
         text-align: right;
         color: #000;
-        background-color: #ececec;
+        background-color: #f4f1de;
     }
     .buttons {
         box-sizing: border-box;

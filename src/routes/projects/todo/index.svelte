@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Todo List by Tijana</title>
 	<meta name="description" content="Todo app PWA" />
+    <link rel="icon" href="/todo/img/todo-48.png" />
+
     <link rel="manifest" href="/todo/manifest.json">
 </svelte:head>
 
@@ -18,7 +20,7 @@
         height: 100vh;
         margin: 0;
         box-sizing: border-box;
-        background-color: #e8d6eb;
+        background-color: #f2cc8f;
         padding: 0;
         display: flex;
         justify-content: center;

@@ -27,7 +27,7 @@
     background-color: transparent;
     width: 360px;
     perspective: 1000px;
-    background-color: #e8d6eb;
+    background-color: #f2cc8f;
     break-inside: avoid;
   }
   .flip-card-inner {
@@ -49,14 +49,12 @@
   }
 
   .flip-card-front {
-    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
   }
   .flip-card-back {
-    background-color: #e8d6eb;
-    color: white;
+    background-color: #f2cc8f;
     transform: rotateY(180deg);
     display: flex;
     justify-content: center;
@@ -64,5 +62,9 @@
     padding: 1rem;
     box-sizing: border-box;
   }
-
+  @media screen and (min-width: 1360px) {
+    .flip-card {
+      margin-top: 1rem;
+    }
+  }
 </style>

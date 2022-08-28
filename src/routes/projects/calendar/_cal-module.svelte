@@ -54,7 +54,7 @@
     background-color: transparent;
     width: 360px;
     perspective: 1000px;
-    background-color: #d9dcff;
+    background-color: #f4f1de;
     break-inside: avoid;
   }
   .no-height {
@@ -83,7 +83,12 @@
     align-items: center;
   }
   .flip-card-back {
-    background-color: #d9dcff;
+    background-color: #f4f1de;
     transform: rotateY(180deg);
+  }
+  @media screen and (min-width: 1360px) {
+    .flip-card {
+      margin-top: 1rem;
+    }
   }
 </style>

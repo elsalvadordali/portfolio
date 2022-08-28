@@ -137,7 +137,7 @@
         border-radius: .25rem;
     }
     .day:hover, .today:hover {
-        background-color: #e5e7fd;
+        background-color: #f2cc8f;
         border-color: #333;
     }
     .menu {
@@ -145,7 +145,7 @@
         justify-content: space-between;
         align-items: center;
         justify-self: flex-start;
-        padding: .5rem;
+        padding: .5rem .8rem .5rem .5rem;
         width: calc(100% - 1.5rem);
         margin: 0;
         max-width: 340px;
@@ -159,7 +159,7 @@
     }
     .today {
         border: 2px solid black;
-        background-color: #f5e7fd;
+        background-color: #e07a5f;
         border-radius: .25rem;
     }
     button {

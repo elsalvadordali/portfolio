@@ -40,7 +40,7 @@
         gap: 1rem;
     }
  
-    @media screen and (min-width: 1300px) {
+    @media screen and (min-width: 1360px) {
         .padding {
             display: block;
             column-count: 2;

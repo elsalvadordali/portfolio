@@ -5,6 +5,8 @@
 <svelte:head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Calendar by Tijana</title>
+    <link rel="icon" href="/cal/img/icon.png" />
+
 	<meta name="description" content="Calendar app PWA" />
     <link rel="manifest" href="/calendar/manifest.json">
 </svelte:head>
@@ -18,16 +20,12 @@
         width: 100vw;
         height: 100vh;
         margin: 0;
-        background-color: #d9dcff;
-
+        background-color: #dce2d4;
         color: black;
         display: flex;
         flex-flow: column nowrap;
         justify-content: center;
         align-items: center;
     }
-  
-    @media screen and (min-width: 900px) {
-      
-    }
+
 </style>

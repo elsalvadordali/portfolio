@@ -30,7 +30,7 @@
     background-color: transparent;
     width: 360px;
     perspective: 1000px;
-    background-color: #9deac8;
+    background-color: #81b29a;
     break-inside: avoid;
   }
   .flip-card-inner {
@@ -58,7 +58,7 @@
     align-items: center;
   }
   .flip-card-back {
-    background-color: #9deac8;
+    background-color: #81b29a;
     color: white;
     transform: rotateY(180deg);
   }
