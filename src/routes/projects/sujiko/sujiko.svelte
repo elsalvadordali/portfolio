@@ -1,11 +1,13 @@
 <script lang="ts">
     let location: string | null = null
     let num: number | null = null
-    let grid: numbers | string = new Array(9).fill(0)
-    let seconds = 0
+    let grid: number[] | string[] = new Array(9).fill(0)
+    let seconds = 1
     let won = false
-    let timer = ''
-    const dangTimer = setInterval(() => {
+    let timer = '0:00'
+    let dangTimer = setInterval(increaseSec, 1000)  
+
+    function increaseSec() {
         let sec = seconds
         let min = 0
         while (sec >= 60) {
@@ -14,8 +16,7 @@
         }
         seconds++
         timer = min + (sec < 10 ? ':0' + sec : ':' + sec)
-    }, 1000)  
-
+    }
     function generateRandomOrder() {
         const hash = {}
         const numbers: number[] = []
@@ -26,9 +27,6 @@
                 numbers.push(randomNumber)
             }
         }
-        console.log(numbers[0], numbers[1], numbers[2])
-        console.log(numbers[3], numbers[4], numbers[5])
-        console.log(numbers[6], numbers[7], numbers[8])
         return numbers
     }
     function getSums() {
@@ -39,37 +37,34 @@
         sums.push(numbers[4] + numbers[5] + numbers[7] + numbers[8])
         return sums
     }
+    
+    let i = 0
     function hint() {
-        let isGivingHint = true
         let random = Math.floor(Math.random() * 9)
-        while (isGivingHint) {
-            if (grid[random] === numbers[random]) random = Math.floor(Math.random() * 9)
-            else {
-                grid[random] = numbers[random]
-                isGivingHint = false
-            }
-            // DONT FORGET TO MOVE IF FOUND NUMBER TO PREVENT DUPLICATES
-       
+        while (grid[random] === numbers[random]) {
+            random = Math.floor(Math.random() * 9)
         }
-
+        if (grid.includes(numbers[random])) {
+            const index = grid.indexOf(numbers[random])
+            grid[index] = ''
+        }
+        grid[random] = numbers[random]
     }
     function reset() {
         grid = new Array(9).fill(0)
         seconds = 0
         timer = '0:00'
         clearInterval(dangTimer)
-        dangTimer
+        dangTimer = setInterval(increaseSec, 1000)
         //numbers = new Array(9)
         won = false
-
-        generateRandomOrder()
+        numbers = generateRandomOrder()
     }
-    const numbers = generateRandomOrder()
+    let numbers = generateRandomOrder()
 
     const sums = getSums()
 
     $: {
-        console.log(num, location)
         if (num && location != null) {
             if (grid.includes(num)) {
                 const i = grid.indexOf(num)
@@ -77,7 +72,7 @@
                 else grid[i] = 0
             }
             grid[location] = num
-        }else if (num == null && location) grid[location] = 0
+        } else if (num == null && location) grid[location] = 0
         num = 0
         if (grid.length === 9) {
             let areEqual = true
@@ -87,7 +82,7 @@
             if (areEqual) {
               won = true
               clearInterval(dangTimer)
-            } else console.log('try again')
+            }
         }
     }
 </script>
@@ -143,9 +138,7 @@
     .numbers button {
         padding: .5rem .75rem;
     }
-    .numbers button p {
-        margin: 0;
-    }
+    
     .container {
         display: grid;
         grid-template-columns: repeat(9, 1fr);

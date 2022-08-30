@@ -9,7 +9,7 @@
     const today = new Date()
 
     let openTodo = false
-    let currDay
+    let currDay = currYear + '/' + currMonth + '/' 
 
     //let month: Day[] = []
     const memo = {}
@@ -81,7 +81,6 @@
         createMonth()
     }
     function open(day) {
-        console.log('clicked')
         currDay = day
         openTodo = true
     }
@@ -89,7 +88,7 @@
 
 
 {#if openTodo}
-<Addevent />
+<Addevent day={currDay} />
 {/if}
         <div class='menu'>
             <button on:click={e => previousMonth()}> {'<<'} </button> 

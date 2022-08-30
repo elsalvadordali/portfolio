@@ -11,7 +11,6 @@
     const unsubscribe = tasks.subscribe(val => list = val)
 
     
-    
     function markDone(item: ItemType) {
             item.isComplete = !item.isComplete
             tasks.updateOne(item)
@@ -25,7 +24,7 @@
         tasks.set(filtered)
         list = filtered
     }
-    
+    unsubscribe()
 </script>
 
 
