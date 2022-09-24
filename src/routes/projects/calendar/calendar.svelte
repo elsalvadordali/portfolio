@@ -86,7 +86,6 @@
     }
 </script>
 
-
 {#if openTodo}
 <Addevent day={currDay} />
 {/if}

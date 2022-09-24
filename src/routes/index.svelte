@@ -6,7 +6,10 @@
 <svelte:head>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Tijana Jung &middot; Front-end web dev</title>
-	<meta name="description" content="Svelte demo app" />
+	<meta name="description" content="Tijana Jung's portfolio site" />
+	
+
+
 </svelte:head>
 
 
