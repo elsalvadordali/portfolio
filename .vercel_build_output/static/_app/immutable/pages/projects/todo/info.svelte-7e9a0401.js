@@ -1,0 +1,19 @@
+import{S as Q,i as R,s as U,e as l,t as c,k as h,c as r,a as i,h as d,d as o,m as u,b as n,g as X,J as e,E as O}from"../../../chunks/index-9fb11939.js";function Y(V){let a,t,_,S,I,p,A,E,v,T,x,f,j,P,w,J,N,b,q,C,m,H,D,y,G;return{c(){a=l("div"),t=l("div"),_=l("h1"),S=c("Todo"),I=h(),p=l("p"),A=c(`If I didn't include a basic todo app, how would you know I was a 
+            web dev at all? All kidding aside, this is was a one-day project that
+            I wanted to build to use on my phone, and thus it is a PWA (progressive web app).
+            Are you noticing a theme?`),E=h(),v=l("h3"),T=c("Technical"),x=h(),f=l("p"),j=c(`The project was built in svelte, and plain JS. The hardest part was syncing the 
+            svelte store (the svelte equivalent of redux) to localStorage. And localStorage 
+            is always a bit tricky because it only stores strings, but the data I needed to
+            store was an array of objects. This was simple to overcome by using 'JSON.stringfy'.`),P=h(),w=l("p"),J=c(`Another tricky aspect was the fact that sveltekit is rendered serverside, and thus,
+            doesn't have access to localStorage (if not rendered in the browser).. So I had to 
+            import the browser library, which tells sveltekit if a browser is rendering, and if it is,
+            we can freely use localStorage.`),N=h(),b=l("h3"),q=c("Next Steps"),C=h(),m=l("p"),H=c("I guess the only feature 'missing' is to be able to edit items in the todo list"),D=h(),y=l("a"),G=c("Code on Github"),this.h()},l(k){a=r(k,"DIV",{class:!0});var g=i(a);t=r(g,"DIV",{class:!0});var s=i(t);_=r(s,"H1",{});var W=i(_);S=d(W,"Todo"),W.forEach(o),I=u(s),p=r(s,"P",{class:!0});var $=i(p);A=d($,`If I didn't include a basic todo app, how would you know I was a 
+            web dev at all? All kidding aside, this is was a one-day project that
+            I wanted to build to use on my phone, and thus it is a PWA (progressive web app).
+            Are you noticing a theme?`),$.forEach(o),E=u(s),v=r(s,"H3",{class:!0});var z=i(v);T=d(z,"Technical"),z.forEach(o),x=u(s),f=r(s,"P",{class:!0});var B=i(f);j=d(B,`The project was built in svelte, and plain JS. The hardest part was syncing the 
+            svelte store (the svelte equivalent of redux) to localStorage. And localStorage 
+            is always a bit tricky because it only stores strings, but the data I needed to
+            store was an array of objects. This was simple to overcome by using 'JSON.stringfy'.`),B.forEach(o),P=u(s),w=r(s,"P",{class:!0});var F=i(w);J=d(F,`Another tricky aspect was the fact that sveltekit is rendered serverside, and thus,
+            doesn't have access to localStorage (if not rendered in the browser).. So I had to 
+            import the browser library, which tells sveltekit if a browser is rendering, and if it is,
+            we can freely use localStorage.`),F.forEach(o),N=u(s),b=r(s,"H3",{class:!0});var K=i(b);q=d(K,"Next Steps"),K.forEach(o),C=u(s),m=r(s,"P",{class:!0});var L=i(m);H=d(L,"I guess the only feature 'missing' is to be able to edit items in the todo list"),L.forEach(o),s.forEach(o),D=u(g),y=r(g,"A",{href:!0});var M=i(y);G=d(M,"Code on Github"),M.forEach(o),g.forEach(o),this.h()},h(){n(p,"class","svelte-1hkemcu"),n(v,"class","svelte-1hkemcu"),n(f,"class","svelte-1hkemcu"),n(w,"class","svelte-1hkemcu"),n(b,"class","svelte-1hkemcu"),n(m,"class","svelte-1hkemcu"),n(t,"class","column svelte-1hkemcu"),n(y,"href","https://github.com/elsalvadordali/portfolio/tree/main/src/routes/projects/todo"),n(a,"class","all svelte-1hkemcu")},m(k,g){X(k,a,g),e(a,t),e(t,_),e(_,S),e(t,I),e(t,p),e(p,A),e(t,E),e(t,v),e(v,T),e(t,x),e(t,f),e(f,j),e(t,P),e(t,w),e(w,J),e(t,N),e(t,b),e(b,q),e(t,C),e(t,m),e(m,H),e(a,D),e(a,y),e(y,G)},p:O,i:O,o:O,d(k){k&&o(a)}}}function Z(V){return[]}class te extends Q{constructor(a){super(),R(this,a,Z,Y,U,{})}}export{te as default};

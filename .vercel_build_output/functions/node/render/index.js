@@ -72,8 +72,8 @@ async function toFormData(Body3, ct) {
     entryChunks.push(ui8a);
   };
   const appendFileToFormData = () => {
-    const file15 = new File(entryChunks, filename, { type: contentType });
-    formData.append(entryName, file15);
+    const file21 = new File(entryChunks, filename, { type: contentType });
+    formData.append(entryName, file21);
   };
   const appendEntryToFormData = () => {
     formData.append(entryName, entryValue);
@@ -181,7 +181,7 @@ var init_multipart_parser = __esm({
         let i2 = 0;
         const length_ = data.length;
         let previousIndex = this.index;
-        let { lookbehind, boundary, boundaryChars, index: index14, state, flags } = this;
+        let { lookbehind, boundary, boundaryChars, index: index20, state, flags } = this;
         const boundaryLength = this.boundary.length;
         const boundaryEnd = boundaryLength - 1;
         const bufferLength = data.length;
@@ -215,20 +215,20 @@ var init_multipart_parser = __esm({
           c = data[i2];
           switch (state) {
             case S.START_BOUNDARY:
-              if (index14 === boundary.length - 2) {
+              if (index20 === boundary.length - 2) {
                 if (c === HYPHEN) {
                   flags |= F.LAST_BOUNDARY;
                 } else if (c !== CR) {
                   return;
                 }
-                index14++;
+                index20++;
                 break;
-              } else if (index14 - 1 === boundary.length - 2) {
+              } else if (index20 - 1 === boundary.length - 2) {
                 if (flags & F.LAST_BOUNDARY && c === HYPHEN) {
                   state = S.END;
                   flags = 0;
                 } else if (!(flags & F.LAST_BOUNDARY) && c === LF) {
-                  index14 = 0;
+                  index20 = 0;
                   callback("onPartBegin");
                   state = S.HEADER_FIELD_START;
                 } else {
@@ -236,29 +236,29 @@ var init_multipart_parser = __esm({
                 }
                 break;
               }
-              if (c !== boundary[index14 + 2]) {
-                index14 = -2;
+              if (c !== boundary[index20 + 2]) {
+                index20 = -2;
               }
-              if (c === boundary[index14 + 2]) {
-                index14++;
+              if (c === boundary[index20 + 2]) {
+                index20++;
               }
               break;
             case S.HEADER_FIELD_START:
               state = S.HEADER_FIELD;
               mark("onHeaderField");
-              index14 = 0;
+              index20 = 0;
             case S.HEADER_FIELD:
               if (c === CR) {
                 clear("onHeaderField");
                 state = S.HEADERS_ALMOST_DONE;
                 break;
               }
-              index14++;
+              index20++;
               if (c === HYPHEN) {
                 break;
               }
               if (c === COLON) {
-                if (index14 === 1) {
+                if (index20 === 1) {
                   return;
                 }
                 dataCallback("onHeaderField", true);
@@ -300,8 +300,8 @@ var init_multipart_parser = __esm({
               state = S.PART_DATA;
               mark("onPartData");
             case S.PART_DATA:
-              previousIndex = index14;
-              if (index14 === 0) {
+              previousIndex = index20;
+              if (index20 === 0) {
                 i2 += boundaryEnd;
                 while (i2 < bufferLength && !(data[i2] in boundaryChars)) {
                   i2 += boundaryLength;
@@ -309,27 +309,27 @@ var init_multipart_parser = __esm({
                 i2 -= boundaryEnd;
                 c = data[i2];
               }
-              if (index14 < boundary.length) {
-                if (boundary[index14] === c) {
-                  if (index14 === 0) {
+              if (index20 < boundary.length) {
+                if (boundary[index20] === c) {
+                  if (index20 === 0) {
                     dataCallback("onPartData", true);
                   }
-                  index14++;
+                  index20++;
                 } else {
-                  index14 = 0;
+                  index20 = 0;
                 }
-              } else if (index14 === boundary.length) {
-                index14++;
+              } else if (index20 === boundary.length) {
+                index20++;
                 if (c === CR) {
                   flags |= F.PART_BOUNDARY;
                 } else if (c === HYPHEN) {
                   flags |= F.LAST_BOUNDARY;
                 } else {
-                  index14 = 0;
+                  index20 = 0;
                 }
-              } else if (index14 - 1 === boundary.length) {
+              } else if (index20 - 1 === boundary.length) {
                 if (flags & F.PART_BOUNDARY) {
-                  index14 = 0;
+                  index20 = 0;
                   if (c === LF) {
                     flags &= ~F.PART_BOUNDARY;
                     callback("onPartEnd");
@@ -343,14 +343,14 @@ var init_multipart_parser = __esm({
                     state = S.END;
                     flags = 0;
                   } else {
-                    index14 = 0;
+                    index20 = 0;
                   }
                 } else {
-                  index14 = 0;
+                  index20 = 0;
                 }
               }
-              if (index14 > 0) {
-                lookbehind[index14 - 1] = c;
+              if (index20 > 0) {
+                lookbehind[index20 - 1] = c;
               } else if (previousIndex > 0) {
                 const _lookbehind = new Uint8Array(lookbehind.buffer, lookbehind.byteOffset, lookbehind.byteLength);
                 callback("onPartData", 0, previousIndex, _lookbehind);
@@ -368,7 +368,7 @@ var init_multipart_parser = __esm({
         dataCallback("onHeaderField");
         dataCallback("onHeaderValue");
         dataCallback("onPartData");
-        this.index = index14;
+        this.index = index20;
         this.state = state;
         this.flags = flags;
       }
@@ -5054,13 +5054,8 @@ var init_node = __esm({
   }
 });
 
-// .svelte-kit/output/server/immutable/chunks/index-792b009d.js
+// .svelte-kit/output/server/immutable/chunks/index-d55d85f2.js
 function noop2() {
-}
-function assign(tar, src) {
-  for (const k in src)
-    tar[k] = src[k];
-  return tar;
 }
 function run(fn) {
   return fn();
@@ -5074,38 +5069,8 @@ function run_all(fns) {
 function safe_not_equal(a, b) {
   return a != a ? b == b : a !== b || (a && typeof a === "object" || typeof a === "function");
 }
-function subscribe(store, ...callbacks) {
-  if (store == null) {
-    return noop2;
-  }
-  const unsub = store.subscribe(...callbacks);
-  return unsub.unsubscribe ? () => unsub.unsubscribe() : unsub;
-}
 function null_to_empty(value) {
   return value == null ? "" : value;
-}
-function run_tasks(now2) {
-  tasks.forEach((task) => {
-    if (!task.c(now2)) {
-      tasks.delete(task);
-      task.f();
-    }
-  });
-  if (tasks.size !== 0)
-    raf(run_tasks);
-}
-function loop(callback) {
-  let task;
-  if (tasks.size === 0)
-    raf(run_tasks);
-  return {
-    promise: new Promise((fulfill) => {
-      tasks.add(task = { c: callback, f: fulfill });
-    }),
-    abort() {
-      tasks.delete(task);
-    }
-  };
 }
 function set_current_component(component) {
   current_component = component;
@@ -5173,7 +5138,7 @@ function create_ssr_component(fn) {
       return {
         html,
         css: {
-          code: Array.from(result.css).map((css12) => css12.code).join("\n"),
+          code: Array.from(result.css).map((css19) => css19.code).join("\n"),
           map: null
         },
         head: result.title + result.head
@@ -5188,14 +5153,9 @@ function add_attribute(name, value, boolean) {
   const assignment = boolean && value === true ? "" : `="${escape(value, true)}"`;
   return ` ${name}${assignment}`;
 }
-var identity, is_client, now, raf, tasks, current_component, ATTR_REGEX, CONTENT_REGEX, missing_component, on_destroy;
-var init_index_792b009d = __esm({
-  ".svelte-kit/output/server/immutable/chunks/index-792b009d.js"() {
-    identity = (x2) => x2;
-    is_client = typeof window !== "undefined";
-    now = is_client ? () => window.performance.now() : () => Date.now();
-    raf = is_client ? (cb) => requestAnimationFrame(cb) : noop2;
-    tasks = /* @__PURE__ */ new Set();
+var current_component, ATTR_REGEX, CONTENT_REGEX, missing_component, on_destroy;
+var init_index_d55d85f2 = __esm({
+  ".svelte-kit/output/server/immutable/chunks/index-d55d85f2.js"() {
     Promise.resolve();
     ATTR_REGEX = /[&"]/g;
     CONTENT_REGEX = /[&<]/g;
@@ -5220,7 +5180,7 @@ __export(layout_svelte_exports, {
 var _layout;
 var init_layout_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/__layout.svelte.js"() {
-    init_index_792b009d();
+    init_index_d55d85f2();
     _layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       return `<main>${slots.default ? slots.default({}) : ``}
 </main>`;
@@ -5242,9 +5202,9 @@ var init__ = __esm({
   ".svelte-kit/output/server/nodes/0.js"() {
     init_layout_svelte();
     index = 0;
-    file2 = "immutable/pages/__layout.svelte-0f7dd5b3.js";
-    imports = ["immutable/pages/__layout.svelte-0f7dd5b3.js", "immutable/chunks/index-f104f474.js"];
-    stylesheets = ["immutable/assets/pages/__layout.svelte-66278d18.css"];
+    file2 = "immutable/pages/__layout.svelte-ce3142b0.js";
+    imports = ["immutable/pages/__layout.svelte-ce3142b0.js", "immutable/chunks/index-9fb11939.js"];
+    stylesheets = ["immutable/assets/pages/__layout.svelte-59c04249.css"];
   }
 });
 
@@ -5260,7 +5220,7 @@ function load({ error: error2, status }) {
 var Error2;
 var init_error_svelte = __esm({
   ".svelte-kit/output/server/entries/fallbacks/error.svelte.js"() {
-    init_index_792b009d();
+    init_index_d55d85f2();
     Error2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let { status } = $$props;
       let { error: error2 } = $$props;
@@ -5294,8 +5254,8 @@ var init__2 = __esm({
   ".svelte-kit/output/server/nodes/1.js"() {
     init_error_svelte();
     index2 = 1;
-    file3 = "immutable/error.svelte-18d8031f.js";
-    imports2 = ["immutable/error.svelte-18d8031f.js", "immutable/chunks/index-f104f474.js"];
+    file3 = "immutable/error.svelte-8198add5.js";
+    imports2 = ["immutable/error.svelte-8198add5.js", "immutable/chunks/index-9fb11939.js"];
     stylesheets2 = [];
   }
 });
@@ -5304,22 +5264,22 @@ var init__2 = __esm({
 var css, About;
 var init_about_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/about.svelte.js"() {
-    init_index_792b009d();
+    init_index_d55d85f2();
     css = {
-      code: "h1.svelte-iy2658{font-size:6rem;width:100%;text-align:center;margin:0;margin-top:.5rem}img.svelte-iy2658{width:95%}h3.svelte-iy2658{font-size:3rem;margin:1rem 0}.center.svelte-iy2658{width:100%;display:flex;justify-content:center;align-items:center}h6.svelte-iy2658{font-size:1rem;margin:.5rem 0 .25rem;display:block;text-align:center}.icon.svelte-iy2658{color:black;font-size:3rem;display:block;text-align:center}.score.svelte-iy2658{display:block;text-align:center;margin:0 0 .5rem 0}.tagline.svelte-iy2658{display:grid;grid-template-columns:repeat(2, 1fr);margin-left:5rem}.grid.svelte-iy2658{display:grid;grid-template-columns:repeat(3, 1fr);grid-template-rows:repeat(7, 1fr);-moz-column-gap:1rem;column-gap:1rem}.content.svelte-iy2658{width:calc(100% - 2rem);margin:var(--column-margin-top) auto 0 auto;padding:0 1rem;scroll-behavior:smooth;overflow:scroll}.left.svelte-iy2658{grid-column-start:1}.right.svelte-iy2658{grid-column-start:2;border-left:3px solid #1a2949;padding-left:1rem}.padded.svelte-iy2658{padding:1rem}@media screen and (min-width: 600px){.content.svelte-iy2658{width:calc(100% - 322px)\n		}}@media screen and (min-width: 900px){.content.svelte-iy2658{width:48vw;max-width:800px}}",
+      code: "h1.svelte-1yiy1yh{font-size:6rem;width:100%;text-align:center;margin:0;margin-top:.5rem}img.svelte-1yiy1yh{width:95%}h3.svelte-1yiy1yh{font-size:3rem;margin:1rem 0}.center.svelte-1yiy1yh{width:100%;display:flex;justify-content:center;align-items:center}h6.svelte-1yiy1yh{font-size:1rem;margin:.5rem 0 .25rem;display:block;text-align:center}.icon.svelte-1yiy1yh{color:black;font-size:3rem;display:block;text-align:center}.score.svelte-1yiy1yh{display:block;text-align:center;margin:0 0 .5rem 0}.tagline.svelte-1yiy1yh{display:grid;grid-template-columns:repeat(2, 1fr);margin-left:5rem}.grid.svelte-1yiy1yh{display:grid;grid-template-columns:repeat(3, 1fr);grid-template-rows:repeat(7, 1fr);-moz-column-gap:1rem;column-gap:1rem}.content.svelte-1yiy1yh{width:calc(100% - 2rem);margin:var(--column-margin-top) auto 0 auto;padding:0 1rem;box-sizing:border-box;scroll-behavior:smooth;overflow:scroll}.left.svelte-1yiy1yh{grid-column-start:1}.right.svelte-1yiy1yh{grid-column-start:2;border-left:3px solid #1a2949;padding-left:1rem}.padded.svelte-1yiy1yh{padding:1rem}@media screen and (min-width: 600px){.content.svelte-1yiy1yh{width:calc(100% - 322px)\n		}}@media screen and (min-width: 900px){.content.svelte-1yiy1yh{width:48vw;max-width:800px}}",
       map: null
     };
     About = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css);
       return `<link rel="${"stylesheet"}" href="${"https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"}"> 
 
-<div class="${"content svelte-iy2658"}"><h1 class="${"svelte-iy2658"}">Tijana</h1>
-	<img src="${"/undraw_well_done_re_3hpo.svg"}" alt="${"illustration of me"}" class="${"svelte-iy2658"}">
-	<div class="${"center svelte-iy2658"}"><div class="${"tagline svelte-iy2658"}"><p class="${"left svelte-iy2658"}">a <b>pretty cool</b></p>
-			<p class="${"right svelte-iy2658"}">front-end web developer</p></div></div>
-	<div class="${"padded svelte-iy2658"}"><h3 class="${"svelte-iy2658"}">I&#39;m Tijana</h3>
+<div class="${"content svelte-1yiy1yh"}"><h1 class="${"svelte-1yiy1yh"}">Tijana</h1>
+	<img src="${"/undraw_well_done_re_3hpo.svg"}" alt="${"illustration of me"}" class="${"svelte-1yiy1yh"}">
+	<div class="${"center svelte-1yiy1yh"}"><div class="${"tagline svelte-1yiy1yh"}"><p class="${"left svelte-1yiy1yh"}">a <b>pretty cool</b></p>
+			<p class="${"right svelte-1yiy1yh"}">front-end web developer</p></div></div>
+	<div class="${"padded svelte-1yiy1yh"}"><h3 class="${"svelte-1yiy1yh"}">I&#39;m Tijana</h3>
 		<p>and I&#39;m <b>obsessed</b> with web development.</p>
-		<p>I&#39;m currently a a Computer Science student at WGU to round out my
+		<p>I&#39;m currently a Computer Science student at WGU to round out my
 			 knowledge so I can be a more <s>badass</s> balanced computer enginneer.
 		</p>
 		<p>I started learning JavaScript with freecodecamp, which is how I realized
@@ -5327,77 +5287,77 @@ var init_about_svelte = __esm({
 		</p>
 		<p>Here are some things I&#39;ve used and the score I&#39;d give it: 
 		</p>
-		<div class="${"grid svelte-iy2658"}"><div><h6 class="${"svelte-iy2658"}">typescript</h6>
-				<i class="${"devicon-typescript-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">JavaScript</h6>
-				<i class="${"devicon-javascript-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">Svelte</h6>
-				<i class="${"devicon-svelte-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50\u2B50</h5></div>
+		<div class="${"grid svelte-1yiy1yh"}"><div><h6 class="${"svelte-1yiy1yh"}">typescript</h6>
+				<i class="${"devicon-typescript-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">JavaScript</h6>
+				<i class="${"devicon-javascript-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">Svelte</h6>
+				<i class="${"devicon-svelte-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50\u2B50</h5></div>
 			
-			<div><h6 class="${"svelte-iy2658"}">CSS</h6>
-				<i class="${"devicon-css3-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">tailwind.css</h6>
-				<i class="${"devicon-tailwindcss-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">firebase</h6>
-				<i class="${"devicon-firebase-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">sqlite</h6>
-				<i class="${"devicon-sqlite-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">postgresql</h6>
-				<i class="${"devicon-postgresql-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">deno</h6>
-				<i class="${"devicon-denojs-original colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">nodejs</h6>
-				<i class="${"devicon-nodejs-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">d3js</h6>
-				<i class="${"devicon-d3js-plain colored icon svelte-iy2658"}"></i>				
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">vue</h6>
-				<i class="${"devicon-vuejs-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">trello</h6>
-				<i class="${"devicon-trello-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">docker</h6>
-				<i class="${"devicon-docker-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">react</h6>
-				<i class="${"devicon-react-original colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">jest</h6>
-				<i class="${"devicon-jest-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">Bulma.css</h6>
-				<i class="${"devicon-bulma-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">CSS</h6>
+				<i class="${"devicon-css3-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">tailwind.css</h6>
+				<i class="${"devicon-tailwindcss-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">firebase</h6>
+				<i class="${"devicon-firebase-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">sqlite</h6>
+				<i class="${"devicon-sqlite-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">postgresql</h6>
+				<i class="${"devicon-postgresql-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">deno</h6>
+				<i class="${"devicon-denojs-original colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">nodejs</h6>
+				<i class="${"devicon-nodejs-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">d3js</h6>
+				<i class="${"devicon-d3js-plain colored icon svelte-1yiy1yh"}"></i>				
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">vue</h6>
+				<i class="${"devicon-vuejs-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">trello</h6>
+				<i class="${"devicon-trello-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">docker</h6>
+				<i class="${"devicon-docker-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">react</h6>
+				<i class="${"devicon-react-original colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">jest</h6>
+				<i class="${"devicon-jest-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">Bulma.css</h6>
+				<i class="${"devicon-bulma-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50\u2B50</h5></div>
 			
-			<div><h6 class="${"svelte-iy2658"}">bootstrap.css</h6>
-				<i class="${"devicon-bootstrap-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">wordpress</h6>
-				<i class="${"devicon-wordpress-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">c</h6>
-				<i class="${"devicon-c-plain colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u2B50\u2B50</h5></div>
-			<div><h6 class="${"svelte-iy2658"}">redux</h6>
-				<i class="${"devicon-redux-original colored icon svelte-iy2658"}"></i>
-				<h5 class="${"score svelte-iy2658"}">\u{1F44E}</h5></div></div></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">bootstrap.css</h6>
+				<i class="${"devicon-bootstrap-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">wordpress</h6>
+				<i class="${"devicon-wordpress-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">c</h6>
+				<i class="${"devicon-c-plain colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u2B50\u2B50</h5></div>
+			<div><h6 class="${"svelte-1yiy1yh"}">redux</h6>
+				<i class="${"devicon-redux-original colored icon svelte-1yiy1yh"}"></i>
+				<h5 class="${"score svelte-1yiy1yh"}">\u{1F44E}</h5></div></div></div>
 </div>`;
     });
   }
 });
 
-// .svelte-kit/output/server/immutable/chunks/store-aa4a99b6.js
+// .svelte-kit/output/server/immutable/chunks/index-7a2b2950.js
 function writable2(value, start = noop2) {
   let stop;
   const subscribers = /* @__PURE__ */ new Set();
@@ -5422,7 +5382,7 @@ function writable2(value, start = noop2) {
   function update(fn) {
     set(fn(value));
   }
-  function subscribe2(run2, invalidate = noop2) {
+  function subscribe(run2, invalidate = noop2) {
     const subscriber = [run2, invalidate];
     subscribers.add(subscriber);
     if (subscribers.size === 1) {
@@ -5437,12 +5397,25 @@ function writable2(value, start = noop2) {
       }
     };
   }
-  return { set, update, subscribe: subscribe2 };
+  return { set, update, subscribe };
 }
+var subscriber_queue2;
+var init_index_7a2b2950 = __esm({
+  ".svelte-kit/output/server/immutable/chunks/index-7a2b2950.js"() {
+    init_index_d55d85f2();
+    subscriber_queue2 = [];
+  }
+});
+
+// .svelte-kit/output/server/entries/endpoints/projects/todo/store.ts.js
+var store_ts_exports = {};
+__export(store_ts_exports, {
+  tasks: () => tasks
+});
 function createTasks() {
-  const { subscribe: subscribe2, set, update } = writable2(stored);
+  const { subscribe, set, update } = writable2(stored);
   return {
-    subscribe: subscribe2,
+    subscribe,
     set: (list) => {
       set(list);
     },
@@ -5461,15 +5434,15 @@ function createTasks() {
     update: (newVal) => update((val) => newVal)
   };
 }
-var subscriber_queue2, stored, tasks2;
-var init_store_aa4a99b6 = __esm({
-  ".svelte-kit/output/server/immutable/chunks/store-aa4a99b6.js"() {
-    init_index_792b009d();
-    subscriber_queue2 = [];
+var stored, tasks;
+var init_store_ts = __esm({
+  ".svelte-kit/output/server/entries/endpoints/projects/todo/store.ts.js"() {
+    init_index_7a2b2950();
+    init_index_d55d85f2();
     stored = false;
     if (!stored)
       stored = [{ task: "buy rubber duck", isComplete: false, date: new Date() }];
-    tasks2 = createTasks();
+    tasks = createTasks();
   }
 });
 
@@ -5487,28 +5460,29 @@ function getYearMonthString(date) {
 var css2, Calendar;
 var init_calendar_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/projects/calendar/calendar.svelte.js"() {
-    init_index_792b009d();
-    init_store_aa4a99b6();
+    init_index_d55d85f2();
+    init_store_ts();
+    init_index_7a2b2950();
     css2 = {
-      code: ".calendar.svelte-s0d4lp.svelte-s0d4lp{width:100%;height:100%;color:black;display:flex;flex-flow:column nowrap;justify-content:center;align-items:center}.grid.svelte-s0d4lp.svelte-s0d4lp{border:2px solid black;display:grid;grid-template-columns:repeat(7, 1fr);gap:.5vw;margin:.5rem;box-sizing:border-box;height:70vw;width:100%;max-height:340px;max-width:340px;padding:1rem;border-radius:.5rem}.grid.svelte-s0d4lp div.svelte-s0d4lp{padding:.125rem;display:flex;justify-content:center;height:28px}.day.svelte-s0d4lp.svelte-s0d4lp{border:2px solid black;border-radius:.25rem}.flip-card-back .calendar.svelte-s0d4lp .grid.svelte-s0d4lp{height:-webkit-fit-content;height:-moz-fit-content;height:fit-content}.day.svelte-s0d4lp.svelte-s0d4lp:hover,.today.svelte-s0d4lp.svelte-s0d4lp:hover{background-color:#e5e7fd;border-color:#333}.menu.svelte-s0d4lp.svelte-s0d4lp{display:flex;justify-content:space-between;align-items:center;justify-self:flex-start;padding:.5rem;width:calc(100% - 1.5rem);margin:.5rem;max-width:1100px}.no-day.svelte-s0d4lp.svelte-s0d4lp{background-color:transparent}.today.svelte-s0d4lp.svelte-s0d4lp{border:2px solid black;background-color:#f5e7fd;border-radius:.25rem}button.svelte-s0d4lp.svelte-s0d4lp{background-color:transparent;color:#000;border:2px solid #000;border-radius:.25rem;margin-top:2px;margin-bottom:6px;font-size:1rem;padding:.25rem .5rem;font-family:'DM Serif Display', serif}",
+      code: ".grid.svelte-10tzvt4.svelte-10tzvt4{border:2px solid black;display:grid;grid-template-columns:repeat(7, 1fr);gap:.5vw;margin:.5rem;box-sizing:border-box;height:-webkit-fit-content;height:-moz-fit-content;height:fit-content;width:100%;max-width:340px;padding:1rem;border-radius:.5rem}.grid.svelte-10tzvt4 div.svelte-10tzvt4{padding:.125rem;display:flex;justify-content:center;height:32px}.day.svelte-10tzvt4.svelte-10tzvt4{border:2px solid black;border-radius:.25rem;display:flex;justify-content:center;align-items:center}.day.svelte-10tzvt4.svelte-10tzvt4:hover,.today.svelte-10tzvt4.svelte-10tzvt4:hover{background-color:#f2cc8f;border-color:#333}.menu.svelte-10tzvt4.svelte-10tzvt4{display:flex;justify-content:space-between;align-items:center;justify-self:flex-start;padding:.5rem .8rem .5rem .5rem;width:calc(100% - 1.5rem);margin:0;max-width:340px}.menu.svelte-10tzvt4 h3.svelte-10tzvt4{margin:0;font-size:2rem}.no-day.svelte-10tzvt4.svelte-10tzvt4{background-color:transparent}.today.svelte-10tzvt4.svelte-10tzvt4{border:2px solid black;background-color:#e07a5f;border-radius:.25rem;display:flex;align-items:center;justify-content:center}button.svelte-10tzvt4.svelte-10tzvt4{background-color:transparent;color:#000;border:2px solid #000;border-radius:.25rem;margin-top:2px;margin-bottom:6px;font-size:1rem;padding:.25rem .5rem;font-family:'DM Serif Display', serif}",
       map: null
     };
     Calendar = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       const monthLengthArr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
       let currMonth = new Date().getMonth() + 1;
       let currYear = new Date().getFullYear();
-      let now2 = currYear.toString() + "/" + currMonth.toString();
-      let startDate = new Date(now2 + "/1");
+      let now = currYear.toString() + "/" + currMonth.toString();
+      let startDate = new Date(now + "/1");
       const today = new Date();
       const memo = {};
-      if (memo[now2]) {
+      if (memo[now]) {
         console.log("yup");
       } else {
         createMonth();
       }
       function getTasks() {
         let todos;
-        tasks2.subscribe((val) => todos = val);
+        tasks.subscribe((val) => todos = val);
         console.log(memo);
         for (const item of todos) {
           const when = getYearMonthString(item.date);
@@ -5536,17 +5510,38 @@ var init_calendar_svelte = __esm({
           j++;
           i2++;
         }
-        memo[now2] = month;
+        memo[now] = month;
         month = [];
       }
       $$result.css.add(css2);
-      return `<div class="${"calendar svelte-s0d4lp"}"><div class="${"menu svelte-s0d4lp"}"><button class="${"svelte-s0d4lp"}">${escape("<<")}</button> 
-            <h3>${escape(currYear + "/" + currMonth)}</h3>
-            <button class="${"svelte-s0d4lp"}">${escape(">>")}</button></div>
-        <div class="${"grid svelte-s0d4lp"}">${each(memo[now2], (day) => {
-        return `${day.date === today.getDate() && day.month === today.getMonth() + 1 && day.year === today.getFullYear() ? `<div class="${"today svelte-s0d4lp"}"${add_attribute("id", day.year + "-" + day.month + "-" + day.date, 0)}><date>${escape(day.date)}</date></div>` : `${day.date === void 0 ? `<div class="${"no-day svelte-s0d4lp"}"></div>` : `${day.tasks.length > 0 ? `<div class="${escape(null_to_empty("tasks-" + day.tasks.length), true) + " svelte-s0d4lp"}">${escape(day.date)}</div>` : `<div class="${"day svelte-s0d4lp"}"${add_attribute("id", day.year + "-" + day.month + "-" + day.date, 0)}><date>${escape(day.date)}</date></div>`}`}`}`;
-      })}</div>
-    </div>`;
+      return `${``}
+        <div class="${"menu svelte-10tzvt4"}"><button class="${"svelte-10tzvt4"}">${escape("<<")}</button> 
+            <h3 class="${"svelte-10tzvt4"}">${escape(currYear + "/" + currMonth)}</h3>
+            <button class="${"svelte-10tzvt4"}">${escape(">>")}</button></div>
+        <div class="${"grid svelte-10tzvt4"}">${each(memo[now], (day) => {
+        return `${day.date === today.getDate() && day.month === today.getMonth() + 1 && day.year === today.getFullYear() ? `<div class="${"today svelte-10tzvt4"}"${add_attribute("id", day.year + "-" + day.month + "-" + day.date, 0)}><date>${escape(day.date)}</date></div>` : `${day.date === void 0 ? `<div class="${"no-day svelte-10tzvt4"}"></div>` : `${day.tasks.length > 0 ? `<div class="${escape(null_to_empty("tasks-" + day.tasks.length), true) + " svelte-10tzvt4"}">${escape(day.date)}</div>` : `<div class="${"day svelte-10tzvt4"}"${add_attribute("id", day.year + "-" + day.month + "-" + day.date, 0)}><date>${escape(day.date)}</date></div>`}`}`}`;
+      })}
+        </div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/immutable/chunks/_addnew-c763ebd6.js
+var css3, Addnew;
+var init_addnew_c763ebd6 = __esm({
+  ".svelte-kit/output/server/immutable/chunks/_addnew-c763ebd6.js"() {
+    init_index_d55d85f2();
+    init_store_ts();
+    css3 = {
+      code: "form.svelte-3gzb4d{display:flex;flex-flow:row nowrap;justify-content:space-between}button.svelte-3gzb4d{padding:6px}input.svelte-3gzb4d{border:2px solid black;outline:none;border-radius:.5rem;padding:6px;margin-top:3px;margin-right:6px;height:24px\n    }.add.svelte-3gzb4d{height:22px;box-sizing:content-box\n    }",
+      map: null
+    };
+    Addnew = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let newTask = "";
+      $$result.css.add(css3);
+      return `<form class="${"svelte-3gzb4d"}"><input type="${"text"}" class="${"svelte-3gzb4d"}"${add_attribute("value", newTask, 0)}>
+    <button class="${"add svelte-3gzb4d"}">Add</button>
+</form>`;
     });
   }
 });
@@ -5556,29 +5551,30 @@ var todo_svelte_exports = {};
 __export(todo_svelte_exports, {
   default: () => Todo
 });
-var css3, Todo;
+var css4, Todo;
 var init_todo_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/projects/todo/todo.svelte.js"() {
-    init_index_792b009d();
-    init_store_aa4a99b6();
-    css3 = {
-      code: ".module.svelte-1lrdhad.svelte-1lrdhad{background-color:#fee074;width:100%;height:100%;margin:0;padding:0;display:flex;justify-content:center;align-items:center;touch-action:manipulation}.todo.svelte-1lrdhad.svelte-1lrdhad{padding:.5rem;max-width:560px;display:flex;flex-flow:column nowrap;justify-content:center;align-items:center;border:2px solid black;color:black;box-shadow:5px 5px 0 black}form.svelte-1lrdhad.svelte-1lrdhad{display:flex;flex-flow:row nowrap;justify-content:space-between}ol.svelte-1lrdhad.svelte-1lrdhad{padding:0;margin:0;width:100%}li.svelte-1lrdhad.svelte-1lrdhad{font-weight:300;margin-bottom:.5rem;width:100%;display:flex;flex-flow:row nowrap;justify-content:flex-start}li.svelte-1lrdhad p.svelte-1lrdhad{margin:0}.done.svelte-1lrdhad p.svelte-1lrdhad{text-decoration:line-through}li.svelte-1lrdhad .check.svelte-1lrdhad{height:24px;width:24px;vertical-align:middle;border:2px solid black;border-radius:.5rem;margin-right:1rem}.delete.svelte-1lrdhad.svelte-1lrdhad{display:none;padding:0;margin-left:1rem}.done.svelte-1lrdhad .delete.svelte-1lrdhad{display:flex;padding:.25rem .5rem;align-self:flex-start}button.svelte-1lrdhad.svelte-1lrdhad{padding:6px}input.svelte-1lrdhad.svelte-1lrdhad{border:2px solid black;outline:none;border-radius:.5rem;padding:6px;margin-top:3px;margin-right:6px;height:26px\n    }.add.svelte-1lrdhad.svelte-1lrdhad{height:26px;box-sizing:content-box\n    }.check.svelte-1lrdhad.svelte-1lrdhad{margin:0}",
+    init_index_d55d85f2();
+    init_store_ts();
+    init_addnew_c763ebd6();
+    init_index_7a2b2950();
+    css4 = {
+      code: ".todo.svelte-mibcym.svelte-mibcym{padding:.5rem;max-width:560px;display:flex;flex-flow:column nowrap;justify-content:center;align-items:center;border:2px solid black;color:black;box-shadow:5px 5px 0 black}ol.svelte-mibcym.svelte-mibcym{padding:0;margin:0;width:100%}li.svelte-mibcym.svelte-mibcym{font-weight:300;margin-bottom:.5rem;width:100%;display:flex;flex-flow:row nowrap;justify-content:flex-start}li.svelte-mibcym p.svelte-mibcym{margin:0}.done.svelte-mibcym p.svelte-mibcym{text-decoration:line-through}li.svelte-mibcym .check.svelte-mibcym{height:24px;width:24px;vertical-align:middle;border:2px solid black;border-radius:.5rem;margin-right:1rem}.delete.svelte-mibcym.svelte-mibcym{display:none;padding:0;margin-left:1rem}.done.svelte-mibcym .delete.svelte-mibcym{display:flex;padding:.25rem .5rem;align-self:flex-start}button.svelte-mibcym.svelte-mibcym{padding:6px}.check.svelte-mibcym.svelte-mibcym{margin:0}",
       map: null
     };
     Todo = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       let list = [];
-      tasks2.subscribe((val) => list = val);
-      let newTask = "";
-      $$result.css.add(css3);
-      return `<div class="${"module svelte-1lrdhad"}"><div class="${"todo svelte-1lrdhad"}"><h2>To-do list</h2>
-        <ol class="${"svelte-1lrdhad"}">${each(list, (item) => {
-        return `<li class="${escape(null_to_empty(item.isComplete ? "done" : "incomplete"), true) + " svelte-1lrdhad"}"><button class="${"check svelte-1lrdhad"}">${escape(item.isComplete ? "\u2713" : "")}</button>
-                <p class="${"svelte-1lrdhad"}">${escape(item.task)}</p>
-                <button class="${"delete svelte-1lrdhad"}">delete</button>
-            </li>`;
+      const unsubscribe = tasks.subscribe((val) => list = val);
+      unsubscribe();
+      $$result.css.add(css4);
+      return `<div class="${"todo svelte-mibcym"}"><h2>To-do list</h2>
+    <ol class="${"svelte-mibcym"}">${each(list, (item) => {
+        return `<li class="${escape(null_to_empty(item.isComplete ? "done" : "incomplete"), true) + " svelte-mibcym"}"><button class="${"check svelte-mibcym"}">${escape(item.isComplete ? "\u2713" : "")}</button>
+            <p class="${"svelte-mibcym"}">${escape(item.task)}</p>
+            <button class="${"delete svelte-mibcym"}">delete</button>
+        </li>`;
       })}</ol>
-        <form class="${"svelte-1lrdhad"}"><input type="${"text"}" class="${"svelte-1lrdhad"}"${add_attribute("value", newTask, 0)}>
-            <button class="${"add svelte-1lrdhad"}">Add</button></form></div>
+    ${validate_component(Addnew, "Addnew").$$render($$result, {}, {}, {})}
 </div>`;
     });
   }
@@ -5589,12 +5585,12 @@ var calculator_svelte_exports = {};
 __export(calculator_svelte_exports, {
   default: () => Calculator
 });
-var css4, Calculator;
+var css5, Calculator;
 var init_calculator_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/projects/calculator/calculator.svelte.js"() {
-    init_index_792b009d();
-    css4 = {
-      code: ".module.svelte-1nbl774{background-color:#9deac8;width:100%;height:100%;margin:0;padding:0;display:flex;justify-content:center;align-items:center;touch-action:manipulation}.calculator.svelte-1nbl774{display:flex;flex-flow:column nowrap;transition:all 1s;height:100%;width:95%}input.svelte-1nbl774{box-sizing:border-box;width:97%;padding:1rem;height:24%;margin-top:1rem;margin-bottom:1rem;background-color:transparent;outline:none;border:2px solid #000;border-radius:1rem;font-family:'DM Serif Display', serif;font-size:2rem;text-align:right;color:#000;background-color:#ececec}.buttons.svelte-1nbl774{box-sizing:border-box;height:75%;width:100%;display:flex;flex-flow:row wrap;align-items:space-around;justify-content:space-around;font-family:'DM Serif Display', serif;margin-bottom:.5rem;padding:0}button.svelte-1nbl774{width:30%;background-color:transparent;color:#000;border:2px solid #000;border-radius:1rem;margin-top:2px;margin-bottom:6px;font-size:2rem;font-family:'DM Serif Display', serif}button.svelte-1nbl774:hover{box-shadow:none;margin-top:4px;margin-bottom:4px}button.svelte-1nbl774:nth-of-type(16){width:63.5%}@media screen and (min-width: 600px){.calculator.svelte-1nbl774{max-width:320px;height:600px\n        }input.svelte-1nbl774{font-size:3rem}}@media(prefers-color-scheme: dark){}",
+    init_index_d55d85f2();
+    css5 = {
+      code: ".module.svelte-hz41ky{width:100%;height:100%;margin:0;padding:0;display:flex;justify-content:center;align-items:center;touch-action:manipulation}.calculator.svelte-hz41ky{display:flex;flex-flow:column nowrap;transition:all 1s;height:100%;width:95%}input.svelte-hz41ky{box-sizing:border-box;width:97%;padding:1rem;height:24%;margin-top:1rem;margin-bottom:1rem;margin-left:.25rem;background-color:transparent;outline:none;border:2px solid #000;border-radius:1rem;font-family:'DM Serif Display', serif;font-size:2rem;text-align:right;color:#000;background-color:#f4f1de}.buttons.svelte-hz41ky{box-sizing:border-box;height:75%;width:100%;display:flex;flex-flow:row wrap;align-items:space-around;justify-content:space-around;font-family:'DM Serif Display', serif;margin-bottom:.5rem;padding:0}button.svelte-hz41ky{width:30%;background-color:transparent;color:#000;border:2px solid #000;border-radius:1rem;margin-top:2px;margin-bottom:6px;font-size:2rem;font-family:'DM Serif Display', serif}button.svelte-hz41ky:hover{box-shadow:none;margin-top:4px;margin-bottom:4px}button.svelte-hz41ky:nth-of-type(16){width:63.5%}@media screen and (min-width: 600px){.calculator.svelte-hz41ky{max-width:320px;height:600px\n        }input.svelte-hz41ky{font-size:3rem}}@media(prefers-color-scheme: dark){}",
       map: null
     };
     Calculator = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -5618,10 +5614,10 @@ var init_calculator_svelte = __esm({
         "c"
       ];
       let input = "";
-      $$result.css.add(css4);
-      return `<div class="${"module svelte-1nbl774"}"><div class="${"calculator complexity-2  svelte-1nbl774"}"><input type="${"text"}"${add_attribute("value", input, 0)} readonly class="${"svelte-1nbl774"}">
-        <div class="${"buttons svelte-1nbl774"}">${each(buttons, (button) => {
-        return `<button${add_attribute("value", button, 0)} class="${"svelte-1nbl774"}">${escape(button)}</button>`;
+      $$result.css.add(css5);
+      return `<div class="${"module svelte-hz41ky"}"><div class="${"calculator complexity-2  svelte-hz41ky"}"><input type="${"text"}"${add_attribute("value", input, 0)} readonly class="${"svelte-hz41ky"}">
+        <div class="${"buttons svelte-hz41ky"}">${each(buttons, (button) => {
+        return `<button${add_attribute("value", button, 0)} class="${"svelte-hz41ky"}">${escape(button)}</button>`;
       })}</div></div>
 </div>`;
     });
@@ -5633,114 +5629,17 @@ var index_svelte_exports = {};
 __export(index_svelte_exports, {
   default: () => Routes
 });
-function cubicInOut(t2) {
-  return t2 < 0.5 ? 4 * t2 * t2 * t2 : 0.5 * Math.pow(2 * t2 - 2, 3) + 1;
-}
-function is_date(obj) {
-  return Object.prototype.toString.call(obj) === "[object Date]";
-}
-function get_interpolator(a, b) {
-  if (a === b || a !== a)
-    return () => a;
-  const type = typeof a;
-  if (type !== typeof b || Array.isArray(a) !== Array.isArray(b)) {
-    throw new Error("Cannot interpolate values of different type");
-  }
-  if (Array.isArray(a)) {
-    const arr = b.map((bi, i2) => {
-      return get_interpolator(a[i2], bi);
-    });
-    return (t2) => arr.map((fn) => fn(t2));
-  }
-  if (type === "object") {
-    if (!a || !b)
-      throw new Error("Object cannot be null");
-    if (is_date(a) && is_date(b)) {
-      a = a.getTime();
-      b = b.getTime();
-      const delta = b - a;
-      return (t2) => new Date(a + t2 * delta);
-    }
-    const keys = Object.keys(b);
-    const interpolators = {};
-    keys.forEach((key2) => {
-      interpolators[key2] = get_interpolator(a[key2], b[key2]);
-    });
-    return (t2) => {
-      const result = {};
-      keys.forEach((key2) => {
-        result[key2] = interpolators[key2](t2);
-      });
-      return result;
-    };
-  }
-  if (type === "number") {
-    const delta = b - a;
-    return (t2) => a + t2 * delta;
-  }
-  throw new Error(`Cannot interpolate ${type} values`);
-}
-function tweened(value, defaults = {}) {
-  const store = writable2(value);
-  let task;
-  let target_value = value;
-  function set(new_value, opts) {
-    if (value == null) {
-      store.set(value = new_value);
-      return Promise.resolve();
-    }
-    target_value = new_value;
-    let previous_task = task;
-    let started = false;
-    let { delay = 0, duration = 400, easing = identity, interpolate = get_interpolator } = assign(assign({}, defaults), opts);
-    if (duration === 0) {
-      if (previous_task) {
-        previous_task.abort();
-        previous_task = null;
-      }
-      store.set(value = target_value);
-      return Promise.resolve();
-    }
-    const start = now() + delay;
-    let fn;
-    task = loop((now2) => {
-      if (now2 < start)
-        return true;
-      if (!started) {
-        fn = interpolate(value, new_value);
-        if (typeof duration === "function")
-          duration = duration(value, new_value);
-        started = true;
-      }
-      if (previous_task) {
-        previous_task.abort();
-        previous_task = null;
-      }
-      const elapsed = now2 - start;
-      if (elapsed > duration) {
-        store.set(value = new_value);
-        return false;
-      }
-      store.set(value = fn(easing(elapsed / duration)));
-      return true;
-    });
-    return task.promise;
-  }
-  return {
-    set,
-    update: (fn, opts) => set(fn(target_value, value), opts),
-    subscribe: store.subscribe
-  };
-}
-var css$6, Menubar, css$5, Bm_module, css$4, Cal_module, css$3, Todo_module, css$2, Calc_module, css$1, Body2, css5, Routes;
+var css$6, Menubar, css$5, Bm_module, css$4, Cal_module, css$3, Todo_module, css$2, Calc_module, css$1, Body2, css6, Routes;
 var init_index_svelte = __esm({
   ".svelte-kit/output/server/entries/pages/index.svelte.js"() {
-    init_index_792b009d();
+    init_index_d55d85f2();
     init_about_svelte();
     init_calendar_svelte();
-    init_store_aa4a99b6();
     init_todo_svelte();
     init_calculator_svelte();
+    init_store_ts();
+    init_index_7a2b2950();
+    init_addnew_c763ebd6();
     css$6 = {
       code: ".menu.svelte-e86ydw{width:100%;border-bottom:2px solid black;text-align:right;background-color:transparent;display:flex;align-items:center;justify-content:flex-end;padding:.5rem;box-sizing:border-box}h4.svelte-e86ydw{margin:0 .5rem;font-size:1.5rem;color:black;text-decoration:none}h4.svelte-e86ydw:hover,h4.svelte-e86ydw:active{color:#555}a.svelte-e86ydw{text-decoration:none;color:black}",
       map: null
@@ -5757,7 +5656,7 @@ var init_index_svelte = __esm({
 </div>`;
     });
     css$5 = {
-      code: "h1.svelte-lp0gu6.svelte-lp0gu6{color:black;font-size:2rem}.flip-card.svelte-lp0gu6.svelte-lp0gu6{background-color:transparent;width:360px;perspective:1000px;background-color:#f5cbd9;-moz-column-break-inside:avoid;break-inside:avoid}.flip-card-inner.svelte-lp0gu6.svelte-lp0gu6{position:relative;width:100%;height:600px;text-align:center;transition:transform 0.6s;transform-style:preserve-3d}.flip-card.svelte-lp0gu6:hover .flip-card-inner.svelte-lp0gu6{transform:rotateY(180deg)}.flip-card-front.svelte-lp0gu6.svelte-lp0gu6,.flip-card-back.svelte-lp0gu6.svelte-lp0gu6{position:absolute;width:100%;height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden}.flip-card-front.svelte-lp0gu6.svelte-lp0gu6{color:white;display:flex;justify-content:center;align-items:center}.flip-card-back.svelte-lp0gu6.svelte-lp0gu6{background:url('/bunny.png');background-position:top top;background-size:cover;color:white;transform:rotateY(180deg)}",
+      code: "h1.svelte-gzj52z.svelte-gzj52z{color:black;font-size:2rem}.flip-card.svelte-gzj52z.svelte-gzj52z{background-color:transparent;width:360px;perspective:1000px;background-color:#e07a5f;-moz-column-break-inside:avoid;break-inside:avoid}.flip-card-inner.svelte-gzj52z.svelte-gzj52z{position:relative;width:100%;height:600px;text-align:center;transition:transform 0.6s;transform-style:preserve-3d}.flip-card.svelte-gzj52z:hover .flip-card-inner.svelte-gzj52z{transform:rotateY(180deg)}.flip-card-front.svelte-gzj52z.svelte-gzj52z,.flip-card-back.svelte-gzj52z.svelte-gzj52z{position:absolute;width:100%;height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden;background-color:#e07a5f}.flip-card-front.svelte-gzj52z.svelte-gzj52z{color:white;display:flex;justify-content:center;align-items:center}.flip-card-back.svelte-gzj52z.svelte-gzj52z{color:white;transform:rotateY(180deg);display:flex;justify-content:center;align-items:center}a.svelte-gzj52z.svelte-gzj52z{color:black}",
       map: null
     };
     Bm_module = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -5767,8 +5666,8 @@ var init_index_svelte = __esm({
       let $$rendered;
       do {
         $$settled = true;
-        $$rendered = `<div class="${"flip-card svelte-lp0gu6"}">${validate_component(Menubar, "MenuBar").$$render($$result, {
-          url: "https://bunnymoney.app/",
+        $$rendered = `<div class="${"flip-card svelte-gzj52z"}">${validate_component(Menubar, "MenuBar").$$render($$result, {
+          url: "/projects/bunnymoney",
           title: "bunny money",
           show
         }, {
@@ -5777,43 +5676,37 @@ var init_index_svelte = __esm({
             $$settled = false;
           }
         }, {})}
-    ${show ? `<div class="${"flip-card-inner svelte-lp0gu6"}"><div class="${"flip-card-front svelte-lp0gu6"}"><h1 class="${"svelte-lp0gu6"}">Bunny Money</h1></div>
-          <div class="${"flip-card-back svelte-lp0gu6"}"><a href="${"https://bunnymoney.app/"}"></a></div></div>` : ``}
+    ${show ? `<div class="${"flip-card-inner svelte-gzj52z"}"><div class="${"flip-card-front svelte-gzj52z"}"><h1 class="${"svelte-gzj52z"}">Bunny Money</h1></div>
+          <div class="${"flip-card-back svelte-gzj52z"}"><a href="${"https://bunnymoney.app/"}" target="${"blank"}" class="${"svelte-gzj52z"}">A financial literacy tool for kids <img src="${"open-in-new.svg"}" alt="${" (opens in new tab)"}"></a></div></div>` : ``}
     </div>`;
       } while (!$$settled);
       return $$rendered;
     });
     css$4 = {
-      code: "h1.svelte-1l2r8l2.svelte-1l2r8l2{color:black;font-size:2rem}h2.svelte-1l2r8l2.svelte-1l2r8l2{color:black}@-webkit-keyframes svelte-1l2r8l2-mainBlock{0%{width:0%;left:0}50%{width:100%;left:0}100%{width:0;left:100%}}@keyframes svelte-1l2r8l2-mainBlock{0%{width:0%;left:0}50%{width:100%;left:0}100%{width:0;left:100%}}.flip-card.svelte-1l2r8l2.svelte-1l2r8l2{background-color:transparent;width:360px;perspective:1000px;background-color:#d9dcff;-moz-column-break-inside:avoid;break-inside:avoid}.no-height.svelte-1l2r8l2.svelte-1l2r8l2{height:10px}.flip-card-inner.svelte-1l2r8l2.svelte-1l2r8l2{position:relative;width:100%;height:600px;text-align:center;transition:transform 0.6s;transform-style:preserve-3d}.flip-card.svelte-1l2r8l2:hover .flip-card-inner.svelte-1l2r8l2{transform:rotateY(180deg)}.flip-card-front.svelte-1l2r8l2.svelte-1l2r8l2,.flip-card-back.svelte-1l2r8l2.svelte-1l2r8l2{position:absolute;width:100%;height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden}.flip-card-front.svelte-1l2r8l2.svelte-1l2r8l2{display:flex;justify-content:center;align-items:center}.flip-card-back.svelte-1l2r8l2.svelte-1l2r8l2{background-color:#d9dcff;transform:rotateY(180deg)}",
+      code: "h1.svelte-132u84u.svelte-132u84u{color:black;font-size:2rem}@-webkit-keyframes svelte-132u84u-mainBlock{0%{width:0%;left:0}50%{width:100%;left:0}100%{width:0;left:100%}}@keyframes svelte-132u84u-mainBlock{0%{width:0%;left:0}50%{width:100%;left:0}100%{width:0;left:100%}}.flip-card.svelte-132u84u.svelte-132u84u{background-color:transparent;width:360px;perspective:1000px;background-color:#f4f1de;-moz-column-break-inside:avoid;break-inside:avoid}.flip-card-inner.svelte-132u84u.svelte-132u84u{position:relative;width:100%;height:600px;transition:transform 0.6s;transform-style:preserve-3d}.flip-card.svelte-132u84u:hover .flip-card-inner.svelte-132u84u{transform:rotateY(180deg)}.flip-card-front.svelte-132u84u.svelte-132u84u,.flip-card-back.svelte-132u84u.svelte-132u84u{position:absolute;width:100%;height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden}.flip-card-front.svelte-132u84u.svelte-132u84u{display:flex;justify-content:center;align-items:center}.flip-card-back.svelte-132u84u.svelte-132u84u{background-color:#f4f1de;transform:rotateY(180deg)}@media screen and (min-width: 1360px){.flip-card.svelte-132u84u.svelte-132u84u{margin-top:1rem}}",
       map: null
     };
     Cal_module = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      let block;
-      let $block, $$unsubscribe_block = noop2, $$subscribe_block = () => ($$unsubscribe_block(), $$unsubscribe_block = subscribe(block, ($$value) => $block = $$value), block);
       let show = true;
       $$result.css.add(css$4);
       let $$settled;
       let $$rendered;
       do {
         $$settled = true;
-        $$subscribe_block(block = tweened(show ? 100 : 0, { duration: 500, easing: cubicInOut }));
-        $$rendered = `<div class="${"flip-card svelte-1l2r8l2"}">${validate_component(Menubar, "MenuBar").$$render($$result, { url: "/projects/calendar", show }, {
+        $$rendered = `<div class="${"flip-card svelte-132u84u"}">${validate_component(Menubar, "MenuBar").$$render($$result, { url: "/projects/calculator", show }, {
           show: ($$value) => {
             show = $$value;
             $$settled = false;
           }
         }, {})}
-    
-      <div id="${"calc"}" class="${escape(null_to_empty(show ? "flip-card-inner" : "no-height"), true) + " svelte-1l2r8l2"}"${add_attribute("height", $block, 0)}><div class="${"flip-card-front svelte-1l2r8l2"}"><h1 class="${"svelte-1l2r8l2"}">Calendar</h1></div>
-        <div class="${"flip-card-back svelte-1l2r8l2"}"><h2 class="${"svelte-1l2r8l2"}">Calendar</h2>
-          ${validate_component(Calendar, "Calendar").$$render($$result, {}, {}, {})}</div></div>
-    </div>`;
+  ${show ? `<div class="${"flip-card-inner svelte-132u84u"}"><div class="${"flip-card-front svelte-132u84u"}"><h1 class="${"svelte-132u84u"}">Calendar</h1></div>
+      <div class="${"flip-card-back svelte-132u84u"}">${validate_component(Calendar, "Calendar").$$render($$result, {}, {}, {})}</div></div>` : ``}
+</div>`;
       } while (!$$settled);
-      $$unsubscribe_block();
       return $$rendered;
     });
     css$3 = {
-      code: "h1.svelte-cnggu6.svelte-cnggu6{color:black;font-size:2rem}.flip-card.svelte-cnggu6.svelte-cnggu6{background-color:transparent;width:360px;perspective:1000px;background-color:#fee074;-moz-column-break-inside:avoid;break-inside:avoid}.flip-card-inner.svelte-cnggu6.svelte-cnggu6{position:relative;width:100%;height:600px;text-align:center;transition:transform 0.6s;transform-style:preserve-3d}.flip-card.svelte-cnggu6:hover .flip-card-inner.svelte-cnggu6{transform:rotateY(180deg)}.flip-card-front.svelte-cnggu6.svelte-cnggu6,.flip-card-back.svelte-cnggu6.svelte-cnggu6{position:absolute;width:100%;height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden}.flip-card-front.svelte-cnggu6.svelte-cnggu6{color:white;display:flex;justify-content:center;align-items:center}.flip-card-back.svelte-cnggu6.svelte-cnggu6{color:white;transform:rotateY(180deg)}",
+      code: "h1.svelte-1npmay5.svelte-1npmay5{color:black;font-size:2rem}.flip-card.svelte-1npmay5.svelte-1npmay5{background-color:transparent;width:360px;perspective:1000px;background-color:#f2cc8f;-moz-column-break-inside:avoid;break-inside:avoid}.flip-card-inner.svelte-1npmay5.svelte-1npmay5{position:relative;width:100%;height:600px;transition:transform 0.6s;transform-style:preserve-3d}.flip-card.svelte-1npmay5:hover .flip-card-inner.svelte-1npmay5{transform:rotateY(180deg)}.flip-card-front.svelte-1npmay5.svelte-1npmay5,.flip-card-back.svelte-1npmay5.svelte-1npmay5{position:absolute;width:100%;height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden}.flip-card-front.svelte-1npmay5.svelte-1npmay5{display:flex;justify-content:center;align-items:center}.flip-card-back.svelte-1npmay5.svelte-1npmay5{background-color:#f2cc8f;transform:rotateY(180deg);display:flex;justify-content:center;align-items:center;padding:1rem;box-sizing:border-box}@media screen and (min-width: 1360px){.flip-card.svelte-1npmay5.svelte-1npmay5{margin-top:1rem}}",
       map: null
     };
     Todo_module = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -5823,20 +5716,20 @@ var init_index_svelte = __esm({
       let $$rendered;
       do {
         $$settled = true;
-        $$rendered = `<div class="${"flip-card svelte-cnggu6"}">${validate_component(Menubar, "MenuBar").$$render($$result, { url: "/projects/todo", show }, {
+        $$rendered = `<div class="${"flip-card svelte-1npmay5"}">${validate_component(Menubar, "MenuBar").$$render($$result, { url: "/projects/todo", show }, {
           show: ($$value) => {
             show = $$value;
             $$settled = false;
           }
         }, {})}
-  ${show ? `<div class="${"flip-card-inner svelte-cnggu6"}"><div class="${"flip-card-front svelte-cnggu6"}"><h1 class="${"svelte-cnggu6"}">Todo list</h1></div>
-      <div class="${"flip-card-back svelte-cnggu6"}">${validate_component(Todo, "Todo").$$render($$result, {}, {}, {})}</div></div>` : ``}
+  ${show ? `<div class="${"flip-card-inner svelte-1npmay5"}"><div class="${"flip-card-front svelte-1npmay5"}"><h1 class="${"svelte-1npmay5"}">Todo list</h1></div>
+      <div class="${"flip-card-back svelte-1npmay5"}">${validate_component(Todo, "Todo").$$render($$result, {}, {}, {})}</div></div>` : ``}
   </div>`;
       } while (!$$settled);
       return $$rendered;
     });
     css$2 = {
-      code: "h1.svelte-jf3tgb.svelte-jf3tgb{color:black;font-size:2rem}.flip-card.svelte-jf3tgb.svelte-jf3tgb{background-color:transparent;width:360px;perspective:1000px;background-color:#9deac8;-moz-column-break-inside:avoid;break-inside:avoid}.flip-card-inner.svelte-jf3tgb.svelte-jf3tgb{position:relative;width:100%;height:600px;text-align:center;transition:transform 0.6s;transform-style:preserve-3d}.flip-card.svelte-jf3tgb:hover .flip-card-inner.svelte-jf3tgb{transform:rotateY(180deg)}.flip-card-front.svelte-jf3tgb.svelte-jf3tgb,.flip-card-back.svelte-jf3tgb.svelte-jf3tgb{position:absolute;width:100%;height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden}.flip-card-front.svelte-jf3tgb.svelte-jf3tgb{color:white;display:flex;justify-content:center;align-items:center}.flip-card-back.svelte-jf3tgb.svelte-jf3tgb{background-color:#9deac8;color:white;transform:rotateY(180deg)}",
+      code: "h1.svelte-1w553mf.svelte-1w553mf{color:black;font-size:2rem}.flip-card.svelte-1w553mf.svelte-1w553mf{background-color:transparent;width:360px;perspective:1000px;background-color:#81b29a;-moz-column-break-inside:avoid;break-inside:avoid}.flip-card-inner.svelte-1w553mf.svelte-1w553mf{position:relative;width:100%;height:600px;text-align:center;transition:transform 0.6s;transform-style:preserve-3d}.flip-card.svelte-1w553mf:hover .flip-card-inner.svelte-1w553mf{transform:rotateY(180deg)}.flip-card-front.svelte-1w553mf.svelte-1w553mf,.flip-card-back.svelte-1w553mf.svelte-1w553mf{position:absolute;width:100%;height:100%;-webkit-backface-visibility:hidden;backface-visibility:hidden}.flip-card-front.svelte-1w553mf.svelte-1w553mf{color:white;display:flex;justify-content:center;align-items:center}.flip-card-back.svelte-1w553mf.svelte-1w553mf{background-color:#81b29a;color:white;transform:rotateY(180deg)}",
       map: null
     };
     Calc_module = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -5846,43 +5739,43 @@ var init_index_svelte = __esm({
       let $$rendered;
       do {
         $$settled = true;
-        $$rendered = `<div class="${"flip-card svelte-jf3tgb"}">${validate_component(Menubar, "MenuBar").$$render($$result, { url: "/projects/calculator", show }, {
+        $$rendered = `<div class="${"flip-card svelte-1w553mf"}">${validate_component(Menubar, "MenuBar").$$render($$result, { url: "/projects/calculator", show }, {
           show: ($$value) => {
             show = $$value;
             $$settled = false;
           }
         }, {})}
-  ${show ? `<div class="${"flip-card-inner svelte-jf3tgb"}"><div class="${"flip-card-front svelte-jf3tgb"}"><h1 class="${"svelte-jf3tgb"}">Calculator</h1></div>
-      <div class="${"flip-card-back svelte-jf3tgb"}">${validate_component(Calculator, "Calculator").$$render($$result, {}, {}, {})}</div></div>` : ``}
+  ${show ? `<div class="${"flip-card-inner svelte-1w553mf"}"><div class="${"flip-card-front svelte-1w553mf"}"><h1 class="${"svelte-1w553mf"}">Calculator</h1></div>
+      <div class="${"flip-card-back svelte-1w553mf"}">${validate_component(Calculator, "Calculator").$$render($$result, {}, {}, {})}</div></div>` : ``}
 </div>`;
       } while (!$$settled);
       return $$rendered;
     });
     css$1 = {
-      code: "aside.svelte-1grmn5s{width:100%}h2.svelte-1grmn5s{margin-bottom:2rem;margin-top:.5rem;font-size:5rem;text-align:center;display:block;width:100%}.padding.svelte-1grmn5s{width:100%;padding:0;display:flex;flex-flow:column nowrap;align-items:center;justify-content:center;gap:1rem}@media screen and (min-width: 1300px){.padding.svelte-1grmn5s{display:block;-moz-column-count:2;column-count:2;-moz-column-gap:1rem;column-gap:1rem;-moz-column-fill:balance;column-fill:balance;-moz-column-break-inside:avoid;break-inside:avoid}aside.svelte-1grmn5s{width:48%}}",
+      code: "aside.svelte-10mqpv9{width:100%}h2.svelte-10mqpv9{margin-bottom:2rem;margin-top:.5rem;font-size:5rem;text-align:center;display:block;width:100%}.padding.svelte-10mqpv9{width:100%;padding:0;display:flex;flex-flow:column nowrap;align-items:center;justify-content:center;gap:1rem}@media screen and (min-width: 1360px){.padding.svelte-10mqpv9{display:block;-moz-column-count:2;column-count:2;-moz-column-gap:1rem;column-gap:1rem;-moz-column-fill:balance;column-fill:balance;-moz-column-break-inside:avoid;break-inside:avoid}aside.svelte-10mqpv9{width:48%}}",
       map: null
     };
     Body2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
       $$result.css.add(css$1);
-      return `<aside class="${"svelte-1grmn5s"}"><h2 class="${"svelte-1grmn5s"}">Projects</h2>
-    <div class="${"padding svelte-1grmn5s"}">${validate_component(Calc_module, "Calculator").$$render($$result, {}, {}, {})}
+      return `<aside class="${"svelte-10mqpv9"}"><h2 class="${"svelte-10mqpv9"}">Projects</h2>
+    <div class="${"padding svelte-10mqpv9"}">${validate_component(Calc_module, "Calculator").$$render($$result, {}, {}, {})}
+        ${validate_component(Bm_module, "Bunny").$$render($$result, {}, {}, {})}
         ${validate_component(Todo_module, "Todo").$$render($$result, {}, {}, {})}
-        ${validate_component(Cal_module, "Calendar").$$render($$result, {}, {}, {})}
-        ${validate_component(Bm_module, "Bunny").$$render($$result, {}, {}, {})}</div>
+        ${validate_component(Cal_module, "Calendar").$$render($$result, {}, {}, {})}</div>
 </aside>`;
     });
-    css5 = {
-      code: ".body.svelte-p1iaci{display:flex;flex-flow:column nowrap;justify-content:flex-start;margin:0;width:100%}@media screen and (min-width: 600px){.body.svelte-p1iaci{flex-flow:row nowrap}}@media(prefers-color-scheme: dark){a.svelte-p1iaci{color:#f1afa8}}",
+    css6 = {
+      code: ".body.svelte-l0fq5a{display:flex;flex-flow:column nowrap;justify-content:flex-start;margin:0;width:100%}@media screen and (min-width: 600px){.body.svelte-l0fq5a{flex-flow:row nowrap}}@media(prefers-color-scheme: dark){a.svelte-l0fq5a{color:#f1afa8}}",
       map: null
     };
     Routes = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css5);
-      return `${$$result.head += `<meta name="${"viewport"}" content="${"width=device-width, initial-scale=1"}" data-svelte="svelte-1dws0rw">${$$result.title = `<title>Tijana Jung \xB7 Front-end web dev</title>`, ""}<meta name="${"description"}" content="${"Svelte demo app"}" data-svelte="svelte-1dws0rw">`, ""}
+      $$result.css.add(css6);
+      return `${$$result.head += `<meta name="${"viewport"}" content="${"width=device-width, initial-scale=1"}" data-svelte="svelte-le7m6q">${$$result.title = `<title>Tijana Jung \xB7 Front-end web dev</title>`, ""}<meta name="${"description"}" content="${"Tijana Jung's portfolio site"}" data-svelte="svelte-le7m6q">`, ""}
 
 
-	<section class="${"body svelte-p1iaci"}">${validate_component(About, "About").$$render($$result, {}, {}, {})}
+	<section class="${"body svelte-l0fq5a"}">${validate_component(About, "About").$$render($$result, {}, {}, {})}
 		${validate_component(Body2, "Body").$$render($$result, {}, {}, {})}</section>
-	<footer><p>Created by Tijana Jung 2022, using <a href="${"https://undraw.co/"}" class="${"svelte-p1iaci"}">undraw.co illustrations</a></p>
+	<footer><p>Created by Tijana Jung 2022, using <a href="${"https://undraw.co/"}" class="${"svelte-l0fq5a"}">undraw.co illustrations</a></p>
 	</footer>`;
     });
   }
@@ -5902,37 +5795,35 @@ var init__3 = __esm({
   ".svelte-kit/output/server/nodes/3.js"() {
     init_index_svelte();
     index3 = 3;
-    file4 = "immutable/pages/index.svelte-1d0349ac.js";
-    imports3 = ["immutable/pages/index.svelte-1d0349ac.js", "immutable/chunks/index-f104f474.js", "immutable/pages/about.svelte-c45d5af3.js", "immutable/pages/projects/calendar/calendar.svelte-3a808148.js", "immutable/chunks/todo.svelte_svelte_type_style_lang-6c26cf17.js", "immutable/chunks/index-664c2ae0.js", "immutable/pages/projects/todo/todo.svelte-ad4e6891.js", "immutable/pages/projects/calculator/calculator.svelte-7763b3fd.js"];
-    stylesheets3 = ["immutable/assets/pages/index.svelte-a34f5811.css", "immutable/assets/pages/about.svelte-62f99f8d.css", "immutable/assets/pages/projects/calendar/calendar.svelte-36362f7f.css", "immutable/assets/todo.svelte_svelte_type_style_lang-5670f39b.css", "immutable/assets/pages/projects/calculator/calculator.svelte-dfcd94d1.css"];
+    file4 = "immutable/pages/index.svelte-0b1ba6a2.js";
+    imports3 = ["immutable/pages/index.svelte-0b1ba6a2.js", "immutable/chunks/index-9fb11939.js", "immutable/pages/about.svelte-b2b36bfd.js", "immutable/pages/projects/calendar/calendar.svelte-ecda8f6f.js", "immutable/chunks/store-f3d2a484.js", "immutable/chunks/index-23dd98bd.js", "immutable/pages/projects/todo/todo.svelte-79e777f8.js", "immutable/chunks/_addnew-4f02a0db.js", "immutable/pages/projects/calculator/calculator.svelte-0297ae76.js"];
+    stylesheets3 = ["immutable/assets/pages/index.svelte-769f4ba7.css", "immutable/assets/sujiko.svelte_svelte_type_style_lang-b7252380.css", "immutable/assets/_menubar.svelte_svelte_type_style_lang-5247cb84.css", "immutable/assets/pages/about.svelte-04bb6826.css", "immutable/assets/pages/projects/calendar/calendar.svelte-49ba0149.css", "immutable/assets/pages/projects/todo/todo.svelte-0ac86b93.css", "immutable/assets/_addnew-a3b6c88b.css", "immutable/assets/pages/projects/calculator/calculator.svelte-9924e846.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/projects/calculator/index.svelte.js
+// .svelte-kit/output/server/entries/pages/projects/bunnymoney/index.svelte.js
 var index_svelte_exports2 = {};
 __export(index_svelte_exports2, {
-  default: () => Calculator_1
+  default: () => Bunnymoney
 });
-var css6, Calculator_1;
+var css7, Bunnymoney;
 var init_index_svelte2 = __esm({
-  ".svelte-kit/output/server/entries/pages/projects/calculator/index.svelte.js"() {
-    init_index_792b009d();
-    init_calculator_svelte();
-    css6 = {
-      code: ".body.svelte-q4to0{width:100vw;height:100vh;margin:0}",
+  ".svelte-kit/output/server/entries/pages/projects/bunnymoney/index.svelte.js"() {
+    init_index_d55d85f2();
+    css7 = {
+      code: ".full.svelte-1m0wrgq{width:100vw;height:100vh;display:flex;flex-flow:column nowrap;justify-content:center;align-items:center;background-color:#e07a5f}a.svelte-1m0wrgq{color:white;font-size:2rem;margin-bottom:1rem}",
       map: null
     };
-    Calculator_1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css6);
-      return `${$$result.head += `<meta name="${"viewport"}" content="${"width=device-width, initial-scale=1"}" data-svelte="svelte-1cllp57">${$$result.title = `<title>Calculator</title>`, ""}<meta name="${"description"}" content="${"Svelte demo app"}" data-svelte="svelte-1cllp57"><link rel="${"manifest"}" href="${"/calc/manifest.json"}" data-svelte="svelte-1cllp57">`, ""}
-
-<div class="${"body svelte-q4to0"}">${validate_component(Calculator, "Calculator").$$render($$result, {}, {}, {})}
+    Bunnymoney = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css7);
+      return `<div class="${"full svelte-1m0wrgq"}"><a href="${"https://bunnymoney.app/"}" class="${"svelte-1m0wrgq"}">https://bunnymoney.app/</a>
+    <a href="${"https://github.com/elsalvadordali/bunny-money"}" class="${"svelte-1m0wrgq"}">github</a>
 </div>`;
     });
   }
 });
 
-// .svelte-kit/output/server/nodes/5.js
+// .svelte-kit/output/server/nodes/4.js
 var __exports4 = {};
 __export(__exports4, {
   file: () => file5,
@@ -5943,39 +5834,40 @@ __export(__exports4, {
 });
 var index4, file5, imports4, stylesheets4;
 var init__4 = __esm({
-  ".svelte-kit/output/server/nodes/5.js"() {
+  ".svelte-kit/output/server/nodes/4.js"() {
     init_index_svelte2();
-    index4 = 5;
-    file5 = "immutable/pages/projects/calculator/index.svelte-f31e5369.js";
-    imports4 = ["immutable/pages/projects/calculator/index.svelte-f31e5369.js", "immutable/chunks/index-f104f474.js", "immutable/pages/projects/calculator/calculator.svelte-7763b3fd.js"];
-    stylesheets4 = ["immutable/assets/pages/projects/calculator/index.svelte-44d7d1fa.css", "immutable/assets/pages/projects/calculator/calculator.svelte-dfcd94d1.css"];
+    index4 = 4;
+    file5 = "immutable/pages/projects/bunnymoney/index.svelte-5b7d5989.js";
+    imports4 = ["immutable/pages/projects/bunnymoney/index.svelte-5b7d5989.js", "immutable/chunks/index-9fb11939.js"];
+    stylesheets4 = ["immutable/assets/pages/projects/bunnymoney/index.svelte-35a3287f.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/projects/calendar/index.svelte.js
+// .svelte-kit/output/server/entries/pages/projects/calculator/index.svelte.js
 var index_svelte_exports3 = {};
 __export(index_svelte_exports3, {
-  default: () => Calendar_1
+  default: () => Calculator_1
 });
-var css7, Calendar_1;
+var css8, Calculator_1;
 var init_index_svelte3 = __esm({
-  ".svelte-kit/output/server/entries/pages/projects/calendar/index.svelte.js"() {
-    init_index_792b009d();
-    init_calendar_svelte();
-    init_store_aa4a99b6();
-    css7 = {
-      code: ".body.svelte-xdepvn{width:100vw;height:100vh;margin:0;background-color:#d9dcff}@media screen and (min-width: 900px){}",
+  ".svelte-kit/output/server/entries/pages/projects/calculator/index.svelte.js"() {
+    init_index_d55d85f2();
+    init_calculator_svelte();
+    css8 = {
+      code: ".body.svelte-11x1eac{width:100vw;height:100vh;margin:0;background:#81b29a\n    }",
       map: null
     };
-    Calendar_1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css7);
-      return `<div class="${"body svelte-xdepvn"}">${validate_component(Calendar, "Calendar").$$render($$result, {}, {}, {})}
+    Calculator_1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css8);
+      return `${$$result.head += `<meta name="${"viewport"}" content="${"width=device-width, initial-scale=1"}" data-svelte="svelte-7w350x">${$$result.title = `<title>Calculator</title>`, ""}<link rel="${"icon"}" href="${"/calc/img/calc-48.png"}" data-svelte="svelte-7w350x"><meta name="${"description"}" content="${"Svelte demo app"}" data-svelte="svelte-7w350x"><link rel="${"manifest"}" href="${"/calc/manifest.json"}" data-svelte="svelte-7w350x"><link rel="${"apple-touch-icon"}" sizes="${"180x180"}" href="${"/calc/img/icon.png"}" data-svelte="svelte-7w350x">`, ""}
+
+<div class="${"body svelte-11x1eac"}">${validate_component(Calculator, "Calculator").$$render($$result, {}, {}, {})}
 </div>`;
     });
   }
 });
 
-// .svelte-kit/output/server/nodes/8.js
+// .svelte-kit/output/server/nodes/7.js
 var __exports5 = {};
 __export(__exports5, {
   file: () => file6,
@@ -5986,34 +5878,36 @@ __export(__exports5, {
 });
 var index5, file6, imports5, stylesheets5;
 var init__5 = __esm({
-  ".svelte-kit/output/server/nodes/8.js"() {
+  ".svelte-kit/output/server/nodes/7.js"() {
     init_index_svelte3();
-    index5 = 8;
-    file6 = "immutable/pages/projects/calendar/index.svelte-9c1298d6.js";
-    imports5 = ["immutable/pages/projects/calendar/index.svelte-9c1298d6.js", "immutable/chunks/index-f104f474.js", "immutable/pages/projects/calendar/calendar.svelte-3a808148.js", "immutable/chunks/todo.svelte_svelte_type_style_lang-6c26cf17.js", "immutable/chunks/index-664c2ae0.js"];
-    stylesheets5 = ["immutable/assets/pages/projects/calendar/index.svelte-28c260a2.css", "immutable/assets/pages/projects/calendar/calendar.svelte-36362f7f.css", "immutable/assets/todo.svelte_svelte_type_style_lang-5670f39b.css"];
+    index5 = 7;
+    file6 = "immutable/pages/projects/calculator/index.svelte-f4df213f.js";
+    imports5 = ["immutable/pages/projects/calculator/index.svelte-f4df213f.js", "immutable/chunks/index-9fb11939.js", "immutable/pages/projects/calculator/calculator.svelte-0297ae76.js"];
+    stylesheets5 = ["immutable/assets/pages/projects/calculator/index.svelte-6e3e4e44.css", "immutable/assets/pages/projects/calculator/calculator.svelte-9924e846.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/projects/todo/index.svelte.js
+// .svelte-kit/output/server/entries/pages/projects/calendar/index.svelte.js
 var index_svelte_exports4 = {};
 __export(index_svelte_exports4, {
-  default: () => Todo_1
+  default: () => Calendar_1
 });
-var css8, Todo_1;
+var css9, Calendar_1;
 var init_index_svelte4 = __esm({
-  ".svelte-kit/output/server/entries/pages/projects/todo/index.svelte.js"() {
-    init_index_792b009d();
-    init_todo_svelte();
-    init_store_aa4a99b6();
-    css8 = {
-      code: ".body.svelte-51fi8c{width:100vw;height:100vh;margin:0;box-sizing:border-box\n    }",
+  ".svelte-kit/output/server/entries/pages/projects/calendar/index.svelte.js"() {
+    init_index_d55d85f2();
+    init_calendar_svelte();
+    init_store_ts();
+    init_index_7a2b2950();
+    css9 = {
+      code: ".body.svelte-1u9ag40{width:100vw;min-height:100vh;margin:0;background-color:#dce2d4;color:black;display:flex;flex-flow:column nowrap;justify-content:center;align-items:center}",
       map: null
     };
-    Todo_1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css8);
-      return `${$$result.head += `<meta name="${"viewport"}" content="${"width=device-width, initial-scale=1"}" data-svelte="svelte-1a59a6c">${$$result.title = `<title>Todo</title>`, ""}<meta name="${"description"}" content="${"Todo app PWA"}" data-svelte="svelte-1a59a6c"><link rel="${"manifest"}" href="${"/todo/manifest.json"}" data-svelte="svelte-1a59a6c">`, ""}
-<div class="${"body svelte-51fi8c"}">${validate_component(Todo, "Todo").$$render($$result, {}, {}, {})}
+    Calendar_1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css9);
+      return `${$$result.head += `<meta name="${"viewport"}" content="${"width=device-width, initial-scale=1"}" data-svelte="svelte-19966re">${$$result.title = `<title>Calendar by Tijana</title>`, ""}<link rel="${"icon"}" href="${"/cal/img/icon.png"}" data-svelte="svelte-19966re"><meta name="${"description"}" content="${"Calendar app PWA"}" data-svelte="svelte-19966re"><link rel="${"manifest"}" href="${"/calendar/manifest.json"}" data-svelte="svelte-19966re">`, ""}
+
+<div class="${"body svelte-1u9ag40"}">${validate_component(Calendar, "Calendar").$$render($$result, {}, {}, {})}
 </div>`;
     });
   }
@@ -6033,53 +5927,316 @@ var init__6 = __esm({
   ".svelte-kit/output/server/nodes/11.js"() {
     init_index_svelte4();
     index6 = 11;
-    file7 = "immutable/pages/projects/todo/index.svelte-2dca1df8.js";
-    imports6 = ["immutable/pages/projects/todo/index.svelte-2dca1df8.js", "immutable/chunks/index-f104f474.js", "immutable/pages/projects/todo/todo.svelte-ad4e6891.js", "immutable/chunks/todo.svelte_svelte_type_style_lang-6c26cf17.js", "immutable/chunks/index-664c2ae0.js"];
-    stylesheets6 = ["immutable/assets/pages/projects/todo/index.svelte-e08f12a1.css", "immutable/assets/todo.svelte_svelte_type_style_lang-5670f39b.css"];
+    file7 = "immutable/pages/projects/calendar/index.svelte-11b8eb36.js";
+    imports6 = ["immutable/pages/projects/calendar/index.svelte-11b8eb36.js", "immutable/chunks/index-9fb11939.js", "immutable/pages/projects/calendar/calendar.svelte-ecda8f6f.js", "immutable/chunks/store-f3d2a484.js", "immutable/chunks/index-23dd98bd.js"];
+    stylesheets6 = ["immutable/assets/pages/projects/calendar/index.svelte-9c60af56.css", "immutable/assets/pages/projects/calendar/calendar.svelte-49ba0149.css"];
   }
 });
 
-// .svelte-kit/output/server/nodes/4.js
+// .svelte-kit/output/server/entries/pages/projects/sujiko/sujiko.svelte.js
+var sujiko_svelte_exports = {};
+__export(sujiko_svelte_exports, {
+  default: () => Sujiko
+});
+function generateRandomOrder() {
+  const hash2 = {};
+  const numbers = [];
+  while (numbers.length < 9) {
+    const randomNumber = Math.ceil(Math.random() * 9);
+    if (!hash2[randomNumber.toString()]) {
+      hash2[randomNumber.toString()] = true;
+      numbers.push(randomNumber);
+    }
+  }
+  return numbers;
+}
+var css10, Sujiko;
+var init_sujiko_svelte = __esm({
+  ".svelte-kit/output/server/entries/pages/projects/sujiko/sujiko.svelte.js"() {
+    init_index_d55d85f2();
+    css10 = {
+      code: ".numbers.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:10;grid-column-start:1;grid-column-end:11;display:flex;justify-content:space-between}.numbers.svelte-7gkqt9 button.svelte-7gkqt9{padding:.5rem .75rem}.container.svelte-7gkqt9.svelte-7gkqt9{display:grid;grid-template-columns:repeat(9, 1fr);grid-template-rows:repeat(11, 1fr);height:490px;width:340px}.loc.svelte-7gkqt9.svelte-7gkqt9{width:100%;background-color:transparent;box-shadow:none;margin:0;z-index:2;font-size:2rem}.sums.svelte-7gkqt9.svelte-7gkqt9{position:relative;top:-86px;left:0px;width:230px;height:220px;display:flex;flex-flow:row wrap;justify-content:space-between}.sum.svelte-7gkqt9.svelte-7gkqt9{display:flex;flex-wrap:row nowrap;justify-content:center;align-items:center}.sum.svelte-7gkqt9 h2.svelte-7gkqt9{background-color:aliceblue;border:2px solid black;padding:0 .5rem;height:40px;width:40px;box-sizing:border-box;border-radius:50%;display:flex;justify-content:center;align-items:center;z-index:5;margin:0}.highlight.svelte-7gkqt9.svelte-7gkqt9{background-color:#81b29a}.s.svelte-7gkqt9.svelte-7gkqt9{background-color:#e07a5f}.center.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:11;grid-column-start:1;grid-column-end:10;display:flex;justify-content:space-between;align-items:center;height:120px;width:330px}.center.svelte-7gkqt9 button.svelte-7gkqt9{height:-webkit-fit-content;height:-moz-fit-content;height:fit-content;padding:.5rem 1rem}.center.svelte-7gkqt9 p.svelte-7gkqt9{font-size:2rem;margin:.25rem;width:120px}.module.svelte-7gkqt9.svelte-7gkqt9{background-color:white;padding:1rem;box-sizing:border-box;position:absolute;z-index:100;left:calc(50vw - 160px);top:35vh;width:320px;border:2px solid black;box-shadow:2px 2px 0 black;display:flex;justify-content:center;align-items:center;flex-flow:column nowrap}.giant.svelte-7gkqt9.svelte-7gkqt9{font-size:7rem;margin:0}.module.svelte-7gkqt9 button.svelte-7gkqt9{padding:.5rem 1rem}.loc-1.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:1;grid-column-start:1;grid-row-end:4;grid-column-end:4}.loc-2.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:1;grid-column-start:4;grid-row-end:4;grid-column-end:7}.loc-3.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:1;grid-column-start:7;grid-row-end:4;grid-column-end:10}.loc-4.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:4;grid-column-start:1;grid-row-end:7;grid-column-end:4}.loc-5.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:4;grid-column-start:4;grid-row-end:7;grid-column-end:7}.loc-6.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:4;grid-column-start:7;grid-row-end:7;grid-column-end:10}.loc-7.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:7;grid-column-start:1;grid-row-end:10;grid-column-end:4}.loc-8.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:7;grid-column-start:4;grid-row-end:10;grid-column-end:7}.loc-9.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:7;grid-column-start:7;grid-row-end:10;grid-column-end:10}.sum-1.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:3;grid-row-end:5;grid-column-start:3;grid-column-end:5}.sum-2.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:3;grid-row-end:5;grid-column-start:6;grid-column-end:8}.sum-3.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:6;grid-row-end:8;grid-column-start:3;grid-column-end:5}.sum-4.svelte-7gkqt9.svelte-7gkqt9{grid-row-start:6;grid-row-end:8;grid-column-start:6;grid-column-end:8}",
+      map: null
+    };
+    Sujiko = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let location = null;
+      let num = null;
+      let grid = new Array(9).fill(0);
+      let seconds = 1;
+      let won = false;
+      let timer = "0:00";
+      let dangTimer = setInterval(increaseSec, 1e3);
+      function increaseSec() {
+        let sec = seconds;
+        let min = 0;
+        while (sec >= 60) {
+          min++;
+          sec -= 60;
+        }
+        seconds++;
+        timer = min + (sec < 10 ? ":0" + sec : ":" + sec);
+      }
+      function getSums() {
+        const sums2 = [];
+        sums2.push(numbers[0] + numbers[1] + numbers[3] + numbers[4]);
+        sums2.push(numbers[1] + numbers[2] + numbers[4] + numbers[5]);
+        sums2.push(numbers[3] + numbers[4] + numbers[6] + numbers[7]);
+        sums2.push(numbers[4] + numbers[5] + numbers[7] + numbers[8]);
+        return sums2;
+      }
+      let numbers = generateRandomOrder();
+      const sums = getSums();
+      $$result.css.add(css10);
+      {
+        {
+          if (num && location != null) {
+            if (grid.includes(num)) {
+              const i2 = grid.indexOf(num);
+              if (grid[location] > 0)
+                grid[i2] = grid[location];
+              else
+                grid[i2] = 0;
+            }
+            grid[location] = num;
+          } else if (num == null && location)
+            grid[location] = 0;
+          num = 0;
+          if (grid.length === 9) {
+            let areEqual = true;
+            for (let i2 = 0; i2 < grid.length; i2++) {
+              if (grid[i2] != numbers[i2])
+                areEqual = false;
+            }
+            if (areEqual) {
+              won = true;
+              clearInterval(dangTimer);
+            }
+          }
+        }
+      }
+      return `${$$result.head += `<meta name="${"viewport"}" content="${"width=device-width, initial-scale=1"}" data-svelte="svelte-1jl5ftl">${$$result.title = `<title>Sujiko</title>`, ""}<meta name="${"description"}" content="${"Todo app PWA"}" data-svelte="svelte-1jl5ftl"><link rel="${"manifest"}" href="${"/todo/manifest.json"}" data-svelte="svelte-1jl5ftl">`, ""}
+
+<div class="${"container svelte-7gkqt9"}">${each(grid, (n, i2) => {
+        return `<button class="${escape(null_to_empty(location === i2 ? "highlight loc loc-" + (i2 + 1) : "loc loc-" + (i2 + 1)), true) + " svelte-7gkqt9"}">${escape(grid[i2] > 0 ? grid[i2] : "")}</button>`;
+      })}
+            ${each(sums, (sum, i2) => {
+        return `<div class="${escape(null_to_empty("sum sum-" + (i2 + 1)), true) + " svelte-7gkqt9"}"><h2 class="${"svelte-7gkqt9"}">${escape(sum)}</h2>
+                </div>`;
+      })}
+        
+    
+    <div class="${"numbers svelte-7gkqt9"}">${each(grid, (n, i2) => {
+        return `<button class="${escape(null_to_empty(grid.includes(i2 + 1) ? "num s" : "num"), true) + " svelte-7gkqt9"}">${escape(i2 + 1)}
+        </button>`;
+      })}</div>
+    <div class="${"center svelte-7gkqt9"}"><button class="${"svelte-7gkqt9"}">erase</button>
+        <p class="${"svelte-7gkqt9"}">${escape(timer)}</p>
+        <button class="${"svelte-7gkqt9"}">hint</button></div></div>
+
+${won ? `<div class="${"module svelte-7gkqt9"}">YOU WON IN ONLY ${escape(seconds >= 2 ? timer + " SECOND!" : timer + " SECONDS!")} 
+    <h5 class="${"giant svelte-7gkqt9"}">\u{1F389}</h5>
+    <button class="${"svelte-7gkqt9"}">play again</button></div>` : ``}`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/projects/sujiko/index.svelte.js
+var index_svelte_exports5 = {};
+__export(index_svelte_exports5, {
+  default: () => Sujiko_1
+});
+var css11, Sujiko_1;
+var init_index_svelte5 = __esm({
+  ".svelte-kit/output/server/entries/pages/projects/sujiko/index.svelte.js"() {
+    init_index_d55d85f2();
+    init_sujiko_svelte();
+    css11 = {
+      code: ".full.svelte-1xsd6gv{width:100vw;height:100vh;display:flex;justify-content:center;align-items:center;background-color:#5d7599}",
+      map: null
+    };
+    Sujiko_1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css11);
+      return `${$$result.head += `<meta name="${"viewport"}" content="${"width=device-width, initial-scale=1"}" data-svelte="svelte-dxb5xs">${$$result.title = `<title>Sujiko</title>`, ""}<link rel="${"icon"}" href="${"/sujiko/img/48.png"}" data-svelte="svelte-dxb5xs"><meta name="${"description"}" content="${"Sujiko"}" data-svelte="svelte-dxb5xs"><link rel="${"manifest"}" href="${"/sujiko/manifest.json"}" data-svelte="svelte-dxb5xs"><link rel="${"apple-touch-icon"}" sizes="${"180x180"}" href="${"/sujiko/img/icon.png"}" data-svelte="svelte-dxb5xs">`, ""}
+
+
+<div class="${"full svelte-1xsd6gv"}">${validate_component(Sujiko, "Sujiko").$$render($$result, {}, {}, {})}
+</div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/13.js
 var __exports7 = {};
 __export(__exports7, {
   file: () => file8,
   imports: () => imports7,
   index: () => index7,
-  module: () => calculator_svelte_exports,
+  module: () => index_svelte_exports5,
   stylesheets: () => stylesheets7
 });
 var index7, file8, imports7, stylesheets7;
 var init__7 = __esm({
-  ".svelte-kit/output/server/nodes/4.js"() {
-    init_calculator_svelte();
-    index7 = 4;
-    file8 = "immutable/pages/projects/calculator/calculator.svelte-7763b3fd.js";
-    imports7 = ["immutable/pages/projects/calculator/calculator.svelte-7763b3fd.js", "immutable/chunks/index-f104f474.js"];
-    stylesheets7 = ["immutable/assets/pages/projects/calculator/calculator.svelte-dfcd94d1.css"];
+  ".svelte-kit/output/server/nodes/13.js"() {
+    init_index_svelte5();
+    index7 = 13;
+    file8 = "immutable/pages/projects/sujiko/index.svelte-aab1b048.js";
+    imports7 = ["immutable/pages/projects/sujiko/index.svelte-aab1b048.js", "immutable/chunks/index-9fb11939.js", "immutable/pages/projects/sujiko/sujiko.svelte-88c585b7.js"];
+    stylesheets7 = ["immutable/assets/pages/projects/sujiko/index.svelte-1443a25f.css", "immutable/assets/sujiko.svelte_svelte_type_style_lang-b7252380.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/projects/calculator/info.svelte.js
+// .svelte-kit/output/server/entries/pages/projects/todo/index.svelte.js
+var index_svelte_exports6 = {};
+__export(index_svelte_exports6, {
+  default: () => Todo_1
+});
+var css12, Todo_1;
+var init_index_svelte6 = __esm({
+  ".svelte-kit/output/server/entries/pages/projects/todo/index.svelte.js"() {
+    init_index_d55d85f2();
+    init_todo_svelte();
+    init_store_ts();
+    init_index_7a2b2950();
+    init_addnew_c763ebd6();
+    css12 = {
+      code: ".body.svelte-1nw1z99{width:100vw;height:100vh;margin:0;box-sizing:border-box;background-color:#f2cc8f;padding:0;display:flex;justify-content:center;align-items:center;touch-action:manipulation}",
+      map: null
+    };
+    Todo_1 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css12);
+      return `${$$result.head += `<meta name="${"viewport"}" content="${"width=device-width, initial-scale=1"}" data-svelte="svelte-1jrxma7">${$$result.title = `<title>Todo List by Tijana</title>`, ""}<meta name="${"description"}" content="${"Todo app"}" data-svelte="svelte-1jrxma7"><link rel="${"icon"}" href="${"/todo/img/todo-48.png"}" data-svelte="svelte-1jrxma7"><link rel="${"manifest"}" href="${"/todo/manifest.json"}" data-svelte="svelte-1jrxma7"><link rel="${"apple-touch-icon"}" sizes="${"180x180"}" href="${"/todo/img/icon.png"}" data-svelte="svelte-1jrxma7">`, ""}
+
+<div class="${"body svelte-1nw1z99"}">${validate_component(Todo, "Todo").$$render($$result, {}, {}, {})}
+</div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/16.js
+var __exports8 = {};
+__export(__exports8, {
+  file: () => file9,
+  imports: () => imports8,
+  index: () => index8,
+  module: () => index_svelte_exports6,
+  stylesheets: () => stylesheets8
+});
+var index8, file9, imports8, stylesheets8;
+var init__8 = __esm({
+  ".svelte-kit/output/server/nodes/16.js"() {
+    init_index_svelte6();
+    index8 = 16;
+    file9 = "immutable/pages/projects/todo/index.svelte-e29cdcd2.js";
+    imports8 = ["immutable/pages/projects/todo/index.svelte-e29cdcd2.js", "immutable/chunks/index-9fb11939.js", "immutable/pages/projects/todo/todo.svelte-79e777f8.js", "immutable/chunks/store-f3d2a484.js", "immutable/chunks/index-23dd98bd.js", "immutable/chunks/_addnew-4f02a0db.js"];
+    stylesheets8 = ["immutable/assets/pages/projects/todo/index.svelte-c000e99c.css", "immutable/assets/pages/projects/todo/todo.svelte-0ac86b93.css", "immutable/assets/_addnew-a3b6c88b.css"];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/projects/bunnymoney/info.svelte.js
 var info_svelte_exports = {};
 __export(info_svelte_exports, {
   default: () => Info
 });
-var css9, Info;
+var css13, Info;
 var init_info_svelte = __esm({
-  ".svelte-kit/output/server/entries/pages/projects/calculator/info.svelte.js"() {
-    init_index_792b009d();
-    css9 = {
-      code: "p.svelte-k3aqti{line-height:1.75rem;width:55ch;max-width:100%}h2.svelte-k3aqti{font-size:3rem}h3.svelte-k3aqti{font-size:2rem}.all.svelte-k3aqti{background-color:#9deac8;padding:1rem;width:calc(100vw - 2rem);box-sizing:content-box;height:100vh}@media screen and (min-width: 600px){.column.svelte-k3aqti{-moz-column-count:2;column-count:2;-moz-column-gap:1rem;column-gap:1rem;max-width:55ch}}",
+  ".svelte-kit/output/server/entries/pages/projects/bunnymoney/info.svelte.js"() {
+    init_index_d55d85f2();
+    css13 = {
+      code: "p.svelte-npx7yb{line-height:1.75rem;width:55ch;max-width:100%;margin-top:0}h2.svelte-npx7yb{font-size:3rem}h3.svelte-npx7yb{font-size:2rem;margin:.5rem 0}.all.svelte-npx7yb{background-color:#e07a5f;padding:1rem;width:calc(100vw - 2rem);box-sizing:content-box;min-height:100vh}@media screen and (min-width: 600px){.column.svelte-npx7yb{-moz-column-count:2;column-count:2;-moz-column-gap:1rem;column-gap:1rem;max-width:55ch}.all.svelte-npx7yb{display:flex;justify-content:center;align-items:center}}",
       map: null
     };
     Info = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css9);
-      return `<div class="${"all svelte-k3aqti"}"><h2 class="${"svelte-k3aqti"}">Calculator</h2>
-    <h3 class="${"svelte-k3aqti"}">About</h3>
-    <div class="${"column svelte-k3aqti"}"><p class="${"svelte-k3aqti"}">This is a simple calculator app. 
+      $$result.css.add(css13);
+      return `<div class="${"all svelte-npx7yb"}"><div><h2 class="${"svelte-npx7yb"}">Bunny Money</h2>
+    <h3 class="${"svelte-npx7yb"}">About</h3>
+    <div class="${"column svelte-npx7yb"}"><p class="${"svelte-npx7yb"}">This is an app for kids to gain financial literacy, and for parents to help. It&#39;s basically
+        a bank simulator. Parents set the savings account interest rate, the allowance, and are able 
+        to request payments, while the kids can request money, and put money into savings (and watch it go).
+        </p>
+        <h3 class="${"svelte-npx7yb"}">Technical Background</h3>
+        <p class="${"svelte-npx7yb"}">This project was created in Svelte.js, using a Firebase backend. Firebase handles the
+        authentication and the data storage, which was very appealing to me as a front-end dev.
+        </p>
+        <h3 class="${"svelte-npx7yb"}">Svelte</h3>
+        <p class="${"svelte-npx7yb"}">All aboard the Svelte hype-train! I love Svelte.
+        </p>
+        <h3 class="${"svelte-npx7yb"}">TypeScript</h3>
+        <p class="${"svelte-npx7yb"}">Prior to this project, I had dabbled with TypeScript, but at one point, I found myself
+        frustrated by JavaScript&#39;s limits. Specifically, the type inference. I found myself hovering
+        over an argument, wishing the editor could tell me the exact structure of the object I had passed
+        to it, without having to track down another file. It took a while to convert the project to TypeScript
+        and to get rid of most of the errors it brought with it. I consider myself as having drunk the TypeScript
+        coolaid.
+        </p>
+        <h3 class="${"svelte-npx7yb"}">Next steps</h3>
+        <p class="${"svelte-npx7yb"}">More unit testing.
+        </p></div></div>
+</div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/5.js
+var __exports9 = {};
+__export(__exports9, {
+  file: () => file10,
+  imports: () => imports9,
+  index: () => index9,
+  module: () => info_svelte_exports,
+  stylesheets: () => stylesheets9
+});
+var index9, file10, imports9, stylesheets9;
+var init__9 = __esm({
+  ".svelte-kit/output/server/nodes/5.js"() {
+    init_info_svelte();
+    index9 = 5;
+    file10 = "immutable/pages/projects/bunnymoney/info.svelte-53e05b41.js";
+    imports9 = ["immutable/pages/projects/bunnymoney/info.svelte-53e05b41.js", "immutable/chunks/index-9fb11939.js"];
+    stylesheets9 = ["immutable/assets/pages/projects/bunnymoney/info.svelte-ecf4f83b.css"];
+  }
+});
+
+// .svelte-kit/output/server/nodes/6.js
+var __exports10 = {};
+__export(__exports10, {
+  file: () => file11,
+  imports: () => imports10,
+  index: () => index10,
+  module: () => calculator_svelte_exports,
+  stylesheets: () => stylesheets10
+});
+var index10, file11, imports10, stylesheets10;
+var init__10 = __esm({
+  ".svelte-kit/output/server/nodes/6.js"() {
+    init_calculator_svelte();
+    index10 = 6;
+    file11 = "immutable/pages/projects/calculator/calculator.svelte-0297ae76.js";
+    imports10 = ["immutable/pages/projects/calculator/calculator.svelte-0297ae76.js", "immutable/chunks/index-9fb11939.js"];
+    stylesheets10 = ["immutable/assets/pages/projects/calculator/calculator.svelte-9924e846.css"];
+  }
+});
+
+// .svelte-kit/output/server/entries/pages/projects/calculator/info.svelte.js
+var info_svelte_exports2 = {};
+__export(info_svelte_exports2, {
+  default: () => Info2
+});
+var css14, Info2;
+var init_info_svelte2 = __esm({
+  ".svelte-kit/output/server/entries/pages/projects/calculator/info.svelte.js"() {
+    init_index_d55d85f2();
+    css14 = {
+      code: "p.svelte-1rg0v1n{line-height:1.75rem;width:55ch;max-width:100%}h2.svelte-1rg0v1n{font-size:3rem}h3.svelte-1rg0v1n{font-size:2rem}.all.svelte-1rg0v1n{background-color:#81b29a;padding:1rem;width:calc(100vw - 2rem);box-sizing:content-box;height:100vh}@media screen and (min-width: 600px){.column.svelte-1rg0v1n{-moz-column-count:2;column-count:2;-moz-column-gap:1rem;column-gap:1rem;max-width:55ch}}",
+      map: null
+    };
+    Info2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css14);
+      return `<div class="${"all svelte-1rg0v1n"}"><h2 class="${"svelte-1rg0v1n"}">Calculator</h2>
+    <h3 class="${"svelte-1rg0v1n"}">About</h3>
+    <div class="${"column svelte-1rg0v1n"}"><p class="${"svelte-1rg0v1n"}">This is a simple calculator app. 
             To be honest, I just made it for my portfolio. </p>
             <h4>controversial choices</h4>
-        <p class="${"svelte-k3aqti"}">It was made in typescript, and uses a simple 
+        <p class="${"svelte-1rg0v1n"}">It was made in typescript, and uses a simple 
             functional programing paradigm. It does use the 
             very controversial JavaScript eval function, but because 
             the user can&#39;t type in any additional characters, and there&#39;s no
@@ -6087,14 +6244,14 @@ var init_info_svelte = __esm({
             humble opinion, because users can run eval in the console anymay.
         </p>
         <h4>PWA</h4>
-        <p class="${"svelte-k3aqti"}">I wanted to make all the small projects PWAs (progressive web apps),
+        <p class="${"svelte-1rg0v1n"}">I wanted to make all the small projects PWAs (progressive web apps),
             meaning you can &#39;install&#39; them on mobile, but especially this one,
             because ipads imfamously don&#39;t have a built in calculator, and all
             the calculators in the app store are either dreadfully ugly, or 
             ever worse, have ads. 
         </p>
         <h4>Next steps</h4>
-        <p class="${"svelte-k3aqti"}">I guess the next step could be to expand the functionality, like converting
+        <p class="${"svelte-1rg0v1n"}">I guess the next step could be to expand the functionality, like converting
             it to a scientific calculator. 
         </p></div>
 </div>`;
@@ -6102,66 +6259,116 @@ var init_info_svelte = __esm({
   }
 });
 
-// .svelte-kit/output/server/nodes/6.js
-var __exports8 = {};
-__export(__exports8, {
-  file: () => file9,
-  imports: () => imports8,
-  index: () => index8,
-  module: () => info_svelte_exports,
-  stylesheets: () => stylesheets8
+// .svelte-kit/output/server/nodes/8.js
+var __exports11 = {};
+__export(__exports11, {
+  file: () => file12,
+  imports: () => imports11,
+  index: () => index11,
+  module: () => info_svelte_exports2,
+  stylesheets: () => stylesheets11
 });
-var index8, file9, imports8, stylesheets8;
-var init__8 = __esm({
-  ".svelte-kit/output/server/nodes/6.js"() {
-    init_info_svelte();
-    index8 = 6;
-    file9 = "immutable/pages/projects/calculator/info.svelte-6ba6bf3c.js";
-    imports8 = ["immutable/pages/projects/calculator/info.svelte-6ba6bf3c.js", "immutable/chunks/index-f104f474.js"];
-    stylesheets8 = ["immutable/assets/pages/projects/calculator/info.svelte-ebc79b27.css"];
+var index11, file12, imports11, stylesheets11;
+var init__11 = __esm({
+  ".svelte-kit/output/server/nodes/8.js"() {
+    init_info_svelte2();
+    index11 = 8;
+    file12 = "immutable/pages/projects/calculator/info.svelte-aa6a90df.js";
+    imports11 = ["immutable/pages/projects/calculator/info.svelte-aa6a90df.js", "immutable/chunks/index-9fb11939.js"];
+    stylesheets11 = ["immutable/assets/pages/projects/calculator/info.svelte-d8bb1827.css"];
   }
 });
 
-// .svelte-kit/output/server/nodes/7.js
-var __exports9 = {};
-__export(__exports9, {
-  file: () => file10,
-  imports: () => imports9,
-  index: () => index9,
-  module: () => calendar_svelte_exports,
-  stylesheets: () => stylesheets9
+// .svelte-kit/output/server/entries/pages/projects/calendar/Todo.svelte.js
+var Todo_svelte_exports = {};
+__export(Todo_svelte_exports, {
+  default: () => Todo2
 });
-var index9, file10, imports9, stylesheets9;
-var init__9 = __esm({
-  ".svelte-kit/output/server/nodes/7.js"() {
+var css15, Todo2;
+var init_Todo_svelte = __esm({
+  ".svelte-kit/output/server/entries/pages/projects/calendar/Todo.svelte.js"() {
+    init_index_d55d85f2();
+    init_addnew_c763ebd6();
+    init_store_ts();
+    init_index_7a2b2950();
+    css15 = {
+      code: ".popup.svelte-ps17o8{border:2px solid black;box-shadow:2px 2px 0 black;width:340px;position:absolute;top:calc(50vh - 40px);left:calc(50vw - 188px);background-color:#e5e7fd;padding:1rem}",
+      map: null
+    };
+    Todo2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      const day = "";
+      let { openTodo = false } = $$props;
+      if ($$props.day === void 0 && $$bindings.day && day !== void 0)
+        $$bindings.day(day);
+      if ($$props.openTodo === void 0 && $$bindings.openTodo && openTodo !== void 0)
+        $$bindings.openTodo(openTodo);
+      $$result.css.add(css15);
+      return `<div class="${"popup svelte-ps17o8"}">${validate_component(Addnew, "Addnew").$$render($$result, {}, {}, {})}
+</div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/9.js
+var __exports12 = {};
+__export(__exports12, {
+  file: () => file13,
+  imports: () => imports12,
+  index: () => index12,
+  module: () => Todo_svelte_exports,
+  stylesheets: () => stylesheets12
+});
+var index12, file13, imports12, stylesheets12;
+var init__12 = __esm({
+  ".svelte-kit/output/server/nodes/9.js"() {
+    init_Todo_svelte();
+    index12 = 9;
+    file13 = "immutable/pages/projects/calendar/Todo.svelte-fe4ce15d.js";
+    imports12 = ["immutable/pages/projects/calendar/Todo.svelte-fe4ce15d.js", "immutable/chunks/index-9fb11939.js", "immutable/chunks/_addnew-4f02a0db.js", "immutable/chunks/store-f3d2a484.js", "immutable/chunks/index-23dd98bd.js"];
+    stylesheets12 = ["immutable/assets/pages/projects/calendar/Todo.svelte-a0b965f2.css", "immutable/assets/_addnew-a3b6c88b.css"];
+  }
+});
+
+// .svelte-kit/output/server/nodes/10.js
+var __exports13 = {};
+__export(__exports13, {
+  file: () => file14,
+  imports: () => imports13,
+  index: () => index13,
+  module: () => calendar_svelte_exports,
+  stylesheets: () => stylesheets13
+});
+var index13, file14, imports13, stylesheets13;
+var init__13 = __esm({
+  ".svelte-kit/output/server/nodes/10.js"() {
     init_calendar_svelte();
-    index9 = 7;
-    file10 = "immutable/pages/projects/calendar/calendar.svelte-3a808148.js";
-    imports9 = ["immutable/pages/projects/calendar/calendar.svelte-3a808148.js", "immutable/chunks/index-f104f474.js", "immutable/chunks/todo.svelte_svelte_type_style_lang-6c26cf17.js", "immutable/chunks/index-664c2ae0.js"];
-    stylesheets9 = ["immutable/assets/pages/projects/calendar/calendar.svelte-36362f7f.css", "immutable/assets/todo.svelte_svelte_type_style_lang-5670f39b.css"];
+    index13 = 10;
+    file14 = "immutable/pages/projects/calendar/calendar.svelte-ecda8f6f.js";
+    imports13 = ["immutable/pages/projects/calendar/calendar.svelte-ecda8f6f.js", "immutable/chunks/index-9fb11939.js", "immutable/chunks/store-f3d2a484.js", "immutable/chunks/index-23dd98bd.js"];
+    stylesheets13 = ["immutable/assets/pages/projects/calendar/calendar.svelte-49ba0149.css"];
   }
 });
 
 // .svelte-kit/output/server/entries/pages/projects/calendar/info.svelte.js
-var info_svelte_exports2 = {};
-__export(info_svelte_exports2, {
-  default: () => Info2
+var info_svelte_exports3 = {};
+__export(info_svelte_exports3, {
+  default: () => Info3
 });
-var css10, Info2;
-var init_info_svelte2 = __esm({
+var css16, Info3;
+var init_info_svelte3 = __esm({
   ".svelte-kit/output/server/entries/pages/projects/calendar/info.svelte.js"() {
-    init_index_792b009d();
-    css10 = {
-      code: "p.svelte-10l1gbc{line-height:1.75rem}h2.svelte-10l1gbc{font-size:3rem}h3.svelte-10l1gbc{font-size:2rem}.all.svelte-10l1gbc{background-color:#9deac8;padding:1rem;width:calc(100vw - 2rem);box-sizing:content-box;height:100vh}",
+    init_index_d55d85f2();
+    css16 = {
+      code: "p.svelte-8bmw5i{line-height:1.75rem}h2.svelte-8bmw5i{font-size:3rem}h3.svelte-8bmw5i{font-size:2rem}.all.svelte-8bmw5i{background-color:#dce2d4;padding:1rem;width:calc(100vw - 2rem);box-sizing:content-box;height:100vh}",
       map: null
     };
-    Info2 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css10);
-      return `<div class="${"all svelte-10l1gbc"}"><h2 class="${"svelte-10l1gbc"}">Calculator</h2>
-    <h3 class="${"svelte-10l1gbc"}">About</h3>
-    <p class="${"svelte-10l1gbc"}">This is a simple calculator app. 
+    Info3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css16);
+      return `<div class="${"all svelte-8bmw5i"}"><h2 class="${"svelte-8bmw5i"}">Calculator</h2>
+    <h3 class="${"svelte-8bmw5i"}">About</h3>
+    <p class="${"svelte-8bmw5i"}">This is a simple calculator app. 
         To be honest, I just made it for my portfolio. </p>
-    <p class="${"svelte-10l1gbc"}">It was made in typescript, and uses a simple 
+    <p class="${"svelte-8bmw5i"}">It was made in typescript, and uses a simple 
         functional programing paradigm. It does use the 
     very controversial JavaScript eval function, but because 
     the user can&#39;t type in any additional characters, and there&#39;s no
@@ -6171,76 +6378,121 @@ var init_info_svelte2 = __esm({
   }
 });
 
-// .svelte-kit/output/server/nodes/9.js
-var __exports10 = {};
-__export(__exports10, {
-  file: () => file11,
-  imports: () => imports10,
-  index: () => index10,
-  module: () => info_svelte_exports2,
-  stylesheets: () => stylesheets10
+// .svelte-kit/output/server/nodes/12.js
+var __exports14 = {};
+__export(__exports14, {
+  file: () => file15,
+  imports: () => imports14,
+  index: () => index14,
+  module: () => info_svelte_exports3,
+  stylesheets: () => stylesheets14
 });
-var index10, file11, imports10, stylesheets10;
-var init__10 = __esm({
-  ".svelte-kit/output/server/nodes/9.js"() {
-    init_info_svelte2();
-    index10 = 9;
-    file11 = "immutable/pages/projects/calendar/info.svelte-34162da5.js";
-    imports10 = ["immutable/pages/projects/calendar/info.svelte-34162da5.js", "immutable/chunks/index-f104f474.js"];
-    stylesheets10 = ["immutable/assets/pages/projects/calendar/info.svelte-054cb149.css"];
+var index14, file15, imports14, stylesheets14;
+var init__14 = __esm({
+  ".svelte-kit/output/server/nodes/12.js"() {
+    init_info_svelte3();
+    index14 = 12;
+    file15 = "immutable/pages/projects/calendar/info.svelte-1c8d7efc.js";
+    imports14 = ["immutable/pages/projects/calendar/info.svelte-1c8d7efc.js", "immutable/chunks/index-9fb11939.js"];
+    stylesheets14 = ["immutable/assets/pages/projects/calendar/info.svelte-b181ff1c.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/pages/projects/parts/weather.svelte.js
-var weather_svelte_exports = {};
-__export(weather_svelte_exports, {
-  default: () => Weather
+// .svelte-kit/output/server/entries/pages/projects/sujiko/info.svelte.js
+var info_svelte_exports4 = {};
+__export(info_svelte_exports4, {
+  default: () => Info4
 });
-var Weather;
-var init_weather_svelte = __esm({
-  ".svelte-kit/output/server/entries/pages/projects/parts/weather.svelte.js"() {
-    init_index_792b009d();
-    Weather = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      return ``;
+var css17, Info4;
+var init_info_svelte4 = __esm({
+  ".svelte-kit/output/server/entries/pages/projects/sujiko/info.svelte.js"() {
+    init_index_d55d85f2();
+    css17 = {
+      code: ".all.svelte-1gko8oz{background-color:#abb6c8;padding:1rem;width:calc(100vw - 2rem);box-sizing:content-box;height:100vh}p.svelte-1gko8oz{line-height:1.75rem}h3.svelte-1gko8oz{font-size:2rem}@media screen and (min-width: 600px){.all.svelte-1gko8oz{display:flex;justify-content:center;align-items:center}.column.svelte-1gko8oz{-moz-column-count:2;column-count:2;-moz-column-gap:1rem;column-gap:1rem;max-width:55ch}}",
+      map: null
+    };
+    Info4 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css17);
+      return `<div class="${"all svelte-1gko8oz"}"><div class="${"column svelte-1gko8oz"}"><h1>Sujiko</h1>
+        <p class="${"svelte-1gko8oz"}">I just learned about this number puzzle game recently and decided I needed to
+            make it a PWA.
+        </p>
+        <h3 class="${"svelte-1gko8oz"}">How to play</h3>
+        <p class="${"svelte-1gko8oz"}">The numbers in the circles are the sum of the four surrounding squares, 
+            and you can only use 1-9 once. Good luck!
+        </p>
+        <h3 class="${"svelte-1gko8oz"}">Technical</h3>
+        <p class="${"svelte-1gko8oz"}">First we generate an array of 1-9 in random order. I debated between using an array, object, or
+            even a map, but settled on array at the end because it becomes easy to cross reference against the
+            user&#39;s guesses array. 
+        </p>
+        <p class="${"svelte-1gko8oz"}"></p>
+        <h3 class="${"svelte-1gko8oz"}">Next Steps</h3>
+        <p class="${"svelte-1gko8oz"}">I&#39;d like to add levels that have various amounts of previously filled-in numbers, but for now,
+            the hint button fills that need. Also, I&#39;m still debating wether or not hints should be mutable
+            or not.
+        </p></div>
+    <a href="${"https://github.com/elsalvadordali/portfolio/tree/main/src/routes/projects/todo"}">Code on Github</a>
+</div>`;
     });
   }
 });
 
-// .svelte-kit/output/server/nodes/10.js
-var __exports11 = {};
-__export(__exports11, {
-  file: () => file12,
-  imports: () => imports11,
-  index: () => index11,
-  module: () => weather_svelte_exports,
-  stylesheets: () => stylesheets11
+// .svelte-kit/output/server/nodes/14.js
+var __exports15 = {};
+__export(__exports15, {
+  file: () => file16,
+  imports: () => imports15,
+  index: () => index15,
+  module: () => info_svelte_exports4,
+  stylesheets: () => stylesheets15
 });
-var index11, file12, imports11, stylesheets11;
-var init__11 = __esm({
-  ".svelte-kit/output/server/nodes/10.js"() {
-    init_weather_svelte();
-    index11 = 10;
-    file12 = "immutable/pages/projects/parts/weather.svelte-51a97cac.js";
-    imports11 = ["immutable/pages/projects/parts/weather.svelte-51a97cac.js", "immutable/chunks/index-f104f474.js"];
-    stylesheets11 = [];
+var index15, file16, imports15, stylesheets15;
+var init__15 = __esm({
+  ".svelte-kit/output/server/nodes/14.js"() {
+    init_info_svelte4();
+    index15 = 14;
+    file16 = "immutable/pages/projects/sujiko/info.svelte-232cbe58.js";
+    imports15 = ["immutable/pages/projects/sujiko/info.svelte-232cbe58.js", "immutable/chunks/index-9fb11939.js"];
+    stylesheets15 = ["immutable/assets/pages/projects/sujiko/info.svelte-34af4223.css"];
+  }
+});
+
+// .svelte-kit/output/server/nodes/15.js
+var __exports16 = {};
+__export(__exports16, {
+  file: () => file17,
+  imports: () => imports16,
+  index: () => index16,
+  module: () => sujiko_svelte_exports,
+  stylesheets: () => stylesheets16
+});
+var index16, file17, imports16, stylesheets16;
+var init__16 = __esm({
+  ".svelte-kit/output/server/nodes/15.js"() {
+    init_sujiko_svelte();
+    index16 = 15;
+    file17 = "immutable/pages/projects/sujiko/sujiko.svelte-88c585b7.js";
+    imports16 = ["immutable/pages/projects/sujiko/sujiko.svelte-88c585b7.js", "immutable/chunks/index-9fb11939.js"];
+    stylesheets16 = ["immutable/assets/sujiko.svelte_svelte_type_style_lang-b7252380.css"];
   }
 });
 
 // .svelte-kit/output/server/entries/pages/projects/todo/info.svelte.js
-var info_svelte_exports3 = {};
-__export(info_svelte_exports3, {
-  default: () => Info3
+var info_svelte_exports5 = {};
+__export(info_svelte_exports5, {
+  default: () => Info5
 });
-var css11, Info3;
-var init_info_svelte3 = __esm({
+var css18, Info5;
+var init_info_svelte5 = __esm({
   ".svelte-kit/output/server/entries/pages/projects/todo/info.svelte.js"() {
-    init_index_792b009d();
-    css11 = {
+    init_index_d55d85f2();
+    css18 = {
       code: ".all.svelte-1hkemcu{background-color:#fee074;padding:1rem;width:calc(100vw - 2rem);box-sizing:content-box;height:100vh}p.svelte-1hkemcu{line-height:1.75rem}h3.svelte-1hkemcu{font-size:2rem}@media screen and (min-width: 600px){.all.svelte-1hkemcu{display:flex;justify-content:center;align-items:center}.column.svelte-1hkemcu{-moz-column-count:2;column-count:2;-moz-column-gap:1rem;column-gap:1rem;max-width:55ch}}",
       map: null
     };
-    Info3 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
-      $$result.css.add(css11);
+    Info5 = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      $$result.css.add(css18);
       return `<div class="${"all svelte-1hkemcu"}"><div class="${"column svelte-1hkemcu"}"><h1>Todo</h1>
         <p class="${"svelte-1hkemcu"}">If I didn&#39;t include a basic todo app, how would you know I was a 
             web dev at all? All kidding aside, this is was a one-day project that
@@ -6260,60 +6512,146 @@ var init_info_svelte3 = __esm({
         </p>
         <h3 class="${"svelte-1hkemcu"}">Next Steps</h3>
         <p class="${"svelte-1hkemcu"}">I guess the only feature &#39;missing&#39; is to be able to edit items in the todo list</p></div>
+    <a href="${"https://github.com/elsalvadordali/portfolio/tree/main/src/routes/projects/todo"}">Code on Github</a>
 </div>`;
     });
   }
 });
 
-// .svelte-kit/output/server/nodes/12.js
-var __exports12 = {};
-__export(__exports12, {
-  file: () => file13,
-  imports: () => imports12,
-  index: () => index12,
-  module: () => info_svelte_exports3,
-  stylesheets: () => stylesheets12
+// .svelte-kit/output/server/nodes/17.js
+var __exports17 = {};
+__export(__exports17, {
+  file: () => file18,
+  imports: () => imports17,
+  index: () => index17,
+  module: () => info_svelte_exports5,
+  stylesheets: () => stylesheets17
 });
-var index12, file13, imports12, stylesheets12;
-var init__12 = __esm({
-  ".svelte-kit/output/server/nodes/12.js"() {
-    init_info_svelte3();
-    index12 = 12;
-    file13 = "immutable/pages/projects/todo/info.svelte-ee2e8a35.js";
-    imports12 = ["immutable/pages/projects/todo/info.svelte-ee2e8a35.js", "immutable/chunks/index-f104f474.js"];
-    stylesheets12 = ["immutable/assets/pages/projects/todo/info.svelte-6a8bcff0.css"];
+var index17, file18, imports17, stylesheets17;
+var init__17 = __esm({
+  ".svelte-kit/output/server/nodes/17.js"() {
+    init_info_svelte5();
+    index17 = 17;
+    file18 = "immutable/pages/projects/todo/info.svelte-7e9a0401.js";
+    imports17 = ["immutable/pages/projects/todo/info.svelte-7e9a0401.js", "immutable/chunks/index-9fb11939.js"];
+    stylesheets17 = ["immutable/assets/pages/projects/todo/info.svelte-6a8bcff0.css"];
   }
 });
 
-// .svelte-kit/output/server/nodes/13.js
-var __exports13 = {};
-__export(__exports13, {
-  file: () => file14,
-  imports: () => imports13,
-  index: () => index13,
+// .svelte-kit/output/server/nodes/18.js
+var __exports18 = {};
+__export(__exports18, {
+  file: () => file19,
+  imports: () => imports18,
+  index: () => index18,
   module: () => todo_svelte_exports,
-  stylesheets: () => stylesheets13
+  stylesheets: () => stylesheets18
 });
-var index13, file14, imports13, stylesheets13;
-var init__13 = __esm({
-  ".svelte-kit/output/server/nodes/13.js"() {
+var index18, file19, imports18, stylesheets18;
+var init__18 = __esm({
+  ".svelte-kit/output/server/nodes/18.js"() {
     init_todo_svelte();
-    index13 = 13;
-    file14 = "immutable/pages/projects/todo/todo.svelte-ad4e6891.js";
-    imports13 = ["immutable/pages/projects/todo/todo.svelte-ad4e6891.js", "immutable/chunks/index-f104f474.js", "immutable/chunks/todo.svelte_svelte_type_style_lang-6c26cf17.js", "immutable/chunks/index-664c2ae0.js"];
-    stylesheets13 = ["immutable/assets/todo.svelte_svelte_type_style_lang-5670f39b.css"];
+    index18 = 18;
+    file19 = "immutable/pages/projects/todo/todo.svelte-79e777f8.js";
+    imports18 = ["immutable/pages/projects/todo/todo.svelte-79e777f8.js", "immutable/chunks/index-9fb11939.js", "immutable/chunks/store-f3d2a484.js", "immutable/chunks/index-23dd98bd.js", "immutable/chunks/_addnew-4f02a0db.js"];
+    stylesheets18 = ["immutable/assets/pages/projects/todo/todo.svelte-0ac86b93.css", "immutable/assets/_addnew-a3b6c88b.css"];
   }
 });
 
-// .svelte-kit/output/server/entries/endpoints/projects/todo/store.ts.js
-var store_ts_exports = {};
-__export(store_ts_exports, {
+// .svelte-kit/output/server/entries/pages/projects/weather/weather.svelte.js
+var weather_svelte_exports = {};
+__export(weather_svelte_exports, {
+  default: () => Weather
+});
+var Weather;
+var init_weather_svelte = __esm({
+  ".svelte-kit/output/server/entries/pages/projects/weather/weather.svelte.js"() {
+    init_index_d55d85f2();
+    Weather = create_ssr_component(($$result, $$props, $$bindings, slots) => {
+      let input = "";
+      return `<div><div class="${"week"}"><form>City + State, or Zip. Sorry US only
+            <input type="${"text"}" placeholder="${"Albequerque, NM"}"${add_attribute("value", input, 0)}>
+            <button type="${"submit"}"></button></form>
+        <div class="${"today"}"></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div></div></div>`;
+    });
+  }
+});
+
+// .svelte-kit/output/server/nodes/19.js
+var __exports19 = {};
+__export(__exports19, {
+  file: () => file20,
+  imports: () => imports19,
+  index: () => index19,
+  module: () => weather_svelte_exports,
+  stylesheets: () => stylesheets19
+});
+var index19, file20, imports19, stylesheets19;
+var init__19 = __esm({
+  ".svelte-kit/output/server/nodes/19.js"() {
+    init_weather_svelte();
+    index19 = 19;
+    file20 = "immutable/pages/projects/weather/weather.svelte-4a0485f4.js";
+    imports19 = ["immutable/pages/projects/weather/weather.svelte-4a0485f4.js", "immutable/chunks/index-9fb11939.js"];
+    stylesheets19 = ["immutable/assets/_menubar.svelte_svelte_type_style_lang-5247cb84.css"];
+  }
+});
+
+// .svelte-kit/output/server/entries/endpoints/api/quotes.js
+var quotes_exports = {};
+__export(quotes_exports, {
+  GET: () => GET
+});
+function GET() {
+  return new Response("heres a quote");
+}
+var init_quotes = __esm({
+  ".svelte-kit/output/server/entries/endpoints/api/quotes.js"() {
+  }
+});
+
+// .svelte-kit/output/server/entries/endpoints/projects/calendar/store.ts.js
+var store_ts_exports2 = {};
+__export(store_ts_exports2, {
   tasks: () => tasks2
 });
-var init_store_ts = __esm({
-  ".svelte-kit/output/server/entries/endpoints/projects/todo/store.ts.js"() {
-    init_store_aa4a99b6();
-    init_index_792b009d();
+function createTasks2() {
+  const { subscribe, set, update } = writable2(stored2);
+  return {
+    subscribe,
+    set: (list) => {
+      set(list);
+    },
+    add: (task) => update((arr) => {
+      return [...arr, task];
+    }),
+    updateOne: (newTask) => update((arr) => {
+      let updatedArr = arr.map((oldTask) => {
+        if (oldTask.task === newTask.task && oldTask.date === newTask.date)
+          return newTask;
+        else
+          return oldTask;
+      });
+      return updatedArr;
+    }),
+    update: (newVal) => update((val) => newVal)
+  };
+}
+var stored2, tasks2;
+var init_store_ts2 = __esm({
+  ".svelte-kit/output/server/entries/endpoints/projects/calendar/store.ts.js"() {
+    init_index_7a2b2950();
+    init_index_d55d85f2();
+    stored2 = false;
+    if (!stored2)
+      stored2 = [];
+    tasks2 = createTasks2();
   }
 });
 
@@ -14248,7 +14586,7 @@ function installPolyfills() {
 init_node();
 
 // .svelte-kit/output/server/index.js
-init_index_792b009d();
+init_index_d55d85f2();
 function afterUpdate() {
 }
 var Root = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -14738,7 +15076,7 @@ function writable(value, start = noop3) {
   function update(fn) {
     set(fn(value));
   }
-  function subscribe2(run2, invalidate = noop3) {
+  function subscribe(run2, invalidate = noop3) {
     const subscriber = [run2, invalidate];
     subscribers.add(subscriber);
     if (subscribers.size === 1) {
@@ -14753,7 +15091,7 @@ function writable(value, start = noop3) {
       }
     };
   }
-  return { set, update, subscribe: subscribe2 };
+  return { set, update, subscribe };
 }
 function coalesce_to_error(err) {
   return err instanceof Error || err && err.name && err.message ? err : new Error(JSON.stringify(err));
@@ -15094,7 +15432,7 @@ async function render_response({
     }
   }
   const { entry } = options.manifest._;
-  const stylesheets14 = new Set(entry.stylesheets);
+  const stylesheets20 = new Set(entry.stylesheets);
   const modulepreloads = new Set(entry.imports);
   const inline_styles = /* @__PURE__ */ new Map();
   const serialized_data = [];
@@ -15111,7 +15449,7 @@ async function render_response({
         node.imports.forEach((url) => modulepreloads.add(url));
       }
       if (node.stylesheets) {
-        node.stylesheets.forEach((url) => stylesheets14.add(url));
+        node.stylesheets.forEach((url) => stylesheets20.add(url));
       }
       if (node.inline_styles) {
         Object.entries(await node.inline_styles()).forEach(([k, v]) => inline_styles.set(k, v));
@@ -15210,7 +15548,7 @@ async function render_response({
     head += `
 	<style${attributes.join("")}>${content}</style>`;
   }
-  head += Array.from(stylesheets14).map((dep) => {
+  head += Array.from(stylesheets20).map((dep) => {
     const attributes = [
       'rel="stylesheet"',
       `href="${options.prefix + dep}"`
@@ -15300,20 +15638,20 @@ function parse$1(str, options) {
   var obj = {};
   var opt = options || {};
   var dec = opt.decode || decode;
-  var index14 = 0;
-  while (index14 < str.length) {
-    var eqIdx = str.indexOf("=", index14);
+  var index20 = 0;
+  while (index20 < str.length) {
+    var eqIdx = str.indexOf("=", index20);
     if (eqIdx === -1) {
       break;
     }
-    var endIdx = str.indexOf(";", index14);
+    var endIdx = str.indexOf(";", index20);
     if (endIdx === -1) {
       endIdx = str.length;
     } else if (endIdx < eqIdx) {
-      index14 = str.lastIndexOf(";", eqIdx - 1) + 1;
+      index20 = str.lastIndexOf(";", eqIdx - 1) + 1;
       continue;
     }
-    var key2 = str.slice(index14, eqIdx).trim();
+    var key2 = str.slice(index20, eqIdx).trim();
     if (void 0 === obj[key2]) {
       var val = str.slice(eqIdx + 1, endIdx).trim();
       if (val.charCodeAt(0) === 34) {
@@ -15321,7 +15659,7 @@ function parse$1(str, options) {
       }
       obj[key2] = tryDecode(val, dec);
     }
-    index14 = endIdx + 1;
+    index20 = endIdx + 1;
   }
   return obj;
 }
@@ -15707,14 +16045,14 @@ async function load_node({
         const is_asset = options.manifest.assets.has(filename);
         const is_asset_html = options.manifest.assets.has(filename_html);
         if (is_asset || is_asset_html) {
-          const file15 = is_asset ? filename : filename_html;
+          const file21 = is_asset ? filename : filename_html;
           if (options.read) {
             const type = is_asset ? options.manifest.mimeTypes[filename.slice(filename.lastIndexOf("."))] : "text/html";
-            response2 = new Response(options.read(file15), {
+            response2 = new Response(options.read(file21), {
               headers: type ? { "content-type": type } : {}
             });
           } else {
-            response2 = await fetch(`${event.url.origin}/${file15}`, opts);
+            response2 = await fetch(`${event.url.origin}/${file21}`, opts);
           }
         } else if (is_root_relative(resolved)) {
           if (opts.credentials !== "omit") {
@@ -16113,8 +16451,8 @@ async function respond$1(opts) {
         if (error2) {
           while (i2--) {
             if (route.b[i2]) {
-              const index14 = route.b[i2];
-              const error_node = await options.manifest._.nodes[index14]();
+              const index20 = route.b[i2];
+              const error_node = await options.manifest._.nodes[index20]();
               let node_loaded;
               let j = i2;
               while (!(node_loaded = branch[j])) {
@@ -16503,7 +16841,7 @@ function set_paths(paths) {
   base = paths.base;
   assets = paths.assets || base;
 }
-var template = ({ head, body: body2, assets: assets2, nonce }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n		<title>AMS ' + head + "</title>\n	</head>\n	<body>\n		" + body2 + "\n	</body>\n</html>\n";
+var template = ({ head, body: body2, assets: assets2, nonce }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="icon" href="' + assets2 + '/favicon.png" />\n		<meta name="viewport" content="width=device-width, initial-scale=1" />\n		<title>' + head + "</title>\n	</head>\n	<body>\n		" + body2 + "\n	</body>\n</html>\n";
 var read = null;
 set_paths({ "base": "", "assets": "" });
 var Server = class {
@@ -16561,10 +16899,10 @@ var Server = class {
 // .svelte-kit/vercel-tmp/manifest.js
 var manifest = {
   appDir: "_app",
-  assets: /* @__PURE__ */ new Set(["bunny.png", "calc/calc-144.png", "calc/calc-168.png", "calc/calc-48.png", "calc/calc-72.png", "calc/calc-96.png", "calc/icon.png", "calc/manifest.json", "favicon.png", "robots.txt", "svelte-welcome.png", "svelte-welcome.webp", "todo/icon.png", "todo/manifest.json", "todo/todo-144.png", "todo/todo-168.png", "todo/todo-48.png", "todo/todo-72.png", "todo/todo-96.png", "undraw_well_done_re_3hpo.svg"]),
-  mimeTypes: { ".png": "image/png", ".json": "application/json", ".txt": "text/plain", ".webp": "image/webp", ".svg": "image/svg+xml" },
+  assets: /* @__PURE__ */ new Set([".DS_Store", "bunny.png", "cal/img/icon.png", "calc/img/calc-144.png", "calc/img/calc-168.png", "calc/img/calc-48.png", "calc/img/calc-72.png", "calc/img/calc-96.png", "calc/img/icon.png", "calc/manifest.json", "favicon.png", "open_in_new.svg", "robots.txt", "sujiko/img/144.png", "sujiko/img/168.png", "sujiko/img/48.png", "sujiko/img/72.png", "sujiko/img/96.png", "sujiko/img/icon.png", "sujiko/manifest.json", "todo/img/icon.png", "todo/img/todo-144.png", "todo/img/todo-168.png", "todo/img/todo-48.png", "todo/img/todo-72.png", "todo/img/todo-96.png", "todo/manifest.json", "todo/sw.js", "undraw_well_done_re_3hpo.svg"]),
+  mimeTypes: { ".png": "image/png", ".json": "application/json", ".svg": "image/svg+xml", ".txt": "text/plain", ".js": "application/javascript" },
   _: {
-    entry: { "file": "immutable/start-19818ce2.js", "imports": ["immutable/start-19818ce2.js", "immutable/chunks/index-f104f474.js", "immutable/chunks/index-664c2ae0.js"], "stylesheets": [] },
+    entry: { "file": "immutable/start-e84aca19.js", "imports": ["immutable/start-e84aca19.js", "immutable/chunks/index-9fb11939.js", "immutable/chunks/index-23dd98bd.js"], "stylesheets": [] },
     nodes: [
       () => Promise.resolve().then(() => (init__(), __exports)),
       () => Promise.resolve().then(() => (init__2(), __exports2)),
@@ -16578,7 +16916,13 @@ var manifest = {
       () => Promise.resolve().then(() => (init__10(), __exports10)),
       () => Promise.resolve().then(() => (init__11(), __exports11)),
       () => Promise.resolve().then(() => (init__12(), __exports12)),
-      () => Promise.resolve().then(() => (init__13(), __exports13))
+      () => Promise.resolve().then(() => (init__13(), __exports13)),
+      () => Promise.resolve().then(() => (init__14(), __exports14)),
+      () => Promise.resolve().then(() => (init__15(), __exports15)),
+      () => Promise.resolve().then(() => (init__16(), __exports16)),
+      () => Promise.resolve().then(() => (init__17(), __exports17)),
+      () => Promise.resolve().then(() => (init__18(), __exports18)),
+      () => Promise.resolve().then(() => (init__19(), __exports19))
     ],
     routes: [
       {
@@ -16593,6 +16937,25 @@ var manifest = {
         b: [1]
       },
       {
+        type: "endpoint",
+        id: "api/quotes",
+        pattern: /^\/api\/quotes\/?$/,
+        names: [],
+        types: [],
+        load: () => Promise.resolve().then(() => (init_quotes(), quotes_exports))
+      },
+      {
+        type: "page",
+        id: "projects/bunnymoney",
+        pattern: /^\/projects\/bunnymoney\/?$/,
+        names: [],
+        types: [],
+        path: "/projects/bunnymoney",
+        shadow: null,
+        a: [0, 3],
+        b: [1]
+      },
+      {
         type: "page",
         id: "projects/calculator",
         pattern: /^\/projects\/calculator\/?$/,
@@ -16600,7 +16963,7 @@ var manifest = {
         types: [],
         path: "/projects/calculator",
         shadow: null,
-        a: [0, 3],
+        a: [0, 4],
         b: [1]
       },
       {
@@ -16611,7 +16974,18 @@ var manifest = {
         types: [],
         path: "/projects/calendar",
         shadow: null,
-        a: [0, 4],
+        a: [0, 5],
+        b: [1]
+      },
+      {
+        type: "page",
+        id: "projects/sujiko",
+        pattern: /^\/projects\/sujiko\/?$/,
+        names: [],
+        types: [],
+        path: "/projects/sujiko",
+        shadow: null,
+        a: [0, 6],
         b: [1]
       },
       {
@@ -16622,7 +16996,7 @@ var manifest = {
         types: [],
         path: "/projects/todo",
         shadow: null,
-        a: [0, 5],
+        a: [0, 7],
         b: [1]
       },
       {
@@ -16634,6 +17008,25 @@ var manifest = {
         load: () => Promise.resolve().then(() => (init_store_ts(), store_ts_exports))
       },
       {
+        type: "endpoint",
+        id: "projects/calendar/store",
+        pattern: /^\/projects\/calendar\/store\/?$/,
+        names: [],
+        types: [],
+        load: () => Promise.resolve().then(() => (init_store_ts2(), store_ts_exports2))
+      },
+      {
+        type: "page",
+        id: "projects/bunnymoney/info",
+        pattern: /^\/projects\/bunnymoney\/info\/?$/,
+        names: [],
+        types: [],
+        path: "/projects/bunnymoney/info",
+        shadow: null,
+        a: [0, 8],
+        b: [1]
+      },
+      {
         type: "page",
         id: "projects/calculator/calculator",
         pattern: /^\/projects\/calculator\/calculator\/?$/,
@@ -16641,7 +17034,7 @@ var manifest = {
         types: [],
         path: "/projects/calculator/calculator",
         shadow: null,
-        a: [0, 6],
+        a: [0, 9],
         b: [1]
       },
       {
@@ -16652,7 +17045,18 @@ var manifest = {
         types: [],
         path: "/projects/calculator/info",
         shadow: null,
-        a: [0, 7],
+        a: [0, 10],
+        b: [1]
+      },
+      {
+        type: "page",
+        id: "projects/calendar/Todo",
+        pattern: /^\/projects\/calendar\/Todo\/?$/,
+        names: [],
+        types: [],
+        path: "/projects/calendar/Todo",
+        shadow: null,
+        a: [0, 11],
         b: [1]
       },
       {
@@ -16663,7 +17067,7 @@ var manifest = {
         types: [],
         path: "/projects/calendar/calendar",
         shadow: null,
-        a: [0, 8],
+        a: [0, 12],
         b: [1]
       },
       {
@@ -16674,18 +17078,29 @@ var manifest = {
         types: [],
         path: "/projects/calendar/info",
         shadow: null,
-        a: [0, 9],
+        a: [0, 13],
         b: [1]
       },
       {
         type: "page",
-        id: "projects/parts/weather",
-        pattern: /^\/projects\/parts\/weather\/?$/,
+        id: "projects/sujiko/info",
+        pattern: /^\/projects\/sujiko\/info\/?$/,
         names: [],
         types: [],
-        path: "/projects/parts/weather",
+        path: "/projects/sujiko/info",
         shadow: null,
-        a: [0, 10],
+        a: [0, 14],
+        b: [1]
+      },
+      {
+        type: "page",
+        id: "projects/sujiko/sujiko",
+        pattern: /^\/projects\/sujiko\/sujiko\/?$/,
+        names: [],
+        types: [],
+        path: "/projects/sujiko/sujiko",
+        shadow: null,
+        a: [0, 15],
         b: [1]
       },
       {
@@ -16696,7 +17111,7 @@ var manifest = {
         types: [],
         path: "/projects/todo/info",
         shadow: null,
-        a: [0, 11],
+        a: [0, 16],
         b: [1]
       },
       {
@@ -16707,7 +17122,18 @@ var manifest = {
         types: [],
         path: "/projects/todo/todo",
         shadow: null,
-        a: [0, 12],
+        a: [0, 17],
+        b: [1]
+      },
+      {
+        type: "page",
+        id: "projects/weather/weather",
+        pattern: /^\/projects\/weather\/weather\/?$/,
+        names: [],
+        types: [],
+        path: "/projects/weather/weather",
+        shadow: null,
+        a: [0, 18],
         b: [1]
       }
     ],
