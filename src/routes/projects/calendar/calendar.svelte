@@ -103,9 +103,9 @@
                 {:else if day.date === undefined}
                 <div class='no-day'></div>
                 {:else if day.tasks.length > 0} 
-                <div class={'tasks-' + day.tasks.length} on:click={() => open(day)}>{day.date}</div>
+                <div class={'tasks-' + day.tasks.length} >{day.date}</div>
                 {:else}
-                <div class='day' id={day.year + '-' + day.month + '-' + day.date} on:click={() => open(day)}><date>{day.date}</date></div>
+                <div class='day' id={day.year + '-' + day.month + '-' + day.date} ><date>{day.date}</date></div>
                 {/if}
             {/each}
         </div>
@@ -133,6 +133,9 @@
     .day {
         border: 2px solid black;
         border-radius: .25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
     .day:hover, .today:hover {
         background-color: #f2cc8f;
@@ -159,6 +162,9 @@
         border: 2px solid black;
         background-color: #e07a5f;
         border-radius: .25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     button {
         background-color: transparent;

@@ -13,16 +13,17 @@
 </script>
   
 <div class="flip-card">
-  <MenuBar url='/projects/calendar' bind:show={show} />
-  <div id='calc' class={show ? 'flip-card-inner' : 'no-height'} height={$block}>
-    <div class="flip-card-front">
-      <h1>Calendar</h1>
+  <MenuBar url='/projects/calculator' bind:show={show} />
+  {#if show}
+    <div class="flip-card-inner">
+      <div class="flip-card-front">
+        <h1>Calendar</h1>
+      </div>
+      <div class="flip-card-back">
+        <Calendar />
+      </div>
     </div>
-    <div class="flip-card-back">
-      <h2>Calendar</h2>
-      <Calendar />
-    </div>
-  </div>
+  {/if}
 </div>
   
 <style>

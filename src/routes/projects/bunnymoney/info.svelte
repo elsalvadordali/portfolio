@@ -53,11 +53,11 @@
         margin: .5rem 0;
     }
     .all {
-        background-color: #f5cbd9;
+        background-color: #e07a5f;
         padding: 1rem;
         width: calc(100vw - 2rem);
         box-sizing: content-box;
-        height: 100vh;
+        min-height: 100vh;
     }
     @media screen and (min-width: 600px) {
         .column {

@@ -11,7 +11,6 @@
     <div class='padding'>
         <Calculator />
         <Bunny />
-        <Sujiko />
         <Todo />
         <Calendar />
         

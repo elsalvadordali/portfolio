@@ -206,6 +206,7 @@
 		width: calc(100% - 2rem);
 		margin: var(--column-margin-top) auto 0 auto;
 		padding: 0 1rem;
+		box-sizing: border-box;
 		scroll-behavior: smooth;
 		overflow: scroll;
 	}

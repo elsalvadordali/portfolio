@@ -12,8 +12,8 @@
           <h1>Bunny Money</h1>
         </div>
           <div class="flip-card-back">
-            <a href='https://bunnymoney.app/'>
-
+            <a href='https://bunnymoney.app/' target='blank'>
+              A financial literacy tool for kids <img src='open-in-new.svg' alt=' (opens in new tab)' />
             </a>
           </div>
       
@@ -54,6 +54,8 @@
           height: 100%;
           -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
+          background-color: #e07a5f;
+
       }
   
       .flip-card-front {
@@ -64,10 +66,13 @@
       }
   
       .flip-card-back {
-          background: url('/bunny.png');
-          background-position: top top;
-          background-size: cover;
           color: white;
           transform: rotateY(180deg);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+      a {
+        color: black;
       }
   </style>
