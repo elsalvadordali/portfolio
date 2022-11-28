@@ -1,8 +1,10 @@
 <script lang="ts">
 	import Happy from './Happy.svelte';
 	import Bunny from './Bunny.svelte';
+    import Menu from './Menu.svelte';
 	import Stats from './Stats.svelte';
 	import About from './About.svelte';
+	import { browser } from '$app/env';
 
 	let hideAll = false;
 	let page = 0;
@@ -10,10 +12,8 @@
 
 <div class="top white">
     {#if !hideAll}
-	<button class="link" on:click={() => (page = 0)}>1. About</button>
-	<button class="link" on:click={() => (page = 1)}>2. Happy Garden</button>
-	<button class="link" on:click={() => (page = 2)}>3. Bunny Money</button>
-	<button class="link" on:click={() => (page = 3)}>4. Gender Pay Gap</button>
+        
+        <Menu {page} />
     {/if}
 	<button class="link" on:click={() => (hideAll = !hideAll)}>{hideAll ? '(open)' : 'X'}</button>
 </div>
@@ -44,18 +44,7 @@
 {/if}
 
 <style>
-	.link {
-		padding: 0;
-		margin: 0;
-		border: 0;
-		box-shadow: none;
-		background-color: transparent;
-		border-bottom: 2px solid black;
-		margin-right: 0.325rem;
-		padding-bottom: 0.25rem;
-		cursor: pointer;
-		box-sizing: border-box;
-	}
+    
 	.full {
 		width: 100vw;
 		height: 100vh;
@@ -67,7 +56,7 @@
 	}
 	.top {
 		width: 100vw;
-		height: 5vh;
+		height: 10vh;
 		padding: 1rem;
 		border-bottom: 2px solid black;
 		display: flex;
@@ -78,6 +67,7 @@
 		left: 0;
 		z-index: 10;
 	}
+    
 	.nav {
 		padding: 1rem;
 		display: flex;
@@ -114,6 +104,9 @@
 		}
 	}
 	@media (prefers-color-scheme: dark) {
+        .menu-button {
+            color: white;
+        }
 		.white {
 			background-color: #272f34;
 		}
@@ -121,6 +114,5 @@
 			color: white;
             border-color: white;
 		}
-        
 	}
 </style>
