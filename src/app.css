@@ -1,6 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:ital,wght@0,300;0,800;1,300&family=DM+Serif+Display&display=swap');
-
-body {
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300&family=DM+Serif+Display&display=swap');
+* {
+    box-sizing: border-box;
+}
+body, html {
     font-family: 'Albert Sans', sans-serif;
     padding: 0;
     display: flex;
@@ -8,27 +10,49 @@ body {
     align-items: center;
     margin: 0;
     padding: 0;
-    overflow-x: hidden;
+    font-family: 'Albert Sans', sans-serif;
 }
-
+a, a:visited, a:active {
+    font-weight: 800;
+    color: #225552;
+    transition: 1s;
+}
+a:hover {
+    color: black;
+}
 h1, h2, h3, h4, h5, h6 {
     font-family: 'DM Serif Display', serif;
     font-weight: 300;
 }
+h1 {
+    font-size: 3rem;
+    margin: 1rem 0;
+}
+h2 {
+    font-size: 2.5rem;
+    margin: .75rem 0;
+}
+h4 {
+    font-size: 1.5rem;
+    margin: .5rem 0;
+}
 p, li {
     font-size: 20px;
+    line-height: 30px;
 }
-
+img {
+    width: 100%;
+}
 button {
     color: black;
     border: 2px solid black;
-    border-radius: .5rem;
-    margin-top: 3px;
-    margin-bottom: 3px;
-    box-shadow: 3px 3px 0 black;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    box-shadow: .5rem .5rem 0 black;
+    padding: 1rem 3rem;
 }
-button:hover {
-    margin-top: 6px;
+button:hover, button:active {
+    margin-top: 1rem;
     margin-bottom: 0;
     box-shadow: none;
 }
@@ -49,9 +73,7 @@ input::-webkit-inner-spin-button {
     margin-top: 0;
 }
 /* Firefox */
-input[type=number] {
-  -moz-appearance: textfield;
-}
+
 
 @media screen and (min-width: 900px) {
     .body {
@@ -62,3 +84,16 @@ input[type=number] {
         width: 50vw;
     }
 }
+
+@media (prefers-color-scheme: dark) {
+    button {
+        background-color: #999;
+    }
+    a, a:visited, a:active {
+        color: #999
+    }
+    a:hover {
+        color: white;
+    }
+}
+
