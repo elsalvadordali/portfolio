@@ -4,6 +4,7 @@
 	let count = 0;
 	let total = 0;
 	let page = 0;
+	let svg;
 	const pads = [
 		' q30,-45,82,-56l46,126l5,-136q87,-6,132,66q51,82,37,128q-21,88,-80,120q-58,39,-165,13q-78,-41,-88,-98q-21,-90,31,-163',
 		' q102,-3,135,50q47,86,44,102q18,125,-37,155q-114,58,-199,33q-81,-27,-114,-128q-45,-107,30,-164q81,-55,141,-48',
@@ -23,39 +24,97 @@
 		y: number;
 		color: number;
 		num: number;
+		inWave: false;
 	};
 
 	const coords: Item[] = [];
-	for (let i = 0; i < h / 70; i++) {
-		for (let j = 0; j < w / 70; j++) {
+	type Wave = [number, number];
+	let waves: Wave[] = [];
+	const maxHor = w / 80;
+	const maxVer = h / 80;
+	console.log('MAX HOR', maxHor);
+	for (let i = 0; i < maxVer; i++) {
+		for (let j = 0; j < maxHor; j++) {
 			total = total + 1;
 			const item = {
 				x: 0,
 				y: 0,
-				color: Math.floor(Math.random() * 10),
-				num: Math.floor(Math.random() * pads.length)
+				color: Math.floor(Math.random() * 6),
+				num: Math.floor(Math.random() * pads.length),
+				inWave: false
 			};
 
 			item.x = Math.floor(Math.random() * (r * 2) + r * 2 * j);
 			item.y = Math.floor(r * i);
+			if (j + 1 == maxHor) console.log('WERE AT MAX', j);
 
 			//if (item.color == 10) count = count + 1;
 			coords.push(item);
 		}
+		console.log(maxVer, ' is max');
 	}
 
 	function increment(item: Item): Item {
-		if (item.color >= 10) return item;
-		if (item.color == 9 || item.color == 8 || item.color == 7) {
-			count = count + 1;
-			item.color = Math.floor(Math.random() * 3) + 10;
-			console.log(item.color)
-		} else item.color = item.color + 3;
+		if (item.color >= 6) return item;
+		else {
+			count++;
+			item.color = Math.floor(Math.random() * 10) + 6;
+		}
 		return item;
+	}
+
+	function isInPerimeter(clickCoords: [], lilyCoords: [], r) {
+		console.log(clickCoords);
+		let distance = Math.sqrt(
+			(clickCoords[0] - lilyCoords[0]) ** 2 + (clickCoords[1] - lilyCoords[1]) ** 2
+		);
+		console.log(distance);
+	}
+
+	function wave(e: MouseEvent) {
+		console.log(e.pageX, e.pageY);
+		if (e.target.nodeName == 'path') return;
+
+		for
+		let count = 0;
+		const [x, y] = [e.pageX, e.pageY];
+		console.log(x, y);
+		waves.push([x, y]);
+		console.log(new Date());
+		for (const coor of coords) {
+			isInPerimeter([coor.x, coor.y], [x, y], 70);
+		}
+		console.log(new Date());
+		waves = waves;
+		svg.checkIntersection(waves, )
+
+		/* //simply things for now
+		waves = waves;
+		const add3 = setInterval(() => {
+			count++;
+			waves.push([x, y]);
+			waves = waves;
+			if (count == 3) clearInterval(add3);
+		}, 450);
+
+		setTimeout(() => {
+			waves.pop();
+			waves.pop();
+			waves.pop();
+			waves.pop();
+			console.log('popped', waves);
+		}, 11000);
+
+		*/
 	}
 </script>
 
-<svg width={w} height={h}>
+<svelte:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Tijana Jung: Creative Frontend Developer</title>
+	<link rel="icon" href="/favicon.png" />
+</svelte:head>
+<svg width={w} height={h} on:click={(e) => wave(e)} bind:this={svg}>
 	<radialGradient id="0" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
 		<stop offset="1%" stop-color="#0b4d3d" />
 		<stop offset="79%" stop-color="#084637" />
@@ -65,52 +124,48 @@
 		<stop offset="90%" stop-color="#1d6655" />
 	</radialGradient>
 	<radialGradient id="2" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="0%" stop-color="#1d6655" />
+		<stop offset="0%" stop-color="#12443b" />
 		<stop offset="100%" stop-color="#12443b" />
 	</radialGradient>
 	<radialGradient id="3" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="0%" stop-color="#1d6655" />
+		<stop offset="0%" stop-color="#0d423f" />
 		<stop offset="78%" stop-color="#0d423f" />
 	</radialGradient>
-	<radialGradient id="4">
-		<stop offset="2%" stop-color="#236d5d" />
-		<stop offset="21.25%" stop-color="#1d6655" />
-		<stop offset="40.5%" stop-color="#185f4d" />
-		<stop offset="79%" stop-color="#0d523e" />
+	<radialGradient id="4" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
+		<stop offset="5%" stop-color="#0c452c" />
+		<stop offset="23.75%" stop-color="#0b472c" />
+		<stop offset="42.5%" stop-color="#094a2c" />
+		<stop offset="80%" stop-color="#054f2c" />
 	</radialGradient>
 	<radialGradient id="5" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="5%" stop-color="#193c35" />
-		<stop offset="23.5%" stop-color="#1b423c" />
-		<stop offset="42%" stop-color="#1e4843" />
-		<stop offset="79%" stop-color="#225552" />
+		<stop offset="5%" stop-color="#0c452c" />
+		<stop offset="23.75%" stop-color="#0b472c" />
+		<stop offset="42.5%" stop-color="#094a2c" />
+		<stop offset="80%" stop-color="#054f2c" />
 	</radialGradient>
+	<!--yella-->
 	<radialGradient id="6" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="5%" stop-color="#0c452c" />
-		<stop offset="23.75%" stop-color="#0b472c" />
-		<stop offset="42.5%" stop-color="#094a2c" />
-		<stop offset="80%" stop-color="#054f2c" />
+		<stop offset="19%" stop-color="#ecb865" />
+		<stop offset="98%" stop-color="#ecb865" />
 	</radialGradient>
-	<radialGradient id="7">
-		<stop offset="2%" stop-color="#236d5d" />
-		<stop offset="21.25%" stop-color="#1d6655" />
-		<stop offset="40.5%" stop-color="#185f4d" />
-		<stop offset="79%" stop-color="#0d523e" />
+	<!--light yellow-->
+	<radialGradient id="7" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
+		<stop offset="19%" stop-color="#ffb284" />
+		<stop offset="98%" stop-color="#ffb284" />
 	</radialGradient>
+	<!--light green-->
 	<radialGradient id="8" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="5%" stop-color="#193c35" />
-		<stop offset="23.5%" stop-color="#1b423c" />
-		<stop offset="42%" stop-color="#1e4843" />
-		<stop offset="79%" stop-color="#225552" />
+		<stop offset="19%" stop-color="#a9ddd6" />
+		<stop offset="98%" stop-color="#a9ddd6" />
 	</radialGradient>
+	<!--light green-->
 	<radialGradient id="9" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="5%" stop-color="#0c452c" />
-		<stop offset="23.75%" stop-color="#0b472c" />
-		<stop offset="42.5%" stop-color="#094a2c" />
-		<stop offset="80%" stop-color="#054f2c" />
+		<stop offset="19%" stop-color="#df8053" />
+		<stop offset="98%" stop-color="#df8053" />
 	</radialGradient>
 	<radialGradient id="10" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="19%" stop-color="#565264" />
-		<stop offset="98%" stop-color="#565264" />
+		<stop offset="19%" stop-color="#fbc9be" />
+		<stop offset="98%" stop-color="#fbc9be" />
 	</radialGradient>
 	<radialGradient id="11" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
 		<stop offset="19%" stop-color="#706677" />
@@ -120,6 +175,21 @@
 		<stop offset="19%" stop-color="#a6808c" />
 		<stop offset="98%" stop-color="#a6808c" />
 	</radialGradient>
+	<radialGradient id="13" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
+		<stop offset="19%" stop-color="#91adc2" />
+		<stop offset="98%" stop-color="#91adc2" />
+	</radialGradient>
+	<radialGradient id="14" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
+		<stop offset="19%" stop-color="#cbdfbd" />
+		<stop offset="98%" stop-color="#cbdfbd" />
+	</radialGradient>
+	<radialGradient id="15" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
+		<stop offset="19%" stop-color="#d87f81" />
+		<stop offset="98%" stop-color="#d87f81" />
+	</radialGradient>
+	{#each waves as wave}
+		<circle cx={wave[0]} cy={wave[1]} class="wave" />
+	{/each}
 	{#each coords as c}
 		<path
 			d={'m ' + c.x * 7 + ' ' + c.y * 14 + pads[c.num]}
@@ -171,9 +241,24 @@
 	.float-8 {
 		animation: floating-4 9.9s infinite;
 	}
-	.bye {
-		animation: leave 5s 1;
+
+	.wave {
+		stroke-width: 1px;
+		fill: transparent;
+		animation: animated-wave 15s 1;
+		animation-timing-function: ease-in-out;
 	}
+	@keyframes animated-wave {
+		0% {
+			r: 0px;
+			stroke: black;
+		}
+		100% {
+			r: 200vw;
+			stroke: transparent;
+		}
+	}
+
 	footer {
 		padding: 1rem;
 		display: flex;
@@ -182,18 +267,6 @@
 		border-top: 2px solid #272f34;
 	}
 
-	@keyframes leave {
-		0% {
-			transform: translate(0, 0) scale(0.2);
-		}
-		50% {
-			transform: translate(-10px, 20px) scale(1);
-		}
-		100% {
-			transform: translate(-1000vw, -1000vh) scale (0.000001);
-			opacity: 0;
-		}
-	}
 	@keyframes floating-1 {
 		0% {
 			transform: translate(0, 0) scale(0.2);
@@ -310,7 +383,11 @@
 		.float-1,
 		.float-2,
 		.float-3,
-		.float-4 {
+		.float-4,
+		.float-5,
+		.float-6,
+		.float-7,
+		.float-8 {
 			animation: none;
 		}
 	}
@@ -322,7 +399,7 @@
 		}
 		footer {
 			background-color: #272f34;
-			color: white
+			color: white;
 		}
 	}
 </style>
