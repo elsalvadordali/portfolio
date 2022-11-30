@@ -6,18 +6,18 @@
 	let page = 0;
 	let svg;
 	const pads = [
-		' q30,-45,82,-56l46,126l5,-136q87,-6,132,66q51,82,37,128q-21,88,-80,120q-58,39,-165,13q-78,-41,-88,-98q-21,-90,31,-163',
-		' q102,-3,135,50q47,86,44,102q18,125,-37,155q-114,58,-199,33q-81,-27,-114,-128q-45,-107,30,-164q81,-55,141,-48',
-		' q91,31,103,89q-45,16,-14,15q29,-11,29,2q28,68,8,109q-24,62,-57,77q-6,2,-14,0q-50,-59,-14,4q14,18,-19,24q-49,21,-82,13q-48,-12,-58,-25q56,-65,19,-35q-25,31,-34,28q-32,-11,-52,-39q-27,-30,-32,-64q-2,-44,16,-73q55,-7,6,-21q-9,-6,7,-21q34,-52,55,-52q28,-21,29,-6q22,35,16,-5q-6,-22,10,-21q66,-11,78,1',
-		' q36,-103,95,-109q107,-51,148,-16q105,87,96,138q11,98,-38,139q-92,64,-173,45q-77,-21,-121,-85q-23,-49,-7,-112',
-		' q65,-36,124,-13q-10,45,26,11q59,33,71,67q45,77,27,105q-4,76,-43,101q-29,35,-116,43q-63,11,-117,-24q-69,-58,-66,-107q71,-23,3,-41q0,-98,91,-142',
-		' q54,-64,139,-60q-7,131,24,2q65,15,75,28l65,81q33,31,-10,130q-26,71,-87,86q-82,36,-168,-2q-87,-45,-79,-156q4,-67,41,-109',
-		' q85,-27,146,21q-31,42,12,9q49,56,52,94q11,86,-29,137q-53,-34,-15,17q-29,49,-129,44q-93,-13,-135,-74q107,-74,-5,-25q-32,-58,-5,-123q16,-72,108,-100',
-		' q13,-54,67,-56q45,-31,80,-19q105,4,102,32q69,61,60,95q22,81,-3,100q-9,48,-67,71q-48,46,-114,31q-56,14,-90,-33q-60,-18,-47,-74q-53,-81,12,-147'
+		' c0,0,3.232,18.653,21.278,19.704c18.047,1.051,28.551,-6.568,30.167,-9.984c1.617,-3.415,10.084,-9.195,5.775,-24.695c-4.31,-15.5,-19.242,-19.966,-19.242,-19.966c0,0,-15.891,-4.992,-23.972,0c-8.08,4.991,-13.834,16.344,-15.181,22.912c-1.347,6.568,1.175,12.029,1.175,12.029z',
+		' c0,0,0,6.137,6.161,11.573c0,0,4.96,-3.419,2.999,3.376c11.202,7.067,19.405,10.6,31.167,3.805c0,0,-1.68,-7.682,4.201,-1.702c14.842,-11.687,14.965,-20.314,14.965,-26.837c0,0,-11.202,-0.407,0,-3.668c-5.601,-17.396,-19.166,-22.153,-19.166,-22.153c0,0,-5.881,6.975,-5.041,-1.994c-20.163,0,-23.524,5.256,-26.885,7.702c0,0,3.081,5.708,-3.64,3.533c-7.561,12.775,-4.761,26.365,-4.761,26.365z',
+		' c0,0,-2.92,8.767,5.864,18.65c0,0,18.668,-17.374,5.491,3.489c16.745,16.471,37.883,0,37.883,0c0,0,16.197,-9.529,7.961,-32.863c-8.235,-23.334,-24.706,-20.589,-24.706,-20.589c0,0,-18.393,-1.098,-26.629,9.609c-8.235,10.706,-5.864,21.704,-5.864,21.704z',
+		' c0,0,6.929,-3.879,13.916,-2.073c0,0,-1.165,17.013,5.49,1.088c8.484,2.134,11.146,5.91,13.641,8.866c2.495,2.955,8.661,10.999,7.33,20.686c-1.331,9.686,-5.667,16.747,-8.328,19.867c-2.662,3.119,-11.612,11.655,-26.917,8.207c-15.305,-3.447,-22.337,-11.656,-23.834,-21.343c-1.497,-9.686,-0.986,-17.074,4.171,-24.298c5.157,-7.224,10.314,-9.358,12.476,-10.179c2.163,-0.821,2.055,-0.821,2.055,-0.821z',
+		' c3.927,-15.582,7.769,-20.699,19.27,-24.948c1.523,-0.563,3.012,-0.977,4.449,-1.271c9.407,-1.927,16.573,1.271,16.573,1.271c0,0,14.306,5.383,17.953,17.565c3.646,12.182,0,20.815,0,20.815c0,0,-2.805,8.58,-8.696,11.98c-5.891,6.232,-17.391,8.226,-21.318,7.659c-3.927,-0.566,-17.953,-5.087,-21.88,-9.903c-5.89,-7.649,-6.912,-12.119,-6.351,-23.168z',
+		' c0,0,2.689,7.847,9.12,11.486c0,0,10.382,-8.891,5.349,4.547c5.872,2.239,22.09,8.051,35.512,-4.547c10.346,-14.837,8.376,-21.448,8.096,-27.327c0,0,-8.655,-1.16,-3.622,-7.878c-8.668,-14.837,-16.777,-18.589,-34.673,-16.35c-17.896,2.24,-21.151,22.558,-21.151,22.558c0,0,-0.503,10.868,0,13.948c0.919,0.991,1.369,3.563,1.369,3.563z',
+		' c0,0,-6.436,1.957,-9.546,10.511c2.721,1.555,3.075,6.609,-1.98,5.443c-3.888,12.053,-1.755,20.32,6.799,29.651c8.554,9.332,21.086,9.115,21.086,9.115c0,0,17.994,0.892,25.381,-12.717c5.055,-15.552,7.776,-19.828,0,-37.713c-11.664,-13.22,-30.975,-9.135,-30.975,-9.135z',
+		' c0,0,-3.085,5.726,-1.083,12.56c0,0,15.459,-0.923,5.086,9.605c3.094,5.172,6.551,11.636,15.832,13.114c9.28,1.478,21.29,2.489,30.025,-7.854c3.639,-5.172,6.187,-8.4,7.825,-14.865c1.638,-6.465,-0.364,-20.872,-5.641,-25.305c0,0,-7.825,2.217,-6.187,-5.356c-7.825,-6.465,-18.743,-5.663,-18.743,-5.663c0,0,-12.92,-1.171,-20.745,9.542c-4.185,5.91,-6.369,14.222,-6.369,14.222z'
 	];
 	const w: number = browser ? window.innerWidth : 1000;
 	const h: number = browser ? window.innerHeight * 2 : 1000;
-	const r = 30;
+	const r = 35;
 
 	type Item = {
 		x: number;
@@ -33,8 +33,8 @@
 	const maxHor = w / 80;
 	const maxVer = h / 80;
 	console.log('MAX HOR', maxHor);
-	for (let i = 0; i < maxVer; i++) {
-		for (let j = 0; j < maxHor; j++) {
+	for (let i = 0; i < 5; i++) {
+		for (let j = 0; j < 5; j++) {
 			total = total + 1;
 			const item = {
 				x: 0,
@@ -44,8 +44,8 @@
 				inWave: false
 			};
 
-			item.x = Math.floor(Math.random() * (r * 2) + r * 2 * j);
-			item.y = Math.floor(r * i);
+			item.x = Math.floor(Math.random() * (r * 3) + r * 2 * j);
+			item.y = Math.floor(Math.random() * (r * 3) + r * 2 * i);
 			if (j + 1 == maxHor) console.log('WERE AT MAX', j);
 
 			//if (item.color == 10) count = count + 1;
@@ -64,29 +64,27 @@
 	}
 
 	function isInPerimeter(clickCoords: [], lilyCoords: [], r) {
-		console.log(clickCoords);
+		//console.log(lilyCoords);
 		let distance = Math.sqrt(
 			(clickCoords[0] - lilyCoords[0]) ** 2 + (clickCoords[1] - lilyCoords[1]) ** 2
 		);
-		console.log(distance);
+		console.log('distance is', distance, lilyCoords);
 	}
 
 	function wave(e: MouseEvent) {
-		console.log(e.pageX, e.pageY);
 		if (e.target.nodeName == 'path') return;
 
-		for
+		const x = e.pageX;
+		const y = e.pageY;
+		console.log('CLICKED ON', x, y);
 		let count = 0;
-		const [x, y] = [e.pageX, e.pageY];
-		console.log(x, y);
+
 		waves.push([x, y]);
-		console.log(new Date());
 		for (const coor of coords) {
-			isInPerimeter([coor.x, coor.y], [x, y], 70);
+			isInPerimeter([x, y], [coor.x, coor.y], 70);
 		}
-		console.log(new Date());
 		waves = waves;
-		svg.checkIntersection(waves, )
+		//svg.checkIntersection(waves);
 
 		/* //simply things for now
 		waves = waves;
@@ -192,9 +190,7 @@
 	{/each}
 	{#each coords as c}
 		<path
-			d={'m ' + c.x * 7 + ' ' + c.y * 14 + pads[c.num]}
-			transform={'scale( 0.2 )'}
-			style={'transform: scale(.03)'}
+			d={'M ' + c.x + ',' + c.y + pads[c.num]}
 			class={'float-' + Math.ceil(Math.random() * 8) + ' small '}
 			fill={'url(#' + c.color + ')'}
 			on:click={() => (c = increment(c))}
@@ -214,7 +210,7 @@
 	}
 	.small {
 		stroke: rgb(0, 0, 0);
-		stroke-width: 6;
+		stroke-width: 2;
 		transition: 1s;
 	}
 	.float-1 {
@@ -269,114 +265,114 @@
 
 	@keyframes floating-1 {
 		0% {
-			transform: translate(0, 0) scale(0.2);
+			transform: translate(0, 0);
 		}
 		28% {
-			transform: translate(4px, -5px) scale(0.2);
+			transform: translate(4px, -5px);
 		}
 		60% {
-			transform: translate(-2px, -8px) scale(0.2);
+			transform: translate(-2px, -8px);
 		}
 		100% {
-			transform: translate(0px, 0) scale(0.2);
+			transform: translate(0px, 0);
 		}
 	}
 	@keyframes floating-2 {
 		0% {
-			transform: translate(0, 0px) scale(0.2);
+			transform: translate(0, 0px);
 		}
 		33% {
-			transform: translate(-10px, -5px) scale(0.2);
+			transform: translate(-10px, -5px);
 		}
 		66% {
-			transform: translate(5px, -5px) scale(0.2);
+			transform: translate(5px, -5px);
 		}
 		100% {
-			transform: translate(0, 0px) scale(0.2);
+			transform: translate(0, 0px);
 		}
 	}
 	@keyframes floating-3 {
 		0% {
-			transform: translate(0, 0px) scale(0.2);
+			transform: translate(0, 0px);
 		}
 		33% {
-			transform: translate(3px, -5px) scale(0.2);
+			transform: translate(3px, -5px);
 		}
 		66% {
-			transform: translate(-8px, -7px) scale(0.2);
+			transform: translate(-8px, -7px);
 		}
 		100% {
-			transform: translate(0, 0px) scale(0.2);
+			transform: translate(0, 0px);
 		}
 	}
 	@keyframes floating-4 {
 		0% {
-			transform: translate(0, 0px) scale(0.2);
+			transform: translate(0, 0px);
 		}
 		33% {
-			transform: translate(0px, -3px) scale(0.2);
+			transform: translate(0px, -3px);
 		}
 		66% {
-			transform: translate(0px, 4px) scale(0.2);
+			transform: translate(0px, 4px);
 		}
 		100% {
-			transform: translate(0, 0px) scale(0.2);
+			transform: translate(0, 0px);
 		}
 	}
 	@keyframes floating-5 {
 		0% {
-			transform: translate(0, 0) scale(0.2);
+			transform: translate(0, 0);
 		}
 		36% {
-			transform: translate(3px, -4px) scale(0.2);
+			transform: translate(3px, -4px);
 		}
 		70% {
-			transform: translate(7px, 2px) scale(0.2);
+			transform: translate(7px, 2px);
 		}
 		100% {
-			transform: translate(0, 0) scale(0.2);
+			transform: translate(0, 0);
 		}
 	}
 	@keyframes floating-6 {
 		0% {
-			transform: translate(2px, 0px) scale(0.2);
+			transform: translate(2px, 0px);
 		}
 		33% {
-			transform: translate(-7px, -5px) scale(0.2);
+			transform: translate(-7px, -5px);
 		}
 		66% {
-			transform: translate(3px, -5px) scale(0.2);
+			transform: translate(3px, -5px);
 		}
 		100% {
-			transform: translate(0, 0px) scale(0.2);
+			transform: translate(0, 0px);
 		}
 	}
 	@keyframes floating-7 {
 		0% {
-			transform: translate(0, 0px) scale(0.2);
+			transform: translate(0, 0px);
 		}
 		33% {
-			transform: translate(3px, -5px) scale(0.2);
+			transform: translate(3px, -5px);
 		}
 		66% {
-			transform: translate(-4px, -2px) scale(0.2);
+			transform: translate(-4px, -2px);
 		}
 		100% {
-			transform: translate(0, 0px) scale(0.2);
+			transform: translate(0, 0px);
 		}
 	}
 	@keyframes floating-8 {
 		0% {
-			transform: translate(0, 0px) scale(0.2);
+			transform: translate(0, 0px);
 		}
 		33% {
-			transform: translate(0px, -3px) scale(0.2);
+			transform: translate(0px, -3px);
 		}
 		66% {
-			transform: translate(0px, 4px) scale(0.2);
+			transform: translate(0px, 4px);
 		}
 		100% {
-			transform: translate(0, 0px) scale(0.2);
+			transform: translate(0, 0px);
 		}
 	}
 	@media (prefers-reduced-motion) {
