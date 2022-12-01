@@ -112,15 +112,16 @@
 		console.log(coords);
 		waves = waves;
 
+		let speed = 700;
 		let waveCount = 1;
 		const checking = setInterval(() => {
 			console.log('Running,= ', waveCount);
-			if (waveCount > 17) {
+			if (waveCount > 22) {
 				console.log('waving');
 				for (const c in coords) {
 					coords[c].inWave = 0;
 				}
-				coords = coords
+				coords = coords;
 				clearInterval(checking);
 			}
 			for (const coord in coords) {
@@ -128,13 +129,13 @@
 					typeof coords[coord].distance == 'number' &&
 					coords[coord].distance < waveCount * (w / 17)
 				) {
-					if (waveCount >= 13) coords[coord].inWave = 0
-					else coords[coord].inWave = waveCount < 6 ? waveCount : 6;
-
+					if (waveCount >= 13) coords[coord].inWave = 0;
+					else coords[coord].inWave = 1; //++;
 				}
 			}
+			speed = Math.max(50, speed - 50);
 			waveCount++;
-		}, 510);
+		}, speed);
 		console.log('WAVES', waves);
 
 		//svg.checkIntersection(waves);

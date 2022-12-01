@@ -17,7 +17,7 @@
 			<button class="link" on:click={() => (page = 2)}>3. Bunny Money</button>
 			<button class="link" on:click={() => (page = 3)}>4. Gender Pay Gap</button>
 		{/if}
-		<button class="link" on:click={() => (hideAll = !hideAll)}>{hideAll ? '(open)' : 'X'}</button>
+		<button class="link" on:click={() => (open = !open)}>{open ? 'x' : '(open)'}</button>
 	</nav>
 	{#if !hideAll}
 		<div class="full">
@@ -44,7 +44,9 @@
 			</div>
 		</div>
 	{/if}
-{:else}{/if}
+{:else}
+	<button id="open" on:click={() => (open = !open)}>Enter</button>
+{/if}
 
 <style>
 	.link {
@@ -67,6 +69,19 @@
 		left: 0;
 		padding: 0;
 		border-right: 2px solid white;
+		animation: openWide 1.5s 1;
+	}
+	@keyframes openWide {
+		0% {
+			height: 0vh;
+			top: 50vh;
+			overflow: hidden;
+		}
+		100% {
+			height: 100vh;
+			top: 10vh;
+			overflow: scroll;
+		}
 	}
 	.top {
 		width: 100vw;
@@ -80,6 +95,16 @@
 		top: 0;
 		left: 0;
 		z-index: 10;
+		animation: openTop 1s 1;
+		transition: 1s ease;
+	}
+	@keyframes openTop {
+		0% {
+			width: 0;
+		}
+		100% {
+			width: 100%;
+		}
 	}
 	.nav {
 		padding: 1rem;
