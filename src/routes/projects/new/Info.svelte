@@ -6,47 +6,45 @@
 
 	let hideAll = false;
 	let page = 0;
-	let open = false
+	let open = false;
 </script>
 
 {#if open}
-<nav class="top white">
-    {#if !hideAll}
-	<button class="link" on:click={() => (page = 0)}>1. About</button>
-	<button class="link" on:click={() => (page = 1)}>2. Happy Garden</button>
-	<button class="link" on:click={() => (page = 2)}>3. Bunny Money</button>
-	<button class="link" on:click={() => (page = 3)}>4. Gender Pay Gap</button>
-    {/if}
-	<button class="link" on:click={() => (hideAll = !hideAll)}>{hideAll ? '(open)' : 'X'}</button>
-</nav>
+	<nav class="top white">
+		{#if !hideAll}
+			<button class="link" on:click={() => (page = 0)}>1. About</button>
+			<button class="link" on:click={() => (page = 1)}>2. Happy Garden</button>
+			<button class="link" on:click={() => (page = 2)}>3. Bunny Money</button>
+			<button class="link" on:click={() => (page = 3)}>4. Gender Pay Gap</button>
+		{/if}
+		<button class="link" on:click={() => (hideAll = !hideAll)}>{hideAll ? '(open)' : 'X'}</button>
+	</nav>
 	{#if !hideAll}
-	<div class="full">
-		<div class="info">
-			<div>
-				{#if page == 3}
-					<Stats />
-				{:else if page == 2}
-					<Bunny />
-				{:else if page == 1}
-					<Happy />
-				{:else}
-					<About />
-				{/if}
-			</div>
-			<div class="nav white">
-				{#if page >= 1}
-					<button on:click={() => (page = page - 1)}>{'<'}</button>
-				{/if}
-				{#if page < 3}
-					<button on:click={() => (page = page + 1)}>{'>'}</button>
-				{/if}
+		<div class="full">
+			<div class="info">
+				<div>
+					{#if page == 3}
+						<Stats />
+					{:else if page == 2}
+						<Bunny />
+					{:else if page == 1}
+						<Happy />
+					{:else}
+						<About />
+					{/if}
+				</div>
+				<div class="nav white">
+					{#if page >= 1}
+						<button on:click={() => (page = page - 1)}>{'<'}</button>
+					{/if}
+					{#if page < 3}
+						<button on:click={() => (page = page + 1)}>{'>'}</button>
+					{/if}
+				</div>
 			</div>
 		</div>
-	</div>
 	{/if}
-{:else} 
-	<button id='open'>Click to open</button>
-{/if}
+{:else}{/if}
 
 <style>
 	.link {
@@ -128,10 +126,10 @@
 		.white {
 			background-color: #272f34;
 		}
-		.info, .link {
+		.info,
+		.link {
 			color: white;
-            border-color: white;
+			border-color: white;
 		}
-        
 	}
 </style>
