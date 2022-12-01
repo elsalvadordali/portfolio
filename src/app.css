@@ -62,9 +62,10 @@ input {
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
+  appearance: none;
   margin: 0;
 }
+
 .flip-card {
     margin-right: 1.5rem;
     margin-top: 1rem;
@@ -97,3 +98,318 @@ input::-webkit-inner-spin-button {
     }
 }
 
+
+
+
+/*  ANIMATIONS */
+
+.float-1 {
+    animation: floating-1 15.3s infinite;
+}
+.float-2 {
+    animation: floating-2 11.2s infinite;
+}
+.float-3 {
+    animation: floating-3 13.5s infinite;
+}
+.float-4 {
+    animation: floating-4 9.7s infinite;
+}
+.float-5 {
+    animation: floating-1 10s infinite;
+}
+.float-6 {
+    animation: floating-2 9.3s infinite;
+}
+.float-7 {
+    animation: floating-3 11.1s infinite;
+}
+.float-8 {
+    animation: floating-4 9.9s infinite;
+}
+.wave-133 {
+    animation: waving-1 8.8s infinite;
+    transform-origin: center center;
+
+} 
+.wave-1-0, .wave-1-2, .wave-1-4, .wave-1-6, .wave-1-8, .wave-1-10 {
+    animation: waving-1-a 1s infinite;
+} 
+.wave-1-1, .wave-1-3, .wave-1-5, .wave-1-7, .wave-1-9 {
+    animation: waving-1-b 1s infinite;
+} 
+.wave-2-0, .wave-2-2, .wave-2-4, .wave-2-6, .wave-2-8, .wave-2-10,
+.wave-3-0, .wave-3-2, .wave-3-4, .wave-3-6, .wave-3-8, .wave-3-10 {
+    animation: waving-2-a 3s infinite;
+} 
+.wave-2-1, .wave-2-3, .wave-2-5, .wave-2-7, .wave-2-9,
+.wave-3-1, .wave-3-3, .wave-3-5, .wave-3-7, .wave-3-9 {
+    animation: waving-2-b 3s infinite;
+} 
+.wave-4-0, .wave-4-2, .wave-4-4, .wave-4-6, .wave-4-8, .wave-4-10,
+.wave-5-0, .wave-5-2, .wave-5-4, .wave-5-6, .wave-5-8, .wave-5-10,
+.wave-6-0, .wave-6-2, .wave-6-4, .wave-6-6, .wave-6-8, .wave-6-10 {
+    animation: waving-2-b 2s infinite;
+} 
+.wave--1, .wave-4-3, .wave-4-5, .wave-4-7, .wave-4-9,
+.wave-5-1, .wave-5-3, .wave-5-5, .wave-5-7, .wave-5-9,
+.wave-6-1, .wave-6-3, .wave-6-5, .wave-6-7, .wave-6-9 {
+    animation: waving-2-a 2s infinite;
+} 
+.wave-2 {
+    animation: waving-2 2s infinite;
+} 
+.wave-3, .wave-4 {
+    animation: waving-3 3s infinite;
+} 
+.wave-5, .wave-6 {
+    animation: waving-4 4s infinite
+} 
+.wave-7, .wave-8, .wave-9, .wave-10 {
+    transform-origin: 50% 50%;
+    animation: waving-1 1s infinite;
+}
+
+@keyframes waving-1-a {
+    0% {
+        transform: translate(0,0) ;
+    }
+    20% {
+        transform: translate(-11px, 17px);
+    }
+    40% {
+        transform: translate(-3px, 21px);
+    }
+    60% {
+        transform: translate(21px, 21px);
+    }
+    100% {
+        transform: translate(0,0);
+    }
+}
+@keyframes waving-1-b {
+    0% {
+        transform: translate(0,0) ;
+    }
+    20% {
+        transform: translate(21px, 19px);
+    }
+    40% {
+        transform: translate(13px, 4px);
+    }
+    60% {
+        transform: translate(-22px, 17px);
+    }
+    100% {
+        transform: translate(0,0);
+    }
+}
+@keyframes waving-2-a {
+    0% {
+        transform: translate(0,0) ;
+    }
+    20% {
+        transform: translate(-6px, 9px);
+    }
+    40% {
+        transform: translate(0px, 0);
+    }
+    60% {
+        transform: translate(8px, 5px);
+    }
+    100% {
+        transform: translate(0,0);
+    }
+}
+@keyframes waving-2-b {
+    0% {
+        transform: translate(0,0) ;
+    }
+    20% {
+        transform: translate(-6px, 9px);
+    }
+    40% {
+        transform: translate(0px, 0);
+    }
+    60% {
+        transform: translate(8px, 5px);
+    }
+    100% {
+        transform: translate(0,0);
+    }
+}
+@keyframes waving-3-a {
+    0% {
+        transform: translate(0,0) ;
+    }
+    20% {
+        transform: translate(4px, -3px);
+    }
+    40% {
+        transform: translate(5px, 6px);
+    }
+    60% {
+        transform: translate(2px, 3px);
+    }
+    100% {
+        transform: translate(0,0);
+    }
+}
+@keyframes waving-3-b {
+    0% {
+        transform: translate(0,0) ;
+    }
+    20% {
+        transform: translate(-4px, -2px);
+    }
+    40% {
+        transform: translate(0px, 1px);
+    }
+    60% {
+        transform: translate(-4px, 3px);
+    }
+    100% {
+        transform: translate(0,0);
+    }
+}
+@keyframes waving-10 {
+    0% {
+        transform: translate(0,0);
+    }
+    10% {
+        transform: translate(-3px, -2px);
+    }
+    20% {
+        transform: translate(1px, -0);
+    }
+    60% {
+        transform: translate(2px, 1px);
+    }
+    100% {
+        transform: translate(0,0);
+    }
+}
+@keyframes floating-1 {
+    0% {
+        transform: translate(0, 0);
+    }
+    28% {
+        transform: translate(4px, -5px);
+    }
+    60% {
+        transform: translate(-2px, -8px);
+    }
+    100% {
+        transform: translate(0px, 0);
+    }
+}
+@keyframes floating-2 {
+    0% {
+        transform: translate(0, 0px);
+    }
+    33% {
+        transform: translate(-10px, -5px);
+    }
+    66% {
+        transform: translate(5px, -5px);
+    }
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+@keyframes floating-3 {
+    0% {
+        transform: translate(0, 0px);
+    }
+    33% {
+        transform: translate(3px, -5px);
+    }
+    66% {
+        transform: translate(-8px, -7px);
+    }
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+@keyframes floating-4 {
+    0% {
+        transform: translate(0, 0px);
+    }
+    33% {
+        transform: translate(0px, -3px);
+    }
+    66% {
+        transform: translate(0px, 4px);
+    }
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+@keyframes floating-5 {
+    0% {
+        transform: translate(0, 0);
+    }
+    36% {
+        transform: translate(3px, -4px);
+    }
+    70% {
+        transform: translate(7px, 2px);
+    }
+    100% {
+        transform: translate(0, 0);
+    }
+}
+@keyframes floating-6 {
+    0% {
+        transform: translate(2px, 0px);
+    }
+    33% {
+        transform: translate(-7px, -5px);
+    }
+    66% {
+        transform: translate(3px, -5px);
+    }
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+@keyframes floating-7 {
+    0% {
+        transform: translate(0, 0px);
+    }
+    33% {
+        transform: translate(3px, -5px);
+    }
+    66% {
+        transform: translate(-4px, -2px);
+    }
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+@keyframes floating-8 {
+    0% {
+        transform: translate(0, 0px);
+    }
+    33% {
+        transform: translate(0px, -3px);
+    }
+    66% {
+        transform: translate(0px, 4px);
+    }
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+@media (prefers-reduced-motion) {
+    .float-1,
+    .float-2,
+    .float-3,
+    .float-4,
+    .float-5,
+    .float-6,
+    .float-7,
+    .float-8 {
+        animation: none;
+    }
+}

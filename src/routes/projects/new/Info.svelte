@@ -6,9 +6,11 @@
 
 	let hideAll = false;
 	let page = 0;
+	let open = false
 </script>
 
-<div class="top white">
+{#if open}
+<nav class="top white">
     {#if !hideAll}
 	<button class="link" on:click={() => (page = 0)}>1. About</button>
 	<button class="link" on:click={() => (page = 1)}>2. Happy Garden</button>
@@ -16,31 +18,34 @@
 	<button class="link" on:click={() => (page = 3)}>4. Gender Pay Gap</button>
     {/if}
 	<button class="link" on:click={() => (hideAll = !hideAll)}>{hideAll ? '(open)' : 'X'}</button>
-</div>
-{#if !hideAll}
-<div class="full">
-	<div class="info">
-		<div>
-			{#if page == 3}
-				<Stats />
-			{:else if page == 2}
-				<Bunny />
-			{:else if page == 1}
-				<Happy />
-			{:else}
-				<About />
-			{/if}
-		</div>
-		<div class="nav white">
-			{#if page >= 1}
-				<button on:click={() => (page = page - 1)}>{'<'}</button>
-			{/if}
-			{#if page < 3}
-				<button on:click={() => (page = page + 1)}>{'>'}</button>
-			{/if}
+</nav>
+	{#if !hideAll}
+	<div class="full">
+		<div class="info">
+			<div>
+				{#if page == 3}
+					<Stats />
+				{:else if page == 2}
+					<Bunny />
+				{:else if page == 1}
+					<Happy />
+				{:else}
+					<About />
+				{/if}
+			</div>
+			<div class="nav white">
+				{#if page >= 1}
+					<button on:click={() => (page = page - 1)}>{'<'}</button>
+				{/if}
+				{#if page < 3}
+					<button on:click={() => (page = page + 1)}>{'>'}</button>
+				{/if}
+			</div>
 		</div>
 	</div>
-</div>
+	{/if}
+{:else} 
+	<button id='open'>Click to open</button>
 {/if}
 
 <style>
@@ -87,6 +92,12 @@
 	}
 	.white {
 		background-color: white;
+	}
+	#open {
+		position: absolute;
+		top: calc(50vh - 28px);
+		left: calc(50vw - 90px);
+		z-index: 10;
 	}
 	@media (min-width: 850px) {
 		.info {

@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Info from './projects/new/Info.svelte';
+	import { onMount } from 'svelte';
 	import { browser } from '$app/env';
 	let count = 0;
 	let total = 0;
@@ -18,60 +19,83 @@
 	const w: number = browser ? window.innerWidth : 1000;
 	const h: number = browser ? window.innerHeight * 2 : 1000;
 	const r = 35;
-
+	const colors = [
+		'0b4d3d',
+		'084637',
+		'1d6655',
+		'12443b',
+		'0c452c',
+		'094a2c',
+		'0d423f',
+		'0b472c',
+		'054f2c',
+		'ecb865',
+		'ffb284',
+		'd87f81',
+		'cbdfbd',
+		'91adc2',
+		'a6808c',
+		'706677',
+		'fbc9be',
+		'df8053',
+		'a9ddd6'
+	];
 	type Item = {
 		x: number;
 		y: number;
 		color: number;
 		num: number;
-		inWave: false;
+		inWave: number;
+		float: number;
+		distance?: number;
 	};
 
-	const coords: Item[] = [];
+	let coords: Item[] = [];
 	type Wave = [number, number];
 	let waves: Wave[] = [];
 	const maxHor = w / 80;
 	const maxVer = h / 80;
-	console.log('MAX HOR', maxHor);
-	for (let i = 0; i < 5; i++) {
-		for (let j = 0; j < 5; j++) {
-			total = total + 1;
-			const item = {
-				x: 0,
-				y: 0,
-				color: Math.floor(Math.random() * 6),
-				num: Math.floor(Math.random() * pads.length),
-				inWave: false
-			};
-
-			item.x = Math.floor(Math.random() * (r * 3) + r * 2 * j);
-			item.y = Math.floor(Math.random() * (r * 3) + r * 2 * i);
-			if (j + 1 == maxHor) console.log('WERE AT MAX', j);
-
-			//if (item.color == 10) count = count + 1;
-			coords.push(item);
+	onMount(async () => {
+		console.log('mounted');
+		for (let i = 0; i < maxVer; i++) {
+			for (let j = 0; j < maxHor; j++) {
+				total = total + 1;
+				const item = {
+					x: 0,
+					y: 0,
+					float: Math.ceil(Math.random() * 9),
+					color: Math.floor(Math.random() * 9),
+					num: Math.floor(Math.random() * pads.length),
+					inWave: 0
+				};
+				const prevX = (j != 0 && coords[coords.length - 1].x) || -30;
+				const prevY = (i > 0 && coords[coords.length - Math.floor(maxHor)].y) || -30; //should get the Ycoord of above
+				item.x =
+					prevX +
+					Math.min(Math.max(Math.floor(Math.random() * (r * 3.3)), 50), w - Math.max(w / 10, 35));
+				if (item.x > w) item.x = w - w / 10;
+				item.y = prevY + Math.max(Math.floor(Math.random() * (r * 3.5)), 50);
+				coords.push(item);
+			}
 		}
-		console.log(maxVer, ' is max');
-	}
-
+		coords = coords;
+		console.log(coords);
+	});
 	function increment(item: Item): Item {
-		if (item.color >= 6) return item;
+		if (item.color >= 10) return item;
 		else {
 			count++;
-			item.color = Math.floor(Math.random() * 10) + 6;
+			item.color = Math.floor(Math.random() * 10) + 9;
 		}
 		return item;
 	}
 
-	function isInPerimeter(clickCoords: [], lilyCoords: [], r) {
-		//console.log(lilyCoords);
-		let distance = Math.sqrt(
-			(clickCoords[0] - lilyCoords[0]) ** 2 + (clickCoords[1] - lilyCoords[1]) ** 2
-		);
-		console.log('distance is', distance, lilyCoords);
+	function returnDistance(clickCoord: number[], coord: Item) {
+		return Math.sqrt((clickCoord[0] - coord.x) ** 2 + (clickCoord[1] - coord.y) ** 2);
 	}
 
 	function wave(e: MouseEvent) {
+		console.log('CLICKED', e.pageX, e.pageY);
 		if (e.target.nodeName == 'path') return;
 
 		const x = e.pageX;
@@ -80,13 +104,43 @@
 		let count = 0;
 
 		waves.push([x, y]);
-		for (const coor of coords) {
-			isInPerimeter([x, y], [coor.x, coor.y], 70);
+
+		for (const coord in coords) {
+			let distance = returnDistance([x, y], coords[coord]);
+			coords[coord].distance = distance;
 		}
+		console.log(coords);
 		waves = waves;
+
+		let waveCount = 1;
+		const checking = setInterval(() => {
+			console.log('Running,= ', waveCount);
+			if (waveCount > 17) {
+				console.log('waving');
+				for (const c in coords) {
+					coords[c].inWave = 0;
+				}
+				coords = coords
+				clearInterval(checking);
+			}
+			for (const coord in coords) {
+				if (
+					typeof coords[coord].distance == 'number' &&
+					coords[coord].distance < waveCount * (w / 17)
+				) {
+					if (waveCount >= 13) coords[coord].inWave = 0
+					else coords[coord].inWave = waveCount < 6 ? waveCount : 6;
+
+				}
+			}
+			waveCount++;
+		}, 510);
+		console.log('WAVES', waves);
+
 		//svg.checkIntersection(waves);
 
-		/* //simply things for now
+		//simply things for now
+		/*
 		waves = waves;
 		const add3 = setInterval(() => {
 			count++;
@@ -113,94 +167,20 @@
 	<link rel="icon" href="/favicon.png" />
 </svelte:head>
 <svg width={w} height={h} on:click={(e) => wave(e)} bind:this={svg}>
-	<radialGradient id="0" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="1%" stop-color="#0b4d3d" />
-		<stop offset="79%" stop-color="#084637" />
-	</radialGradient>
-	<radialGradient id="1">
-		<stop offset="10%" stop-color="#1d6655" />
-		<stop offset="90%" stop-color="#1d6655" />
-	</radialGradient>
-	<radialGradient id="2" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="0%" stop-color="#12443b" />
-		<stop offset="100%" stop-color="#12443b" />
-	</radialGradient>
-	<radialGradient id="3" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="0%" stop-color="#0d423f" />
-		<stop offset="78%" stop-color="#0d423f" />
-	</radialGradient>
-	<radialGradient id="4" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="5%" stop-color="#0c452c" />
-		<stop offset="23.75%" stop-color="#0b472c" />
-		<stop offset="42.5%" stop-color="#094a2c" />
-		<stop offset="80%" stop-color="#054f2c" />
-	</radialGradient>
-	<radialGradient id="5" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="5%" stop-color="#0c452c" />
-		<stop offset="23.75%" stop-color="#0b472c" />
-		<stop offset="42.5%" stop-color="#094a2c" />
-		<stop offset="80%" stop-color="#054f2c" />
-	</radialGradient>
-	<!--yella-->
-	<radialGradient id="6" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="19%" stop-color="#ecb865" />
-		<stop offset="98%" stop-color="#ecb865" />
-	</radialGradient>
-	<!--light yellow-->
-	<radialGradient id="7" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="19%" stop-color="#ffb284" />
-		<stop offset="98%" stop-color="#ffb284" />
-	</radialGradient>
-	<!--light green-->
-	<radialGradient id="8" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="19%" stop-color="#a9ddd6" />
-		<stop offset="98%" stop-color="#a9ddd6" />
-	</radialGradient>
-	<!--light green-->
-	<radialGradient id="9" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="19%" stop-color="#df8053" />
-		<stop offset="98%" stop-color="#df8053" />
-	</radialGradient>
-	<radialGradient id="10" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="19%" stop-color="#fbc9be" />
-		<stop offset="98%" stop-color="#fbc9be" />
-	</radialGradient>
-	<radialGradient id="11" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="19%" stop-color="#706677" />
-		<stop offset="98%" stop-color="#706677" />
-	</radialGradient>
-	<radialGradient id="12" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="19%" stop-color="#a6808c" />
-		<stop offset="98%" stop-color="#a6808c" />
-	</radialGradient>
-	<radialGradient id="13" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="19%" stop-color="#91adc2" />
-		<stop offset="98%" stop-color="#91adc2" />
-	</radialGradient>
-	<radialGradient id="14" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="19%" stop-color="#cbdfbd" />
-		<stop offset="98%" stop-color="#cbdfbd" />
-	</radialGradient>
-	<radialGradient id="15" gradientTransform="translate(-0.5 -0.5) scale(2, 2)">
-		<stop offset="19%" stop-color="#d87f81" />
-		<stop offset="98%" stop-color="#d87f81" />
-	</radialGradient>
 	{#each waves as wave}
 		<circle cx={wave[0]} cy={wave[1]} class="wave" />
 	{/each}
 	{#each coords as c}
 		<path
 			d={'M ' + c.x + ',' + c.y + pads[c.num]}
-			class={'float-' + Math.ceil(Math.random() * 8) + ' small '}
-			fill={'url(#' + c.color + ')'}
+			class={'float-' + c.float + ' small ' + 'wave-' + c.inWave + '-' + c.color}
+			fill={'#' + colors[c.color]}
 			on:click={() => (c = increment(c))}
 		/>
 	{/each}
 </svg>
 <Info />
-<footer>
-	{count} / {total} colored lily pads
-</footer>
+<footer>Color the lily pads. It's fun!</footer>
 
 <style>
 	svg {
@@ -212,30 +192,6 @@
 		stroke: rgb(0, 0, 0);
 		stroke-width: 2;
 		transition: 1s;
-	}
-	.float-1 {
-		animation: floating-1 15.3s infinite;
-	}
-	.float-2 {
-		animation: floating-2 11.2s infinite;
-	}
-	.float-3 {
-		animation: floating-3 13.5s infinite;
-	}
-	.float-4 {
-		animation: floating-4 9.7s infinite;
-	}
-	.float-5 {
-		animation: floating-1 10s infinite;
-	}
-	.float-6 {
-		animation: floating-2 9.3s infinite;
-	}
-	.float-7 {
-		animation: floating-3 11.1s infinite;
-	}
-	.float-8 {
-		animation: floating-4 9.9s infinite;
 	}
 
 	.wave {
@@ -261,131 +217,6 @@
 		justify-content: center;
 		align-items: center;
 		border-top: 2px solid #272f34;
-	}
-
-	@keyframes floating-1 {
-		0% {
-			transform: translate(0, 0);
-		}
-		28% {
-			transform: translate(4px, -5px);
-		}
-		60% {
-			transform: translate(-2px, -8px);
-		}
-		100% {
-			transform: translate(0px, 0);
-		}
-	}
-	@keyframes floating-2 {
-		0% {
-			transform: translate(0, 0px);
-		}
-		33% {
-			transform: translate(-10px, -5px);
-		}
-		66% {
-			transform: translate(5px, -5px);
-		}
-		100% {
-			transform: translate(0, 0px);
-		}
-	}
-	@keyframes floating-3 {
-		0% {
-			transform: translate(0, 0px);
-		}
-		33% {
-			transform: translate(3px, -5px);
-		}
-		66% {
-			transform: translate(-8px, -7px);
-		}
-		100% {
-			transform: translate(0, 0px);
-		}
-	}
-	@keyframes floating-4 {
-		0% {
-			transform: translate(0, 0px);
-		}
-		33% {
-			transform: translate(0px, -3px);
-		}
-		66% {
-			transform: translate(0px, 4px);
-		}
-		100% {
-			transform: translate(0, 0px);
-		}
-	}
-	@keyframes floating-5 {
-		0% {
-			transform: translate(0, 0);
-		}
-		36% {
-			transform: translate(3px, -4px);
-		}
-		70% {
-			transform: translate(7px, 2px);
-		}
-		100% {
-			transform: translate(0, 0);
-		}
-	}
-	@keyframes floating-6 {
-		0% {
-			transform: translate(2px, 0px);
-		}
-		33% {
-			transform: translate(-7px, -5px);
-		}
-		66% {
-			transform: translate(3px, -5px);
-		}
-		100% {
-			transform: translate(0, 0px);
-		}
-	}
-	@keyframes floating-7 {
-		0% {
-			transform: translate(0, 0px);
-		}
-		33% {
-			transform: translate(3px, -5px);
-		}
-		66% {
-			transform: translate(-4px, -2px);
-		}
-		100% {
-			transform: translate(0, 0px);
-		}
-	}
-	@keyframes floating-8 {
-		0% {
-			transform: translate(0, 0px);
-		}
-		33% {
-			transform: translate(0px, -3px);
-		}
-		66% {
-			transform: translate(0px, 4px);
-		}
-		100% {
-			transform: translate(0, 0px);
-		}
-	}
-	@media (prefers-reduced-motion) {
-		.float-1,
-		.float-2,
-		.float-3,
-		.float-4,
-		.float-5,
-		.float-6,
-		.float-7,
-		.float-8 {
-			animation: none;
-		}
 	}
 
 	@media (prefers-color-scheme: dark) {
