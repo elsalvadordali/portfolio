@@ -23,7 +23,6 @@
     }
 
     if (memo[now]) {
-        console.log('yup')
     } else {
         createMonth(currMonth, currYear)
     }
@@ -31,11 +30,9 @@
     function getTasks() {
         let todos
         tasks.subscribe(val => todos = val)
-        console.log(memo)
         for (const item of todos) {
             const when = getYearMonthString(item.date)
             const date = new Date(item.date).getDate()
-            console.log(memo[when])
             //if (memo[when].date.tasks) memo[when].tasks.push(item)
             //else memo[when].date.tasks = [item]
         }

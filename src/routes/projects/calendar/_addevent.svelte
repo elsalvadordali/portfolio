@@ -14,7 +14,6 @@
     function submit(e: Event) {
         e.preventDefault()
     }
-    console.log('event is: ', )
 </script>
 
 

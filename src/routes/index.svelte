@@ -30,8 +30,19 @@
 				lilyPads = [...lilyPads, lilyPad]
 			}
 		}
-		console.log("LILI PADS SHOULD BE FULL", lilyPads)
 	});
+	function clearClasses() {
+		if (lilyPads.length > 0 && lilyPads[0].direction > 0) {
+			setTimeout(() => {
+				console.log('clearing??')
+				lilyPads.forEach((pad) => {
+					pad.css = `small float-${pad.floatAnimation}`
+				})
+				lilyPads = lilyPads
+			}, 12000)
+		}
+	}
+	$:lilyPads && clearClasses()
 </script>
 
 <svelte:head>
@@ -39,19 +50,14 @@
 	<title>Tijana Jung: Creative Frontend Developer</title>
 	<link rel="icon" href="/favicon.png" />
 </svelte:head>
-<svg width={WIDTH} height={HEIGHT} on:click={(e) => wave(e, lilyPads)}>
+<svg width={WIDTH} height={HEIGHT} on:click={(e) => (lilyPads = wave(e, lilyPads))}>
 	{#each waves as wave}
 		<circle cx={wave[0]} cy={wave[1]} class="wave" />
 	{/each}
 	{#each lilyPads as pad}
 		<path
 			d={'M ' + pad.x + ',' + pad.y + PADS_SVG_PATHS[pad.pathIndex]}
-			class={'float-' +
-				pad.floatAnimation +
-				' small ' +
-				'wave-' +
-				pad.direction + '-' +
-				pad.waveAnimation}
+			class={pad.css}
 			fill={COLORS[pad.colorIndex]}
 			on:click={() => (pad = changeColor(pad))}
 		/>

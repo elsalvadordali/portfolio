@@ -22,7 +22,6 @@
 
 	//must scale up by factor of 10 because of scaling later
 	const r = Math.max(w / 3, 300);
-	console.log(r);
 	function createLeaf() {
 		//create
 
@@ -41,7 +40,6 @@
 	}
 	createLeaf();
 
-	console.log(arr);
 	//'scale(' + w / 9995 + ')'
 	//  ' rotate(' + 360 * Math.random() + ' ' + (shape.x + 30 ) + ' ' + (shape.y + 30 ) + ')'
 </script>

@@ -18,19 +18,18 @@ export type LilyPadType = {
     /**
      * The intensity of the wave 1 is highest, 3 is lowest
      */
-    waveAnimation: number;
     /**
      * this is the float animation
      */
     floatAnimation: number;
     /**
-     * the distance between the wave and lily pad
+     * the wave css class modifier. direction + intensity + random
      */
-    distance: number;
+    direction: string | null
     /**
-     * numbers follow a clock. 12 is vertical, 2 is like 2 oclock, 3 is horizontal, 4, 6, 7, 9, 10
+     * css class
      */
-    direction: number;
+    css: string
 };
 
 export type WaveCoords = [number, number];

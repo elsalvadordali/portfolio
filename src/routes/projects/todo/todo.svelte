@@ -15,7 +15,6 @@
             item.isComplete = !item.isComplete
             tasks.updateOne(item)
             tasks.subscribe(val => list = val)
-            console.log(list)
             list = list
     }
     function deleteTask(task: String) {

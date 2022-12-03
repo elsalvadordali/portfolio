@@ -2,7 +2,7 @@ import { browser } from '$app/env';
 import type { LilyPadType } from 'src/types';
 export let clickedLilyPadCount = 0
 export const RADIUS = 35;
-export const WIDTH: number = browser ? window.innerWidth : 1000;
+export const WIDTH: number = browser ? window.innerWidth + 35: 1000;
 export const HEIGHT: number = browser ? window.innerHeight * 2 : 1000;
 export const MAX_NUMBER_OF_HORIZONTAL_LILY_PADS = Math.floor(WIDTH / 70)
 export const MAX_NUMBER_OF_VERTICAL_LILY_PADS = Math.floor(HEIGHT / 60)
@@ -17,7 +17,7 @@ export const PADS_SVG_PATHS = [
     ' c0,0,-6.436,1.957,-9.546,10.511c2.721,1.555,3.075,6.609,-1.98,5.443c-3.888,12.053,-1.755,20.32,6.799,29.651c8.554,9.332,21.086,9.115,21.086,9.115c0,0,17.994,0.892,25.381,-12.717c5.055,-15.552,7.776,-19.828,0,-37.713c-11.664,-13.22,-30.975,-9.135,-30.975,-9.135z',
     ' c0,0,-3.085,5.726,-1.083,12.56c0,0,15.459,-0.923,5.086,9.605c3.094,5.172,6.551,11.636,15.832,13.114c9.28,1.478,21.29,2.489,30.025,-7.854c3.639,-5.172,6.187,-8.4,7.825,-14.865c1.638,-6.465,-0.364,-20.872,-5.641,-25.305c0,0,-7.825,2.217,-6.187,-5.356c-7.825,-6.465,-18.743,-5.663,-18.743,-5.663c0,0,-12.92,-1.171,-20.745,9.542c-4.185,5.91,-6.369,14.222,-6.369,14.222z'
 ];
-export const COLORS = [ 
+export const COLORS = [
     '#0b4d3d',
     '#084637',
     '#1d6655',
@@ -40,20 +40,20 @@ export const COLORS = [
 ];
 
 export function generateLilyPads(i: number, j: number, runningTwice: boolean) {
-    const lilyPad: LilyPadType = { 
+    const lilyPad: LilyPadType = {
         x: 0,
         y: 0,
         floatAnimation: Math.ceil(Math.random() * 9),
         colorIndex: Math.floor(Math.random() * Math.floor(COLORS.length / 2)),
         pathIndex: Math.floor(Math.random() * PADS_SVG_PATHS.length),
-        distance: -1,
-        direction: 0,
-        waveAnimation: 0
+        direction: null,
+        css: `small`
     };
+    
     // either gets the 
     //const PREV_HORIZONTAL_LILY_PAD_X = (j != 0 && lilyPads[lilyPads.length - 1].x) || -35;
-    
-    lilyPad.x = runningTwice ? j * (RADIUS * 2) +35 : j * (RADIUS * 2) 
+    lilyPad.css = `small float-${lilyPad.floatAnimation}`
+    lilyPad.x = runningTwice ? j * (RADIUS * 2) + 35 : j * (RADIUS * 2)
     lilyPad.y = runningTwice ? i * (RADIUS * 2) + 35 : i * (RADIUS * 2)
     //lilyPad.x = Math.round(j * (1.2 * RADIUS + (Math.random() * 2 * RADIUS)))
     //lilyPad.y = Math.round((i * RADIUS  + (Math.random() * i * RADIUS)))
@@ -70,90 +70,34 @@ export function changeColor(lilyPad: LilyPadType): LilyPadType {
     return lilyPad;
 }
 
-export function wave(e: MouseEvent, lilyPads: LilyPadType[]) {
+export function wave(e: MouseEvent, lilyPads: LilyPadType[]): LilyPadType[] {
+    if (e.target && e.target.nodeName == 'path') return lilyPads;
+
     const CLICKED_ON_X = e.pageX;
     const CLICKED_ON_Y = e.pageY;
     for (const index in lilyPads) {
         let distance = returnDistance([CLICKED_ON_X, CLICKED_ON_Y], lilyPads[index]);
-        //lilyPads[index].distance = distance; potentially uneccessary
-        lilyPads[index].waveAnimation = distance < 120 ? 1 : distance < 360 ? 2 : 3 
-        //calc direction and SET TO RERENDER??
+        const waveAnimation = distance < 200 ? 1 : distance < 460 ? 2 : 3
+        const randomNumber = Math.ceil(Math.random() * 3)
         const lilyPadX = lilyPads[index].x
         const lilyPadY = lilyPads[index].y
-        console.log('Lily and clicked', lilyPadX, lilyPadY, CLICKED_ON_X, CLICKED_ON_Y)
-        if (Math.abs(lilyPadX - CLICKED_ON_X) < 50) {
-            if (lilyPadX < CLICKED_ON_X) lilyPads[index].direction = 9 //its horizontal
-            else lilyPads[index].direction = 3
-        } else if (Math.abs(lilyPadY - CLICKED_ON_Y) < 50) {  //its vertical co
-            if (lilyPadY < CLICKED_ON_Y) lilyPads[index].direction = 12
-            else lilyPads[index].direction = 6
-        } else if (lilyPadX < CLICKED_ON_X) { //on left 
-            if (lilyPadY < CLICKED_ON_Y) lilyPads[index].direction = 10 //
-            else lilyPads[index].direction = 7
+        if (Math.abs(lilyPadY - CLICKED_ON_Y) < 50) {
+            if (lilyPadX < CLICKED_ON_X) lilyPads[index].direction = '9' + '-' + waveAnimation + '-' + randomNumber
+            else lilyPads[index].direction = '3' + '-' + waveAnimation + '-' + randomNumber
+        } else if (Math.abs(lilyPadX - CLICKED_ON_X) < 50) {  //its vertical co
+            if (lilyPadY < CLICKED_ON_Y) lilyPads[index].direction = '12' + '-' + waveAnimation + '-' + randomNumber
+            else lilyPads[index].direction = '6' + '-' + waveAnimation + '-' + randomNumber
+        } else if (lilyPadX < CLICKED_ON_X) { 
+            if (lilyPadY < CLICKED_ON_Y) lilyPads[index].direction = '10'  + '-' + waveAnimation + '-' + randomNumber
+            else lilyPads[index].direction = '7' + '-' + waveAnimation + '-' + randomNumber
         } else {
-            if (lilyPadY < CLICKED_ON_Y) lilyPads[index].direction = 2 //x is positive y is negative 
-            else lilyPads[index].direction = 4
-        }        
-        //console.log(lilyPads[index])
-    }
-}
-
-
-export function OLD_wave(e: MouseEvent, lilyPads: LilyPadType[]) {
-    console.log()
-    const waves: [number, number][] = []
-    //TYPESCRIPT WHY
-    if (e.target && e.target.nodeName == 'path') return;
-
-    const CLICKED_ON_X = e.pageX;
-    const CLICKED_ON_Y = e.pageY;
-
-    waves.push([CLICKED_ON_X, CLICKED_ON_Y]);
-    //first calculate distance
-    for (const index in lilyPads) {
-        let distance = returnDistance([CLICKED_ON_X, CLICKED_ON_Y], lilyPads[index]);
-        //lilyPads[index].distance = distance; potentially unneccessary
-        lilyPads[index].waveAnimation = distance < 120 ? 1 : distance < 360 ? 2 : 3 
-        //calc direction and SET TO RERENDER??
-        const lilyPadX = lilyPads[index].x
-        const lilyPadY = lilyPads[index].y
-        if (Math.abs(lilyPadX - CLICKED_ON_X) < 50) {
-            if (lilyPadX < CLICKED_ON_X) lilyPads[index].direction = 9 //its horizontal
-            else lilyPads[index].direction = 3
-        } else if (Math.abs(lilyPadY - CLICKED_ON_Y) < 50) {  //its vertical co
-            if (lilyPadY < CLICKED_ON_Y) lilyPads[index].direction = 12
-            else lilyPads[index].direction = 6
-        } else if (lilyPadX < CLICKED_ON_X) { //on left 
-            if (lilyPadY < CLICKED_ON_Y) lilyPads[index].direction = 10 //
-            else lilyPads[index].direction = 7
-        } else {
-            if (lilyPadY < CLICKED_ON_Y) lilyPads[index].direction = 2 //x is positive y is negative 
-            else lilyPads[index].direction = 4
+            if (lilyPadY < CLICKED_ON_Y) lilyPads[index].direction = '2'  + '-' + waveAnimation + '-' + randomNumber
+            else lilyPads[index].direction = '4' + '-' + waveAnimation + '-' + randomNumber
         }
+        let cssClass = 'small float' + lilyPads[index].floatAnimation.toString()
+        lilyPads[index].css = `small float-${lilyPads[index].floatAnimation} wave-${lilyPads[index].direction}`
+
     }
-
-    let speed = 700;
-    let waveCount = wave.length;
-    let iteration = 0;
-
-    //svg.checkIntersection(waves);
-
-    //simply things for now
-    /*
-    waves = waves;
-    const add3 = setInterval(() => {
-        count++;
-        waves.push([x, y]);
-        waves = waves;
-        if (count == 3) clearInterval(add3);
-    }, 450);
-
-    setTimeout(() => {
-        waves.pop();
-        waves.pop();
-        waves.pop();
-        waves.pop();
-    }, 11000);
-
-    */
+    
+    return lilyPads
 }
