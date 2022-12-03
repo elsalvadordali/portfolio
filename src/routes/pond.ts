@@ -64,8 +64,6 @@ function returnDistance(clickCoord: number[], coord: LilyPadType) {
 }
 
 export function changeColor(lilyPad: LilyPadType): LilyPadType {
-    if (lilyPad.colorIndex >= 10) return lilyPad;
-    clickedLilyPadCount++;
     lilyPad.colorIndex = Math.floor(Math.random() * 10) + 9;
     return lilyPad;
 }
@@ -77,7 +75,7 @@ export function wave(e: MouseEvent, lilyPads: LilyPadType[]): LilyPadType[] {
     const CLICKED_ON_Y = e.pageY;
     for (const index in lilyPads) {
         let distance = returnDistance([CLICKED_ON_X, CLICKED_ON_Y], lilyPads[index]);
-        const waveAnimation = distance < 200 ? 1 : distance < 460 ? 2 : 3
+        const waveAnimation = distance < 200 ? 1 : distance < 560 ? 2 : 3
         const randomNumber = Math.ceil(Math.random() * 3)
         const lilyPadX = lilyPads[index].x
         const lilyPadY = lilyPads[index].y

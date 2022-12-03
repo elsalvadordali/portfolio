@@ -32,17 +32,17 @@
 		}
 	});
 	function clearClasses() {
-		if (lilyPads.length > 0 && lilyPads[0].direction > 0) {
+		if (lilyPads.length > 0 && lilyPads[0].direction) {
 			setTimeout(() => {
 				console.log('clearing??')
 				lilyPads.forEach((pad) => {
 					pad.css = `small float-${pad.floatAnimation}`
 				})
 				lilyPads = lilyPads
-			}, 12000)
+			}, 15100)
 		}
 	}
-	$:lilyPads && clearClasses()
+	$: if (lilyPads.length > 0 && lilyPads[0].css.length > 13) clearClasses()
 </script>
 
 <svelte:head>
@@ -51,6 +51,11 @@
 	<link rel="icon" href="/favicon.png" />
 </svelte:head>
 <svg width={WIDTH} height={HEIGHT} on:click={(e) => (lilyPads = wave(e, lilyPads))}>
+	<path
+			d={'M ' + WIDTH / 2 + ',' + HEIGHT / 5 + PADS_SVG_PATHS[1]}
+			class='small float-5'
+			fill={COLORS[2]}
+		/>
 	{#each waves as wave}
 		<circle cx={wave[0]} cy={wave[1]} class="wave" />
 	{/each}
@@ -61,15 +66,15 @@
 			fill={COLORS[pad.colorIndex]}
 			on:click={() => (pad = changeColor(pad))}
 		/>
+		
 	{/each}
 </svg>
 <Info />
 <footer>Color the lily pads. It's fun!</footer>
 
 <style>
+	
 	svg {
-		background: rgb(44, 126, 139);
-		background: radial-gradient(circle, rgba(44, 126, 139, 1) 4%, rgba(122, 154, 159, 1) 100%);
 		overflow: hidden;
 	}
 	.small {
@@ -103,10 +108,7 @@
 	}
 
 	@media (prefers-color-scheme: dark) {
-		svg {
-			background: rgb(10, 62, 79);
-			background: radial-gradient(circle, rgba(10, 62, 79, 1) 4%, rgba(24, 76, 103, 1) 100%);
-		}
+		
 		footer {
 			background-color: #272f34;
 			color: white;
