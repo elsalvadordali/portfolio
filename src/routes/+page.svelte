@@ -1,3 +1,27 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script>
+	import { fade } from "svelte/types/runtime/transition"
+</script>
+
+<svelte:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Tijana Jung: Creative Frontend Developer</title>
+	<link rel="icon" href="/favicon.png" />
+</svelte:head>
+
+
+<div class="container" in:fade >
+	<div class='project'>
+		BUNNY MONEY
+	</div>
+</div>
+
+<style>
+	.container {
+		width: 100%
+	}
+	.project {
+		background-color: white;
+		width: 80%;
+		padding: 1rem;
+	}
+</style>

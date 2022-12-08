@@ -1,0 +1,208 @@
+@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300&family=DM+Serif+Display&display=swap');
+
+body {
+    background: rgb(44, 126, 139);
+    background: radial-gradient(circle, rgba(44, 126, 139, 1) 4%, rgba(122, 154, 159, 1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    min-height: 100vh;
+    width: 100vw;
+    overflow-y: hidden;
+    font-family: 'Albert Sans', sans-serif;
+}
+svg {
+    background: rgb(44, 126, 139);
+    background: radial-gradient(circle, rgba(44, 126, 139, 1) 4%, rgba(122, 154, 159, 1) 100%);
+    border: 2px solid black;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    overflow-y: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'DM Serif Display', serif;
+}
+
+
+button {
+    background-color: white;
+    border: 2px solid black;
+    box-shadow: 4px 4px 0 black;
+    padding: 1rem 3rem;
+    font-family: 'DM Serif Display', serif;
+    margin-top: 0;
+    margin-bottom: 4px;
+}
+button:hover, button:active {
+    margin-top: 4px;
+    margin-bottom: 0;
+    margin-left: 4px;
+    box-shadow: none;
+}
+
+@keyframes floating-1 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    28% {
+        transform: translate(4px, -5px);
+    }
+
+    60% {
+        transform: translate(-2px, -8px);
+    }
+
+    100% {
+        transform: translate(0px, 0);
+    }
+}
+@keyframes floating-2 {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    33% {
+        transform: translate(-10px, -5px);
+    }
+
+    66% {
+        transform: translate(5px, -5px);
+    }
+
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+@keyframes floating-3 {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    33% {
+        transform: translate(3px, -5px);
+    }
+
+    66% {
+        transform: translate(-8px, -7px);
+    }
+
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+@keyframes floating-4 {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    33% {
+        transform: translate(0px, -3px);
+    }
+
+    66% {
+        transform: translate(0px, 4px);
+    }
+
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+@keyframes floating-5 {
+    0% {
+        transform: translate(0, 0);
+    }
+
+    36% {
+        transform: translate(3px, -4px);
+    }
+
+    70% {
+        transform: translate(7px, 2px);
+    }
+
+    100% {
+        transform: translate(0, 0);
+    }
+}
+@keyframes floating-6 {
+    0% {
+        transform: translate(2px, 0px);
+    }
+
+    33% {
+        transform: translate(-7px, -5px);
+    }
+
+    66% {
+        transform: translate(3px, -5px);
+    }
+
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+@keyframes floating-7 {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    33% {
+        transform: translate(3px, -5px);
+    }
+
+    66% {
+        transform: translate(-4px, -2px);
+    }
+
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+@keyframes floating-8 {
+    0% {
+        transform: translate(0, 0px);
+    }
+
+    33% {
+        transform: translate(0px, -3px);
+    }
+
+    66% {
+        transform: translate(0px, 4px);
+    }
+
+    100% {
+        transform: translate(0, 0px);
+    }
+}
+
+.float-1 {
+    animation: floating-1 15.3s infinite;
+}
+.float-2 {
+    animation: floating-2 11.2s infinite;
+}
+.float-3 {
+    animation: floating-3 13.5s infinite;
+}
+.float-4 {
+    animation: floating-4 9.7s infinite;
+}
+.float-5 {
+    animation: floating-1 10s infinite;
+}
+.float-6 {
+    animation: floating-2 9.3s infinite;
+}
+.float-7 {
+    animation: floating-3 11.1s infinite;
+}
+.float-8 {
+    animation: floating-4 9.9s infinite;
+}
