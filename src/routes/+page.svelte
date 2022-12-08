@@ -1,27 +1,35 @@
 <script>
-	import { fade } from "svelte/types/runtime/transition"
 </script>
 
-<svelte:head>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Tijana Jung: Creative Frontend Developer</title>
-	<link rel="icon" href="/favicon.png" />
-</svelte:head>
-
-
-<div class="container" in:fade >
-	<div class='project'>
-		BUNNY MONEY
-	</div>
+<div class="container">
+	<div class="project"><h1>Tijana Jung: Frontend engineer</h1></div>
+	<div class="project"><h2>Projects</h2></div>
+	<a href="/bunny-money"
+		><div class="project">
+			<h2>Bunny Money</h2>
+			<p>A financial literacy tool for kids, with (cute) neobrutalist vibes.</p>
+		</div></a
+	>
+	<div class="project">BUNNY HELLO?</div>
+	<div class="project">BUNNY MONEY</div>
+	<div class="project">BUNNY MONEY</div>
 </div>
 
 <style>
 	.container {
-		width: 100%
+		margin-top: 40vh;
+		overflow-x: hidden;
 	}
 	.project {
 		background-color: white;
-		width: 80%;
-		padding: 1rem;
+		width: 100vw;
+		margin: 0;
+		padding: 3rem 1rem;
+	}
+	a {
+		color: black;
+	}
+	h1 {
+		background-color: white;
 	}
 </style>
