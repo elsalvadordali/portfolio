@@ -1,3 +1,6 @@
+<script lang="ts">
+	export const prerender = true;
+</script>
 <div id="bunny">
 	<h2>Portfolio</h2>
     <div class='full-width'>

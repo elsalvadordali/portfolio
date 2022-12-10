@@ -1,4 +1,6 @@
 <script lang="ts">
+	export const prerender = true;
+
 	import { onMount } from 'svelte';
 	import {
 		changeColor,
@@ -60,7 +62,7 @@
 			fill={COLORS[2]}
 		/>
 	{/if}
-	{#each lilyPads as pad, i}
+	{#each lilyPads as pad}
 		<path
 			d={'M ' + pad.x + ',' + pad.y + PADS_SVG_PATHS[pad.pathIndex]}
 			class={pad.css}

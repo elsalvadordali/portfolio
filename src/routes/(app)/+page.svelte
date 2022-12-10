@@ -1,3 +1,7 @@
+<script lang="ts">
+	export const prerender = false;
+</script>
+
 <div class="container">
 	<div class="project" id="intro"><h1>Tijana Jung: Frontend engineer</h1></div>
 	<div class="project" id="projects"><h2>Projects</h2></div>

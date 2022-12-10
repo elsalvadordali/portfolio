@@ -1,3 +1,6 @@
+<script lang="ts">
+	export const prerender = true;
+</script>
 <div id="bunny">
 	<h2>Gender Pay Gap Chart</h2>
     <div class='full-width'>
