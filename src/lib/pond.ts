@@ -4,7 +4,7 @@ import anime from 'animejs';
 
 export let clickedLilyPadCount = 0
 export const RADIUS = 35;
-export const WIDTH: number = browser ? window.innerWidth + 90 : 1000;
+export const WIDTH: number = browser ? window.innerWidth > 700 ? window.innerWidth + 35 : window.innerWidth : 1000;
 export const HEIGHT: number = browser ? window.innerHeight * 2 : 1000;
 export let coords = { x: 0, y: 0 }
 export const MAX_NUMBER_OF_HORIZONTAL_LILY_PADS = Math.floor(WIDTH / 70)
