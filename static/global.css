@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Oswald:wght@600&display=swap');
 
-body { 
-    background: #71ea9c;
+body {
+    background: #EAC8AB;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -11,10 +11,13 @@ body {
     box-sizing: border-box;
     overflow-x: hidden;
 }
-body, p {
+
+body,
+p {
     font-family: 'DM Mono', monospace;
     font-weight: 400;
 }
+
 h1,
 h2,
 h3,
@@ -29,19 +32,23 @@ h1 {
     font-size: 3rem;
     margin: .75rem 0;
 }
+
 h2 {
     font-size: 3rem;
     margin: .5rem 0;
 }
+
 .body {
     width: 100vw;
     height: 100vh;
     display: flex;
     font-size: 20px;
 }
+
 p {
     font-size: 20px
 }
+
 button {
     background-color: white;
     border: 2px solid black;
@@ -236,7 +243,8 @@ button:active {
     animation: floating-4 9.9s infinite;
 }
 
-a, a:visited {
+a,
+a:visited {
     color: #000;
 }
 
@@ -245,6 +253,7 @@ a, a:visited {
     border-bottom: 2px solid black;
     margin-bottom: 2rem
 }
+
 .bold {
     font-weight: 800;
 }
@@ -260,5 +269,5 @@ a, a:visited {
     body {
         background: #308695;
         color: white
-    }        
+    }
 }

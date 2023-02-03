@@ -38,7 +38,7 @@
 <div class="body">
 	<Sidebar />
 	{#if $showLilyPads}
-		<svg class="bg" transition:fade>
+		<svg class="bg">
 			{#each lilyPads as pad}
 				<path
 					d={'M ' + pad.x + ',' + pad.y + PADS_SVG_PATHS[pad.pathIndex]}
@@ -50,7 +50,7 @@
 			{/each}
 		</svg>
 	{:else}
-		<article in:fly={{ x: -200 }} out:fly={{x: 200}}>
+		<article in:fly={{ x: -100 }} out:fly={{ x: 100 }}>
 			<h1>Hi</h1>
 			<h2>I'm Tijana</h2>
 			<h2>A software engineer from Columbus, OH.</h2>
@@ -62,7 +62,6 @@
 </div>
 
 <style>
-	
 	.bg {
 		background-color: #6aa5a9;
 		height: 99vh;
@@ -79,11 +78,10 @@
 	h2 {
 		font-weight: 300;
 	}
-	
+
 	.small {
 		stroke-width: 2;
 		stroke: #000;
 		transition: 1s;
 	}
-	
 </style>
