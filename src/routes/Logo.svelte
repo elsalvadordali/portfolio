@@ -7,7 +7,7 @@
 	<svg on:click={toggleLilyPads} on:keydown={toggleLilyPads}>
 		<path d={'m ' + 6 + ',' + 38 + PADS_SVG_PATHS[2]} class="logo" fill="none" />
 	</svg>
-	<a href=""><h2 class="name">Tijana</h2></a>
+	<a href="/"><h2 class="name">Tijana</h2></a>
 </div>
 
 <style>

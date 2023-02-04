@@ -1,34 +1,31 @@
 <script lang="ts">
 	import Logo from '../../Logo.svelte';
-	const parentPage = '/bunny-money/bunny-money-hi-fi-parents-page-mockup.png';
-	const kidPage = '/bunny-money/bunny-money-hi-fi-kids-page-mockup.png';
-	const homePage = '/bunny-money/bunny-money-hi-fi-home-mockup.png';
+    
+    const itemDescription = '/abracadabra/abracadabra-app-item-description-page-mockup.png' 
 
-
-	//TODO: align the layout
 	const links = [
 		{
-			href: '/bunny-money',
+			href: '/abracadabra',
+			name: 'Intro',
+			current: false
+		},
+		{
+			href: '/abracadabra/two',
 			name: 'Ideation',
 			current: false
 		},
 		{
-			href: '/bunny-money/two',
+			href: '/abracadabra/three',
 			name: 'Lo-fi prototype',
 			current: false
 		},
 		{
-			href: '/bunny-money/three',
-			name: 'Testing',
-			current: false
-		},
-		{
-			href: '/bunny-money/four',
-			name: 'Hi-fi',
+			href: '/abracadabra/four',
+			name: 'Hi-fi & Testing',
 			current: true
 		},
-        {
-			href: '/bunny-money/five',
+		{
+			href: '/abracadabra/five',
 			name: 'Development',
 			current: false
 		}
@@ -40,33 +37,31 @@
 		<Logo />
 		<div class="links">
 			{#each links as link}
-			<a href={link.href} class={link.current ? 'bold' : ''}>{link.current ? "> " : ""}{link.name}</a>
+				<a href={link.href} class={link.current ? 'bold' : ''}
+					>{link.current ? '> ' : ''}{link.name}</a
+				>
 			{/each}
 		</div>
 	</aside>
 	<article>
 		<div>
-			<h1>Bunny Money</h1>
-			<h2>Part 4: Hi-fi</h2>
-			<h3>The Mockup:</h3>
-			<p>
-				The hi-fidelity mockup was created using Figma, and the results of the user testing was
-				taken into consideration.
-			</p>
+			<h1>Abracadabra</h1>
+			<h2>Part 4: Hi-fi & Testing</h2>
+			
 		</div>
 		<div class="screenshots">
 			<div class="img-caption">
-				<img src={homePage} alt="Bunny Money home page mockup" />
+				<img src={itemDescription} alt="Bunny Money home page mockup" />
 				<div>
 					<p>
-						The homepage is very bright and colorful, and uses colors that children of any gender
-						find appealing. One login form is used for both parents and kids, with the kid account
-						including an additional ‘name’ field, not pictured here.
+						Once the hi-fi wireframe was created, I created a usability study. The point of the
+						study was to find user pain points, and to see how we can improve the app based on those
+						pain points.
 					</p>
 				</div>
 			</div>
 			<div class="img-caption">
-				<img src={parentPage} alt="The parent home page mockup of bunny money" />
+				<img src={itemDescription} alt="The parent home page mockup of bunny money" />
 				<div>
 					<h3>The Parent's Page</h3>
 					<p>
@@ -79,7 +74,7 @@
 				</div>
 			</div>
 			<div class="img-caption">
-				<img src={kidPage} alt="The kid's home page mockup of bunny money" />
+				<img src={itemDescription} alt="The kid's home page mockup of bunny money" />
 				<div>
 					<h3>The Child's Page</h3>
 					<p>

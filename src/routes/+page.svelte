@@ -64,14 +64,16 @@
 <style>
 	.bg {
 		background-color: #6aa5a9;
-		height: 99vh;
+		height: 100vh;
 		width: 88vw;
+		margin-left: 22%;
 	}
 
 	article {
-		margin-left: 12vw;
+		margin-left: 28vw;
 		margin-top: 4vw;
 		max-width: 600px;
+		
 	}
 
 	h1,

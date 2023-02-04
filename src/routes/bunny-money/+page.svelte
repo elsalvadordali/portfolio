@@ -11,6 +11,21 @@
 			href: '/bunny-money/two',
 			name: 'Lo-fi prototype',
 			current: false
+		},
+		{
+			href: '/bunny-money/three',
+			name: 'Testing',
+			current: false
+		},
+		{
+			href: '/bunny-money/four',
+			name: 'Hi-fi',
+			current: false
+		},
+        {
+			href: '/bunny-money/five',
+			name: 'Development',
+			current: false
 		}
 	];
 </script>
@@ -20,7 +35,7 @@
 		<Logo />
 		<div class="links">
 			{#each links as link}
-				<a href={link.href} class={link.current ? 'bold' : ''}>{link.name}</a>
+				<a href={link.href} class={link.current ? 'bold' : ''}>{link.current ? "> " : ""}{link.name}</a>
 			{/each}
 		</div>
 	</aside>

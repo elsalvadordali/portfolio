@@ -33,6 +33,7 @@
 		display: flex;
 		flex-flow: column nowrap;
 		justify-content: space-between;
+        position: fixed;
 	}
     .links {
 		min-height: 50%;
