@@ -1,5 +1,6 @@
 <script lang="ts">
-	import Logo from '../Logo.svelte';
+	import { fly } from 'svelte/transition';
+	import Sidebar from '../Sidebar.svelte';
 	
 	const links = [
 		{
@@ -30,16 +31,15 @@
 	];
 </script>
 
+<svelte:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Bunny Money an app by Tijana Jung</title>
+	<link rel="icon" href="/favicon.png" />
+</svelte:head>
+
 <div class="body">
-	<aside>
-		<Logo />
-		<div class="links">
-			{#each links as link}
-				<a href={link.href} class={link.current ? 'bold' : ''}>{link.current ? "> " : ""}{link.name}</a>
-			{/each}
-		</div>
-	</aside>
-	<article>
+	<Sidebar {links} logoColor="#eaeaea" backgroundColor="#cfaea9" />
+	<article in:fly={{x: -300, duration: 900}} out:fly={{x: -300, duration: 600}}>
 		<div>
 			<h1>Bunny Money</h1>
 			<h2>Part 1: Ideation</h2>
@@ -64,28 +64,15 @@
 </div>
 
 <style>
-	aside {
-		background-color: #cfaea9;
-		min-width: 260px;
-		height: 100vh;
-		width: 22%;
-		color: white;
-		padding: 2vw;
-		padding-top: 4vw;
-		padding-bottom: 4vw;
-		box-sizing: border-box;
-		display: flex;
-		flex-flow: column nowrap;
-		justify-content: space-between;
-	}
 	article {
-		width: 78%;
+		width: calc(100vw - 260px);
 		max-height: 100vh;
-		background-color: #d9d3c4;
+		background-color: #eaeaea;
 		color: black;
-		padding: 4vw;
-		padding-left: 12vw;
+		padding: 4vh;
 		overflow-y: scroll;
+		margin-left: 260px;
+		padding-left: 80px;
 	}
 	article div {
 		max-width: 400px;
@@ -100,4 +87,15 @@
 		margin-top: 3rem;
 		margin-bottom: 1.5em;
 	}
+	@media (max-width: 800px) {
+		article {
+			width: 100%;
+			padding-left: 70px;
+			margin-left: 0;
+		}
+	}
 </style>
+
+
+
+

@@ -1,10 +1,12 @@
 <script lang="ts">
-	import Logo from '../Logo.svelte';
+	import Sidebar from '../Sidebar.svelte';
+	const homepage = '/abracadabra/abracadabra-front-page.png';
 
+	//TODO: align the layout
 	const links = [
 		{
 			href: '/abracadabra',
-			name: 'Ideation',
+			name: 'Intro',
 			current: true
 		},
 		{
@@ -31,60 +33,43 @@
 </script>
 
 <div class="body">
-	<aside>
-		<Logo />
-		<div class="links">
-			{#each links as link}
-				<a href={link.href} class={link.current ? 'bold' : ''}
-					>{link.current ? '> ' : ''}{link.name}</a
-				>
-			{/each}
-		</div>
-	</aside>
+	<Sidebar {links} logoColor="#eaeaea" backgroundColor="#57D491" />
 	<article>
-		<h1>Abracadabra</h1>
-		<h2>Part 1: Intro</h2>
-
-		<h3>My first group project!</h3>
-		<p>
-			Abracadabra was built in six weeks for chingu.io--an amazing online platform for collaborating
-			and gaining real-world experience.
-		</p>
-		<p>
-			Everyone in the group put forth suggestions, but in the end, an “aliExpress clone” won. While
-			I was excited to work on my first group project, I wasn’t exactly thrilled to be working on
-			something so generic. 
-		</p>
+		<div class="heading">
+			<h1>Abracadabra</h1>
+			<h2>Part 1: Intro</h2>
+		</div>
+		<div class="img-caption">
+			<img src={homepage} alt="Abracadabra home page" />
+			<div class="text">
+				<h3>My first group project!</h3>
+				<p>
+					Abracadabra was built in six weeks for chingu.io--an amazing online platform for
+					collaborating and gaining real-world experience.
+				</p>
+				<p>
+					Everyone in the group put forth suggestions, but in the end, an “aliExpress clone” won.
+					While I was excited to work on my first group project, I wasn’t exactly thrilled to be
+					working on something so generic, but I'm proud of myself for speaking up and pitching this
+					spin on it to our product owner.
+				</p>
+			</div>
+		</div>
 	</article>
 </div>
 
 <style>
-	aside {
-		background-color: #57D491;
-		min-width: 260px;
-		height: 100vh;
-		width: 22%;
-		color: white;
-		padding: 2vw;
-		padding-top: 4vw;
-		padding-bottom: 4vw;
-		box-sizing: border-box;
+	article {
+		width: calc(100vw - 260px);
+		max-height: 100vh;
+		background-color: #eaeaea;
+		color: black;
+		overflow-y: scroll;
+		margin-left: 260px;
 		display: flex;
 		flex-flow: column nowrap;
-		justify-content: space-between;
-		position: fixed;
-	}
-	article {
-		margin-left: 22%;
-		width: 78%;
-		height: fit-content;
-		background-color: #d9d3c4;
-		color: black;
-		padding: 1vw;
-		padding: 4vw;
-		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
+		box-sizing: border-box;
+		align-items: center;
 	}
 
 	h1,
@@ -95,6 +80,65 @@
 	p,
 	h3 {
 		margin-bottom: 2em;
-		width: 360px;
+	}
+	.heading {
+		width: 90%;
+	}
+	.img-caption {
+		width: 90%;
+		margin-bottom: 4vw;
+
+		gap: 10%;
+	}
+	.text {
+		display: flex;
+		flex-flow: column nowrap;
+		justify-content: center;
+
+		grid-row-start: 2;
+	}
+	.img-caption img {
+		width: 200px;
+		height: auto;
+		grid-column-start: 1;
+		grid-column-end: 2;
+		grid-row-start: 1;
+	}
+	.img-caption h3 {
+		justify-self: start;
+	}
+	.img-caption p {
+		font-size: 16px;
+		margin-bottom: 12px;
+		line-height: 1.5em;
+		max-width: 400px;
+	}
+
+	@media (min-width: 980px) {
+		.img-caption {
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			grid-template-rows: repeat(1, 1fr);
+		}
+		.img-caption .text {
+			grid-column-start: 2;
+			grid-row-start: 1;
+		}
+		.img-caption img {
+			grid-column-start: 1;
+			justify-self: end;
+		}
+		.img-caption:nth-child(even) img {
+			grid-column-start: 2;
+			justify-self: start;
+		}
+
+		.img-caption:nth-child(even) .text {
+			grid-column-start: 1;
+			justify-self: end;
+		}
+		.img-caption:nth-child(even) h3 {
+			justify-self: start;
+		}
 	}
 </style>

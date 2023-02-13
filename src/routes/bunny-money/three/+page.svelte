@@ -1,7 +1,5 @@
 <script lang="ts">
-	import Logo from '../../Logo.svelte';
-	const newPageMockup = '/bunny-money/bunny-money-lo-fi-create-new-account-mockup.png';
-	const parentPageMockup = '/bunny-money/bunny-money-lo-fi-parent-page-mockup.png';
+	import Sidebar from "../../Sidebar.svelte";
 	const homePageMockup = '/bunny-money/bunny-money-lo-fi-home-mockup.png';
 
 	const links = [
@@ -34,14 +32,7 @@
 </script>
 
 <div class="body">
-	<aside>
-		<Logo />
-		<div class="links">
-			{#each links as link}
-			<a href={link.href} class={link.current ? 'bold' : ''}>{link.current ? "> " : ""}{link.name}</a>
-			{/each}
-		</div>
-	</aside>
+	<Sidebar {links} logoColor="#eaeaea" backgroundColor="#cfaea9" />
 	<article>
 		<div>
 			<h1>Bunny Money</h1>
@@ -66,31 +57,15 @@
 </div>
 
 <style>
-	aside {
-		background-color: #cfaea9;
-		min-width: 260px;
-		height: 100vh;
-		width: 22%;
-		color: white;
-		padding: 2vw;
-		padding-top: 4vw;
-		padding-bottom: 4vw;
-		box-sizing: border-box;
-		display: flex;
-		flex-flow: column nowrap;
-		justify-content: space-between;
-	}
 	article {
-		width: 78%;
+		width: calc(100vw - 260px);
 		max-height: 100vh;
-		background-color: #d9d3c4;
+		background-color: #eaeaea;
 		color: black;
-		padding: 1vw;
-		padding-left: 4vw;
+		padding: 4vh;
 		overflow-y: scroll;
-		display: flex;
-		flex-direction: row;
-		justify-content: space-between;
+		margin-left: 260px;
+		padding-left: 80px;
 	}
 	article div {
 		max-width: 400px;
@@ -126,5 +101,31 @@
 	}
 	.img-caption p {
 		font-size: 16px;
+	}
+
+	@media (max-width: 1320px) {
+		.screenshots {
+			flex-flow: column nowrap;
+		}
+		.screenshots .img-caption:last-child {
+			margin-top: 0;
+		}
+	}
+
+	@media (max-width: 799px) {
+		article {
+			margin-left: 75px;
+			width: 90%;
+			padding: 4vh;
+			flex-direction: column nowrap;
+		}
+		article div {
+		}
+		.screenshots {
+			flex-flow: column nowrap;
+		}
+		.screenshots .img-caption:last-child {
+			margin-top: 0;
+		}
 	}
 </style>

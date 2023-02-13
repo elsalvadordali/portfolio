@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Logo from '../../Logo.svelte';
+	import Sidebar from "../../Sidebar.svelte";
 	const newPageMockup = '/bunny-money/bunny-money-lo-fi-create-new-account-mockup.png';
 	const parentPageMockup = '/bunny-money/bunny-money-lo-fi-parent-page-mockup.png';
 	const homePageMockup = '/bunny-money/bunny-money-lo-fi-home-mockup.png';
@@ -34,14 +34,7 @@
 </script>
 
 <div class="body">
-	<aside>
-		<Logo />
-		<div class="links">
-			{#each links as link}
-			<a href={link.href} class={link.current ? 'bold' : ''}>{link.current ? "> " : ""}{link.name}</a>
-			{/each}
-		</div>
-	</aside>
+	<Sidebar {links} logoColor="#eaeaea" backgroundColor="#cfaea9" />
 	<article>
 		<div>
 			<h1>Bunny Money</h1>
@@ -84,34 +77,19 @@
 </div>
 
 <style>
-	aside {
-		background-color: #cfaea9;
-		min-width: 260px;
-		height: 100vh;
-		width: 22%;
-		color: white;
-		padding: 2vw;
-		padding-top: 4vw;
-		padding-bottom: 4vw;
-		box-sizing: border-box;
-		display: flex;
-		flex-flow: column nowrap;
-		justify-content: space-between;
-	}
 	article {
-		width: 78%;
+		width: calc(100vw - 260px);
 		max-height: 100vh;
-		background-color: #d9d3c4;
+		background-color: #eaeaea;
 		color: black;
-		padding: 1vw;
-		padding-left: 4vw;
 		overflow-y: scroll;
+		margin-left: 260px;
 		display: flex;
-		flex-direction: row;
-		justify-content: flex-start;
 	}
 	article div {
-		max-width: 400px;
+		max-width: 50%;
+		padding: 5%;
+		box-sizing: border-box;
 	}
 	h1,
 	h2 {
@@ -128,12 +106,13 @@
 		justify-content: flex-start;
 		align-items: center;
 		min-height: 1600px;
+		width: 50%
 	}
 	.screenshots .img-caption {
 		width: 100%;
 		max-width: 240px;
-		margin-top: 4em;
-		margin-left: 4em;
+		padding-right: 12px;
+		padding-bottom: 12px;
 	}
 	.screenshots .img-caption:last-child {
 		margin-top: 50vh;
@@ -143,5 +122,30 @@
 	}
 	.img-caption p {
 		font-size: 16px;
+	}
+	@media (max-width: 1320px) {
+		.screenshots {
+			flex-flow: column nowrap;
+		}
+		.screenshots .img-caption:last-child {
+			margin-top: 0;
+		}
+	}
+
+	@media (max-width: 799px) {
+		article {
+			margin-left: 75px;
+			width: 90%;
+			padding: 4vh;
+			flex-direction: column nowrap;
+		}
+		article div {
+		}
+		.screenshots {
+			flex-flow: column nowrap;
+		}
+		.screenshots .img-caption:last-child {
+			margin-top: 0;
+		}
 	}
 </style>

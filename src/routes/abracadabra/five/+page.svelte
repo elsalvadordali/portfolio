@@ -1,9 +1,8 @@
-
-
-
 <script lang="ts">
 	import Sidebar from '../../Sidebar.svelte';
-	const homepage = '/abracadabra/abracadabra-front-page.png';
+	const cart = '/abracadabra/abracadabra-app-checkout.png';
+	const confirm = '/abracadabra/abracadabra-confirm-checkout.png';
+	const chekout = '/abracadabra/abracadabra-app-checkout-page.png';
 
 	//TODO: align the layout
 	const links = [
@@ -20,7 +19,7 @@
 		{
 			href: '/abracadabra/three',
 			name: 'Lo-fi prototype',
-			current: true
+			current: false
 		},
 		{
 			href: '/abracadabra/four',
@@ -30,8 +29,9 @@
 		{
 			href: '/abracadabra/five',
 			name: 'Development',
-			current: false
+			current: true
 		}
+		
 	];
 </script>
 
@@ -40,30 +40,47 @@
 	<article>
 		<div class="heading">
 			<h1>Abracadabra</h1>
-			<h2>Part 3: Lo-fi prototype</h2>
+			<h2>Part 5: Development</h2>
+			<h3>The Power of Friendship</h3>
 		</div>
 		<div class="img-caption">
-			<img src={homepage} alt="Abracadabra home page" />
+			<img src={confirm} alt="The order confirmation modal" />
 			<div class="text">
-				<h3>The Problem</h3>
+				<h3>The Lesson</h3>
 				<p>
-					To be honest, I didn’t make a lo-fi prototype for this not only due to the time constraint,
-					but also since the app heavily relied on images, scrolling, and swiping, it would be hard to
-					get a proper experience to any tester. I pitched my idea to our Product Owner, who was a fan,
-					and started designing in figma.
+					Though this isn't my favorite project from a passion standpoint, it was a great 
+					experience because I got to collaborate with five other engineers. It wasn't always
+					easy to coordinate schedules, but we were able to get a lot done. In six short weeks,
+					we went from nothing to building a really decent prototype, and we did it all via the
+					power of communication. 
 				</p>
-				<h3>The Goal</h3>
-		<p>
-			The group even agreed to try to implement a “tinder-like” swiping functionality, if we had
-			time. Spoiler alert: we didn't have time.
-		</p>
-		<h3>The Constraint</h3>
-		<p>
-			In a project such as this, it is important to outline priorities, and to adhere to them
-			rigidly. 
-		</p>
 			</div>
 		</div>
+		<div class="img-caption">
+			<img src={cart} alt="The cart is not empty! There's a product in it" />
+			<div class='text'>
+				<h3>The Backend</h3>
+				<p>
+					I wasn't a big part of the backend development, but we did use test-driven development, 
+					which I thought was a really cool practice. The code was written in TypeScript in an Express.js 
+					server, and the database was PostgreSQL.
+				</p>
+			</div>
+		</div>
+		<div class="img-caption">
+			<img src={chekout} alt="Mockup page for payment details" />
+			<div class="text">
+				<h3>The Frontend</h3>
+					<p>
+						Because this project was supposed to be a learning experience, and because my figma mockups 
+						were all for mobile, we bravely (and maybe a bit foolishly) decided to try our hand at using 
+						React Native. It wasn't that different from regular react from a technical standpoint, but I 
+						did find the lack of CSS a bit... jarring. I wish we had more time to add some animations, but 
+						we ran out of time. 
+					</p>
+			</div>
+		</div>
+		
 	</article>
 </div>
 
@@ -96,15 +113,16 @@
 	.img-caption {
 		width: 90%;
 		margin-bottom: 4vw;
-
+	
 		gap: 10%;
 	}
 	.text {
 		display: flex;
 		flex-flow: column nowrap;
 		justify-content: center;
-
+		
 		grid-row-start: 2;
+
 	}
 	.img-caption img {
 		width: 200px;
