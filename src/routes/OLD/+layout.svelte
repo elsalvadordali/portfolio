@@ -15,9 +15,8 @@
 	} from '../../lib/pond'
 	import type { LilyPadType } from '../../lib/types';
 	let lilyPads: LilyPadType[] = [];
-	let waves: [number, number][] = [];
+	let waves: [number, number][] = [[0,0], [0,0,], [0,0]];
 	let open = false;
-	$: console.log(waves);
 	onMount(async () => {
 		const firstWave = [];
 		const secondWave = [];
@@ -33,10 +32,25 @@
 				secondWave.push(lilyPad);
 			}
 		}
+		var c = document.getElementById("pond");
+		var ctx = c.getContext("2d");
 		for (let i = 0; i < firstWave.length; i++) {
-			lilyPads = [...lilyPads, firstWave[i], secondWave[i]];
+			//lilyPads = [...lilyPads, firstWave[i], secondWave[i]];
+			ctx.moveTo(firstWave[i].x, firstWave[i].y);
+
+			ctx.strokeStyle = '#000';
+			ctx.lineWidth = 1;
+			ctx.fillStyle = '#000'
+
+			var p = new Path2D(PADS_SVG_PATHS[firstWave[i].pathIndex]);
+			ctx.stroke(p);
+			ctx.fill(p);
 		}
+		
+		
 	});
+
+
 </script>
 
 <svelte:head>
@@ -45,12 +59,14 @@
 	<link rel="icon" href="/favicon.png" />
 </svelte:head>
 
-<svg
+<canvas
+	id='pond'
 	class='pond'
 	width={WIDTH}
 	height={HEIGHT}
-	on:click={(e) => (waves = wave(e, lilyPads, waves))}
+	on:click={(e) => (wave(e, lilyPads, waves))}
 	on:keypress={() => console.log('key pressed')}
+<<<<<<< HEAD:src/routes/(app)/+layout.svelte
 >
 	{#each waves as wave}
 		<circle cx={wave[0]} cy={wave[1]} class="wave" />
@@ -72,6 +88,9 @@
 		/>
 	{/each}
 </svg>
+=======
+/>
+>>>>>>> ux:src/routes/OLD/+layout.svelte
 
 <main>
 	{#if open}
@@ -93,13 +112,7 @@
 
 <style>
 	.pond {
-		background: rgb(44, 126, 139);
-		background: radial-gradient(circle, rgba(44, 126, 139, 1) 4%, rgba(122, 154, 159, 1) 100%);
-		border: 2px solid black;
 		margin: 0;
-		position: absolute;
-		top: 0;
-		left: 0;
 		z-index: 0;
 	}
 	main {
@@ -151,6 +164,11 @@
 	.icon {
 		height: 24px;
 		background-color: white;
+	}
+	
+	.epicenter {
+		stroke: navy;
+		fill: navy
 	}
 	@media screen and (min-width: 800px) {
 		main {

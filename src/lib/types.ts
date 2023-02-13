@@ -25,7 +25,11 @@ export type LilyPadType = {
     /**
      * distance from the click
      */
-    distance: number
+    distance: number;
+    /**
+     * angle of lily pad relative to click. default -1 
+     */
+    angle: number;
     /**
      * css class
      */

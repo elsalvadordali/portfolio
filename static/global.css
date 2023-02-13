@@ -1,18 +1,21 @@
-@import url('https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300&family=DM+Serif+Display&display=swap');
-html {
-}
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Oswald:wght@600&display=swap');
+
 body {
-    background: rgb(44, 126, 139);
-    background: radial-gradient(circle, rgba(44, 126, 139, 1) 4%, rgba(122, 154, 159, 1) 100%);
+    background: #EAC8AB;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
     align-items: center;
     margin: 0;
     min-height: 100vh;
-    font-family: 'Albert Sans', sans-serif;
     box-sizing: border-box;
     overflow-x: hidden;
+}
+
+body,
+p {
+    font-family: 'DM Mono', monospace;
+    font-weight: 400;
 }
 
 h1,
@@ -21,15 +24,29 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'DM Serif Display', serif;
+    font-family: 'DM Mono', monospace;
+    font-weight: 300;
 }
+
 h1 {
-    font-size: 4rem;
-    margin: .5rem 0;
+    font-size: 3rem;
+    margin: .75rem 0;
 }
+
 h2 {
     font-size: 3rem;
     margin: .5rem 0;
+}
+
+.body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    font-size: 20px;
+}
+
+p {
+    font-size: 20px
 }
 
 button {
@@ -226,7 +243,8 @@ button:active {
     animation: floating-4 9.9s infinite;
 }
 
-a, a:visited {
+a,
+a:visited {
     color: #000;
 }
 
@@ -234,4 +252,22 @@ a, a:visited {
     padding-bottom: 2rem;
     border-bottom: 2px solid black;
     margin-bottom: 2rem
+}
+
+.bold {
+    font-weight: 800;
+}
+
+.links {
+    min-height: 50%;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: space-evenly;
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #308695;
+        color: white
+    }
 }

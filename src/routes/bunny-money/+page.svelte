@@ -1,108 +1,95 @@
 <script lang="ts">
-	export const prerender = true;
+	import { fly } from 'svelte/transition';
+	import Sidebar from '../Sidebar.svelte';
+
+	const links = [
+		{
+			href: '/bunny-money',
+			name: 'Ideation',
+			current: true
+		},
+		{
+			href: '/bunny-money/two',
+			name: 'Lo-fi prototype',
+			current: false
+		},
+		{
+			href: '/bunny-money/three',
+			name: 'Testing',
+			current: false
+		},
+		{
+			href: '/bunny-money/four',
+			name: 'Hi-fi',
+			current: false
+		},
+		{
+			href: '/bunny-money/five',
+			name: 'Development',
+			current: false
+		}
+	];
 </script>
 
-<div id="bunny">
-	<h2>Bunny Money</h2>
-    <div class='full-width'>
-        <a href="https://bunnymoney.app/">Live</a> &middot;
-        <a href="https://github.com/elsalvadordali/bunny-money">github</a>
-    </div>
-    <div class="image-container">
-        <div class="image">
-            <img src="/bm-3.png" alt="A partial screenshot of the login page" />
-            <p>Type your e-mail to get started.</p>
-        </div>
-        <div class="image">
-            <img src="/bm-2.png" alt="A partial screenshot of the parent's view" />
-            <p>Parents can create kid's checking and savings accounts.</p>
-        </div>
-        <div class="image">
-            <img src="/bm-1.png" alt="screenshot of the login page" />
-            <p>Kids can see both checking and savings accounts, and can move their money around as they see fit.</p>
-        </div>
-        
-    </div>
-	<div class="column">
-		<h3>About</h3>
-		<p>
-			This is an app for kids to gain financial literacy, and for parents to help. It's basically a
-			bank simulator. Parents set the savings account interest rate, the allowance, and are able to
-			request payments, while the kids can request money, and put money into savings (and watch it
-			go).
-		</p>
-		<h3>Technical Background</h3>
-		<p>
-			This project was created in Svelte.js, using a Firebase backend. Firebase handles the
-			authentication and the data storage. Svelte accesses this data via API. Styling it with 
-			tailwindcss was enjoyable because it's so customizable. 
-		</p>
-		<h3>Svelte</h3>
-		<p>
-			I chose to build this project with svelte because it has a built-in store manager that is way
-			more intuitive and easier to read than redux.
-		</p>
-		<p>I also enjoy the way svelte handle's state. It's really reactive!</p>
-		<h3>TypeScript</h3>
-		<p>
-			This was my first time using TypeScript for a full project. I learned a lot, but I think I
-			still have a long ways to go.
-		</p>
-		<h3>Next steps</h3>
-		<p>I wrote some, but you can always use more unit testing.</p>
-	</div>
-	<div class='stack'>
-		<h3>The Stack</h3>
-		<i class="devicon-svelte-plain colored"></i> &middot;
-		<i class="devicon-firebase-plain colored"></i> &middot;
-		<i class="devicon-css3-plain colored"></i> &middot;
-		<i class="devicon-typescript-plain colored"></i> &middot;
-		<i class="devicon-tailwindcss-plain colored"></i>
-	</div>
-    <div class='full-width'>
-        <a href="https://bunnymoney.app/">Live</a> &middot;
-        <a href="https://github.com/elsalvadordali/bunny-money">github</a> &middot;
-        <a href='/'>Go back</a>
-    </div>
+<svelte:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Bunny Money an app by Tijana Jung</title>
+	<link rel="icon" href="/favicon.png" />
+</svelte:head>
+
+<div class="body">
+	<Sidebar {links} logoColor="#eaeaea" backgroundColor="#cfaea9" />
+	<article in:fly={{ x: -300, duration: 900 }} out:fly={{ x: -300, duration: 600 }}>
+		<div>
+			<h1>Bunny Money</h1>
+			<h2>Part 1: Ideation</h2>
+			<h3>The problem:</h3>
+			<p>
+				Financial Literacy is a critical tool for success later in life, yet schools in the United
+				States don’t teach it.
+			</p>
+			<h3>The Goal:</h3>
+			<p>A free app that teaches kids about financial literacy.</p>
+			<h3>Constraints:</h3>
+			<p>
+				The app needed to be simple. So simple that a 6 year old could use, and understand it. It
+				would be outside the scope of this project to allow kids to create any sort of card, so we
+				need to team up with the parents to mimic the functionality of a bank, without an actual
+				bank.
+			</p>
+		</div>
+	</article>
 </div>
 
 <style>
-	#bunny {
-		max-width: 100vw;
-		min-height: 100vh;
-		background-color: aliceblue;
-		padding: 1rem;
+	article {
+		width: calc(100vw - 260px);
+		max-height: 100vh;
+		background-color: #eaeaea;
+		color: black;
+		padding: 4vh;
+		overflow-y: scroll;
+		margin-left: 260px;
+		padding-left: 80px;
 	}
-    .image-container {
-        display: flex;
-        justify-content: space-evenly;
-    }
-    .image {
-        width: 30%;
-    }
-	img {
-		width: 100%;
+	article div {
+		max-width: 400px;
 	}
-    .full-width {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-    }
-    .full-width a {
-        margin: 0 1rem 4rem 1rem;
-    }
-	@media screen and (min-width: 600px) {
-		#bunny {
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-flow: column wrap;
+	h1,
+	h2 {
+		font-size: 2em;
+		margin-bottom: 1em;
+	}
+	p,
+	h3 {
+		margin-top: 3rem;
+		margin-bottom: 1.5em;
+	}
+	@media (max-width: 800px) {
+		article {
+			width: 100%;
+			padding-left: 70px;
+			margin-left: 0;
 		}
-        .column {
-            columns: 2;
-            column-gap: 4rem;
-            max-width: 700px;
-            margin: 5rem 1rem;
-        }
 	}
 </style>
