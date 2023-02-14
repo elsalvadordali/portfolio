@@ -3,8 +3,25 @@
 	import { onMount } from 'svelte';
 	import { fly } from 'svelte/transition';
 	import Logo from './Logo.svelte';
+	import type { LinksType } from '$lib/types';
 
-	export let links;
+	export let links = [
+		{
+			href: '/abracadabra',
+			name: 'Abracadabra',
+			current: false
+		},
+		{
+			href: '/bunny-money/',
+			name: 'Bunny Money',
+			current: false
+		},
+		{
+			href: '/happy-garden',
+			name: 'Happy Garden',
+			current: false
+		}
+	];
 	export let logoColor: String;
 	export let backgroundColor = '#eaeaea';
 
@@ -61,8 +78,8 @@
 		width: 260px;
 		color: white;
 		padding: 2vw;
-		padding-top: 4vw;
-		padding-bottom: 4vw;
+		padding-top: 4vh;
+		padding-bottom: 4vh;
 		box-sizing: border-box;
 		display: flex;
 		flex-flow: column nowrap;
@@ -71,6 +88,7 @@
 		top: 0;
 		z-index: 100;
 		box-sizing: border-box;
+		border-right: 2px solid black;
 	}
 	.links {
 		min-height: 50%;

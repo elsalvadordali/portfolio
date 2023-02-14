@@ -4,26 +4,32 @@
 	import { COLORS, HEIGHT, PADS_SVG_PATHS, WIDTH } from '../lib/pond';
 	import { toggleLilyPads } from '$lib/store';
 
-	export let logoColor
+	export let logoColor;
 	export let handleMobileIconClick;
 
-	console.log('COLOR', logoColor)
+	console.log('COLOR', logoColor);
 </script>
 
-<div class="button" >
+<div class="button">
 	<button on:click={handleMobileIconClick}
-		><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"/></svg></button
+		><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"
+			><path
+				d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"
+			/></svg
+		></button
 	>
 </div>
-<div class="wrapper" in:fly={{x: -600, duration: 900}}>
-	
-	<div class="brand" in:fly={{x: -300, duration: 300}}>
+<div class="wrapper" in:fly={{ x: -600, duration: 900 }}>
+	<div class="brand" in:fly={{ x: -300, duration: 300 }}>
 		<svg on:click={toggleLilyPads} on:keydown={toggleLilyPads}>
-			<path d={'m ' + 6 + ',' + 38 + PADS_SVG_PATHS[2]} class="logo" fill={$showLilyPads ? "none" : logoColor} />
+			<path
+				d={'m ' + 11 + ',' + 44 + PADS_SVG_PATHS[2]}
+				class="logo float-5"
+				fill={$showLilyPads ? 'none' : logoColor}
+			/>
 		</svg>
 		<a href="/"><h2 class="name">Tijana</h2></a>
 	</div>
-	
 </div>
 
 <style>
@@ -40,14 +46,14 @@
 		width: 100%;
 	}
 	.brand svg {
-		height: 70px;
-		width: 70px;
+		height: 80px;
+		width: 80px;
 		transform: scale(0.33);
 		background-color: transparent;
 		cursor: pointer;
 	}
 	.logo {
-		stroke-width: 8;
+		stroke-width: 7;
 		stroke: #000;
 		transition: 1s;
 	}

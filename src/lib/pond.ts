@@ -21,17 +21,15 @@ export const PADS_SVG_PATHS = [
     ' c0,0,-3.085,5.726,-1.083,12.56c0,0,15.459,-0.923,5.086,9.605c3.094,5.172,6.551,11.636,15.832,13.114c9.28,1.478,21.29,2.489,30.025,-7.854c3.639,-5.172,6.187,-8.4,7.825,-14.865c1.638,-6.465,-0.364,-20.872,-5.641,-25.305c0,0,-7.825,2.217,-6.187,-5.356c-7.825,-6.465,-18.743,-5.663,-18.743,-5.663c0,0,-12.92,-1.171,-20.745,9.542c-4.185,5.91,-6.369,14.222,-6.369,14.222z'
 ];
 export const COLORS = [
-    '#3f7856',
-    '#ecb865',
-    '#ffb284',
-    '#d87f81',
-    '#cbdfbd',
-    '#91adc2',
-    '#a6808c',
-    '#706677',
-    '#fbc9be',
-    '#df8053',
-    '#a9ddd6'
+    '#eaeaea',
+    '#7ec382',
+    '#7ec380',
+    '#7ec384',
+    '#7ec386',
+    '#7ec388',
+    '#7ec390',
+
+
 ];
 
 
@@ -57,7 +55,7 @@ function returnDistance(clickCoord: number[], lilyPad: LilyPadType) {
 }
 
 export function changeColor(lilyPad: LilyPadType): LilyPadType {
-    lilyPad.colorIndex = Math.floor(Math.random() * 10) + 1;
+    lilyPad.colorIndex = Math.floor(Math.random() * (COLORS.length - 1)) + 1;
     console.log('color changed to', lilyPad.colorIndex)
     return lilyPad;
 }

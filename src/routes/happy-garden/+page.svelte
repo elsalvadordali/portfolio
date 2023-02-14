@@ -1,5 +1,7 @@
 <script lang="ts">
+	import { fly } from 'svelte/transition';
 	import Sidebar from '../Sidebar.svelte';
+
 	const one = '/hg-1.png';
 	const two = '/hg-2.png';
 	const three = '/hg-3.png';
@@ -23,12 +25,52 @@
 	];
 </script>
 
+<svelte:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Happy Garden: an app by Tijana Jung</title>
+	<link rel="icon" href="/favicon.png" />
+</svelte:head>
+
 <div class="body">
 	<Sidebar {links} logoColor="#eaeaea" backgroundColor="#a3c9a8" />
-	<article>
-		<div class="heading">
-			<h1>Happy Garden</h1>
-			<h2>No UX, only coding</h2>
+	<article in:fly={{ delay: 200, duration: 300, x: 500 }}>
+		<div class="project-info-grid" in:fly={{ delay: 500, duration: 300, x: 500 }}>
+			<h1 class="project-name">Happy Garden</h1>
+			<p class="tagline">Hackathon winning app: a gratitude journal, but gamified</p>
+			<h5 class="type">Type</h5>
+			<p class="type-def">hackathon group project</p>
+			<h5 class="stack">Stack</h5>
+			<ul class="stack-list">
+				<li>JavaScript</li>
+				<li>React</li>
+				<li>CSS</li>
+				<li>Firebase</li>
+			</ul>
+			<h5 class="links">Links</h5>
+			<ul class="links-list">
+				<li>
+					<a href="https://elsalvadordali.github.io/green-smile/" target="_blank" rel="noreferrer"
+						>live app</a
+					><a href="#login">*</a>
+				</li>
+				<li>
+					<a href="https://github.com/elsalvadordali/green-smile" target="_blank" rel="noreferrer"
+						>code (github)</a
+					>
+				</li>
+			</ul>
+		</div>
+		<div class="center">
+			<h2>Checkout a demo by Ellie</h2>
+			<iframe
+				width="560"
+				height="315"
+				src="https://www.youtube.com/embed/e9GxeP1PMg0"
+				title="YouTube video player"
+				frameborder="0"
+				allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+				allowfullscreen
+			/>
 		</div>
 		<div class="img-caption">
 			<img src={one} alt="Abracadabra check out page mockup" />
@@ -36,8 +78,8 @@
 				<h3>About</h3>
 				<p>
 					In November 2022, <a href="https://girldevelopit.com/">Girl Develop It</a> hosted a health-themed
-					hackathon. In a team of 8, I became the senior dev, and spent the first day planning and writing
-					out bite-sized pieces the other members could work on.
+					hackathon. In a team of 8, I became the senior-most dev, and spent the first day planning and
+					writing out bite-sized pieces the other members could work on.
 				</p>
 			</div>
 		</div>
@@ -73,90 +115,52 @@
 				</p>
 			</div>
 		</div>
+		<p id="login" class="anchor">
+			*use this to log in: username: <i>abc@123.com</i>, password <i>aaaaaa</i>
+		</p>
 	</article>
 </div>
 
 <style>
-	article {
-		width: calc(100vw - 260px);
-		max-height: 100vh;
-		background-color: #eaeaea;
-		color: black;
-		overflow-y: scroll;
-		margin-left: 260px;
+	.center {
 		display: flex;
-		flex-flow: column nowrap;
-		box-sizing: border-box;
-		align-items: center;
-	}
-
-	h1,
-	h2 {
-		font-size: 2em;
-		margin-bottom: 1em;
-	}
-	p,
-	h3 {
-		margin-bottom: 2em;
-	}
-	.heading {
-		width: 90%;
-	}
-	.img-caption {
-		width: 90%;
-		margin-bottom: 4vw;
-
-		gap: 10%;
-	}
-	.text {
-		display: flex;
-		flex-flow: column nowrap;
+		flex-direction: column;
 		justify-content: center;
+		align-items: center;
+		margin: 2em;
+	}
+	h2 {
+		font-size: 1.25em;
+	}
+	img {
+		width: 300px;
+	}
+	h5 {
+		border: 2px solid black;
+		border-radius: 1em;
+		padding: 0.5em;
+		text-align: center;
+		font-weight: 800;
+		font-size: 20px;
+	}
+	@media screen and (min-width: 600px) {
+		.project-info-grid,
+		.project-name {
+			border-color: #a3c9a8;
+			box-shadow: 1px 1px 0 #fff, 3px 3px 0 #a3c9a8;
+		}
+	}
+	.type {
+		border-color: #84b59f;
+		box-shadow: 1px 1px 0 #fff, 3px 3px 0 #84b59f;
+	}
+	.stack {
+		border-color: #69a297;
+		box-shadow: 1px 1px 0 #fff, 3px 3px 0 #69a297;
+	}
 
-		grid-row-start: 2;
-	}
-	.img-caption img {
-		width: 200px;
-		height: auto;
-		grid-column-start: 1;
-		grid-column-end: 2;
-		grid-row-start: 1;
-	}
-	.img-caption h3 {
-		justify-self: start;
-	}
-	.img-caption p {
-		font-size: 16px;
-		margin-bottom: 12px;
-		line-height: 1.5em;
-		max-width: 400px;
-	}
-
-	@media (min-width: 980px) {
-		.img-caption {
-			display: grid;
-			grid-template-columns: repeat(2, 1fr);
-			grid-template-rows: repeat(1, 1fr);
-		}
-		.img-caption .text {
-			grid-column-start: 2;
-			grid-row-start: 1;
-		}
-		.img-caption img {
-			grid-column-start: 1;
-			justify-self: end;
-		}
-		.img-caption:nth-child(even) img {
-			grid-column-start: 2;
-			justify-self: start;
-		}
-
-		.img-caption:nth-child(even) .text {
-			grid-column-start: 1;
-			justify-self: end;
-		}
-		.img-caption:nth-child(even) h3 {
-			justify-self: start;
-		}
+	.links {
+		border-color: #50808e;
+		box-shadow: 1px 1px 0 #fff, 3px 3px 0 #50808e;
 	}
 </style>

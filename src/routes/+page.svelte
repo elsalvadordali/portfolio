@@ -13,8 +13,8 @@
 	import type { LilyPadType } from '$lib/types';
 
 	const links = [
-		{ name: 'Bunny Money', href: '/bunny-money', current: false },
 		{ name: 'Abracadabra', href: '/abracadabra', current: false },
+		{ name: 'Bunny Money', href: '/bunny-money', current: false },
 		{ name: 'Happy Garden', href: '/happy-garden', current: false }
 	];
 	let lilyPads: LilyPadType[] = [];
@@ -41,7 +41,7 @@
 </svelte:head>
 
 <div class="body">
-	<Sidebar logoColor="#EAC8AB" backgroundColor="#EAC8AB" {links} />
+	<Sidebar logoColor="#eaeaea" backgroundColor="#d55b49" {links} />
 	{#if $showLilyPads}
 		<svg class="bg" in:fly={{ x: 500, duration: 900 }}>
 			{#each lilyPads as pad}
@@ -57,7 +57,8 @@
 	{:else}
 		<article in:fly={{ x: -100 }} out:fly={{ x: 100 }}>
 			<h1>I'm Tijana</h1>
-			<h2>A software engineer from Columbus, OH.</h2>
+			<h2>A software engineer from Columbus, OH</h2>
+			<p>I’m always tinkering on a project or two.</p>
 			<p>
 				A current CS student at WGU, I discovered my passion a little later in life, after having
 				gotten my first degree in microbiology. When I’m not coding, you’ll find me trying new vegan
@@ -84,8 +85,7 @@
 				<p>Swift</p>
 				<p>UX design</p>
 			</div>
-			<h4>My works</h4>
-			<p>I’m always tinkering on a project or two. Check out some of my favorites in the menu.</p>
+
 			<div class="arrow" />
 			<h4>My current project</h4>
 			<p>I'm currently finishing up <a href="/abracadabra">Abracadabra.</a></p>
@@ -99,32 +99,26 @@
 
 				<a href="mailto:tijano@gmail.com">email me</a> &middot;
 				<a href="https://www.linkedin.com/in/tijaname/">LinkedIn</a>
-				&middot; <a href="/Tijana_Jung.pdf" target="_blank">resume</a>
 			</footer>
 		</article>
 	{/if}
 </div>
 
 <style>
-	article {
-		margin-left: 260px;
-		margin-top: 6vh;
-		margin-bottom: 6vh;
-		width: calc(100vw - 260px);
-		padding: 6vh;
-		background-color: #eaeaea;
-		max-width: 800px;
-	}
 	.bg {
 		background-color: #6aa5a9;
 		height: 100vh;
 		width: calc(100vw - 260px);
 		margin-left: 260px;
 	}
-
 	h1,
 	h2 {
+		font-size: 36px;
 		font-weight: 300;
+	}
+	h2 {
+		font-size: 20px;
+		font-style: italic;
 	}
 	h2,
 	p {
@@ -158,14 +152,7 @@
 			margin-left: 0;
 			width: 100vw;
 		}
-		article {
-			margin-left: 70px;
-			padding-right: 12px;
-		}
-		h1,
-		h2 {
-			font-size: 1.5em;
-		}
+
 		p {
 			font-size: 16px;
 			margin-bottom: 32px;
