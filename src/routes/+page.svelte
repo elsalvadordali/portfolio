@@ -41,7 +41,7 @@
 </svelte:head>
 
 <div class="body">
-	<Sidebar logoColor="#eaeaea" backgroundColor="#d55b49" {links} />
+	<Sidebar logoColor="#f5f7fc" backgroundColor="#f19c79" {links} />
 	{#if $showLilyPads}
 		<svg class="bg" in:fly={{ x: 500, duration: 900 }}>
 			{#each lilyPads as pad}
@@ -55,30 +55,16 @@
 			{/each}
 		</svg>
 	{:else}
-		<article in:fly={{ x: -100 }} out:fly={{ x: 100 }}>
+		<article in:fly={{ x: -100, duration: 1000 }} out:fly={{ x: 100 }}>
 			<h1>I'm Tijana</h1>
-			<h2>A software engineer from Columbus, OH</h2>
+
 			<p>I’m always tinkering on a project or two.</p>
-			<p>
-				A current CS student at WGU, I discovered my passion a little later in life, after having
-				gotten my first degree in microbiology. When I’m not coding, you’ll find me trying new vegan
-				recipes from library books, reading, or occasionally water coloring.
-			</p>
-			<p>
-				As a developer, I’ve worked alongside a diverse array of both developer and designers that
-				continue to inspire me and raise the standards I hold for myself and for my work. It’s
-				easier to collaborate by writing maintainable code!
-			</p>
-			<p>
-				Although my passion is web development, I like to take classes in adjacent fields such as
-				the google UX design course, and CodePath’s iOS course to give me a wider insight into the
-				whole of the development process.
-			</p>
+
 			<h4>My Skills</h4>
 			<div class="grid">
 				<p>TypeScript</p>
 				<p>CSS</p>
-				<p>React</p>
+				<p>Next.js</p>
 				<p>React Native</p>
 				<p>Sveltekit</p>
 				<p>Git</p>
@@ -88,7 +74,7 @@
 
 			<div class="arrow" />
 			<h4>My current project</h4>
-			<p>I'm currently finishing up <a href="/abracadabra">Abracadabra.</a></p>
+			<p>I'm currently finishing up my CS degree, and working on an iOS app.</p>
 
 			<footer>
 				<h4>My Contact Info</h4>
@@ -106,7 +92,7 @@
 
 <style>
 	.bg {
-		background-color: #6aa5a9;
+		background-color: #16446d;
 		height: 100vh;
 		width: calc(100vw - 260px);
 		margin-left: 260px;

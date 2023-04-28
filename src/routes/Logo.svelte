@@ -21,14 +21,7 @@
 </div>
 <div class="wrapper" in:fly={{ x: -600, duration: 900 }}>
 	<div class="brand" in:fly={{ x: -300, duration: 300 }}>
-		<svg on:click={toggleLilyPads} on:keydown={toggleLilyPads}>
-			<path
-				d={'m ' + 11 + ',' + 44 + PADS_SVG_PATHS[2]}
-				class="logo float-5"
-				fill={$showLilyPads ? 'none' : logoColor}
-			/>
-		</svg>
-		<a href="/"><h2 class="name">Tijana</h2></a>
+		<a href="/"><h2 class="name">Ti<br />ja<br />na</h2></a>
 	</div>
 </div>
 
@@ -58,10 +51,9 @@
 		transition: 1s;
 	}
 	.name {
-		font-family: 'DM Mono', monospace;
 		font-weight: 600;
 		text-transform: uppercase;
-		font-size: 2rem;
+		font-size: 4rem;
 		border-bottom: 2px solid black;
 		margin-top: 0.325em;
 		width: fit-content;

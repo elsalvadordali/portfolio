@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Oswald:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&family=DM+Serif+Display&display=swap');
 
 body {
-    background-color: #d55b49;
+    background-color: #dfe7f8;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;
@@ -24,7 +24,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: 'DM Mono', monospace;
+    font-family: 'DM Serif Display', serif;
     font-weight: 300;
 }
 
@@ -82,7 +82,7 @@ article {
     padding-bottom: 2em;
     min-width: calc(100vw - 260px);
     padding: 2em;
-    background-color: #eaeaea;
+    background-color: #f5f7fc;
     max-width: 800px;
     min-height: 100%;
     height: fit-content;

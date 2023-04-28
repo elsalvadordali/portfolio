@@ -95,6 +95,7 @@
 		display: flex;
 		flex-flow: column nowrap;
 		justify-content: space-evenly;
+		font-family: 'DM Serif Display', serif;
 	}
 	aside a {
 		color: black;
