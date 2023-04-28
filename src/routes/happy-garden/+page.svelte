@@ -86,32 +86,29 @@
 		<div class="img-caption">
 			<img src={two} alt="Abracadabra item description page mockup" />
 			<div class="text">
-				<h3>Tech Stack</h3>
+				<h3>The Funnest Part</h3>
 				<p>
-					It was my first time collaborating! Although I enjoyed getting to know my group mates,
-					most of the them were relatively new to coding, so a lot of the actual coding fell to me.
-					But it also gave me the freedom to choose our tech stack. Since it was a three day
-					hackathon, I decided to focus on the frontend (react), and leave the backend to firebase.
+					Since most of the team was relatively new to coding, so a lot of the actual coding fell on
+					me. I live streamed myself coding for two days straight, and it was great. Especially when
+					it came to debugging.
 				</p>
 			</div>
 		</div>
 		<div class="img-caption">
 			<img src={three} alt="Abracadabra confirm page" />
 			<div class="text">
-				<h3>The hardest Part</h3>
+				<h3>The Hardest Part</h3>
 				<p>
-					The hardest part was planning. I usually have an idea in my head before I start a project,
-					but this time, I had to write it out in detail. Some things didn't go according to plan,
-					which means some of the members regrettably spent a lot of time writing css and code that
-					didn't go anywhere. I learned that it's important to stay flexible, and not dwell on
-					mistakes too long.
+					Having to plan out every minute detail was arduous, and worst of all, sometimes turned out
+					wrong. Which means some of the members regrettably spent a lot of time writing css and
+					code that didn't go anywhere. I learned that it's important to stay flexible, and not
+					dwell on mistakes too long.
 				</p>
 				<h3>The End</h3>
 				<p>
 					We ended up building a fully-functional app within the deadline, and winning third place!
-					It was out first hackathon, and it was complete success. It's still missing a few features
-					(like a logout button), and the code could be cleaner, but we're actively maintaining it
-					as a group.
+					It was out first hackathon, and it was complete success. It's still missing a few
+					features, and the code could be cleaner, but we're actively maintaining it as a group.
 				</p>
 			</div>
 		</div>

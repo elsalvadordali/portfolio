@@ -60,22 +60,16 @@
 			<div class="text">
 				<h3>Project Outline</h3>
 				<p>
-					My daughter was getting old enough for an allowance, but I seldomly carry cash. It was
-					hard to keep track of how much she had, and how much she spent, so I though I could make
-					an app to solve that problem. But I also wanted to show her the importance of savings, by
-					essentially allowing her to put her money in a savings account and watching the interest
-					accumulate.
+					My daughter was getting old enough for an allowance, but I seldom carry cash. I though I
+					could make an app to trick her into learning about finances.
 				</p>
 				<p>This is what I came up with.</p>
 				<p>
 					Essentially, there are two functional aspects of the app. One screen, where the parent
-					manages the account (ie set the interest rate, 'send' money), and one where the kid can
-					see their financial standing, and move their money around.
+					manages the account, and one where the kid can see their financial standing, and move
+					their money around.
 				</p>
-				<p>
-					It's essentially a bank account, where the parents are the bank, and there are no cards
-					involved.
-				</p>
+				<p>It's essentially a no-thrills, cardless bank account, where the parents are the bank.</p>
 			</div>
 		</div>
 		<div class="img-caption">
@@ -83,18 +77,17 @@
 			<div class="text">
 				<h3>The Backend</h3>
 				<p>
-					The Backend uses Firebase for both storage of data as well as authentication. I decided to
-					keep it simple and only use e-mail authentication. Only parents have proper accounts.
-					Children login via the parent’s login, while supplying a child’s name. If the name matches
-					the one stored in the parent’s account, they are able to login. I chose to do it this way
-					to keep things simple. Since firebase uses a document type database, it is easier and
-					faster to make just one query.
+					The Backend uses Firebase. Only parents have proper accounts. Children login via the
+					parent’s login, while supplying a child’s name. If the name matches the one stored in the
+					parent’s document, they are able to login. I found that doing it this way cuts down on the
+					number of queries.
 				</p>
 				<h3>The Frontend</h3>
 				<p>
-					The Frontend was made using TypeScript and Svelte. Since it’s a small three “page” app, I
-					opted for Svelte over Sveltekit because the later was still pre-beta, and it would have
-					been overkill, for an app with just three pages.
+					The Frontend was made using TypeScript and Svelte. Since it’s a small app, I opted for
+					Svelte over Sveltekit because the later was still pre-beta, and it would have been
+					overkill. I also chose to make in a progressive web app, to make it easily accessible for
+					kids.
 				</p>
 			</div>
 		</div>
@@ -107,10 +100,6 @@
 					complicated enough that I would have made a lot of mistakes without it. I also learned the
 					importance of extracting functions and putting them in a separate file, as this helped cut
 					down on the amount of code in each component, and helped me adhere to the DRY principle.
-				</p>
-				<p>
-					By making it a progressive web app, I also learned a bit about manifest.js and service
-					workers, though bunny money itself doesn't actually use service workers.
 				</p>
 			</div>
 		</div>

@@ -81,9 +81,8 @@
 			<div class="text">
 				<h3>The Backend</h3>
 				<p>
-					I wasn't a big part of the backend development, but we did use test-driven development,
-					which I thought was a really cool practice. The code was written in TypeScript in an
-					Express.js server, and the database was PostgreSQL.
+					I wasn't a big part of the backend development, but we did use test-driven development. 
+					The code was written in TypeScript in an Express.js server, and the database was PostgreSQL.
 				</p>
 			</div>
 		</div>
@@ -101,9 +100,6 @@
 			</div>
 		</div>
 
-		<p id="login" class="anchor">
-			*use this to log in: username: <i>mrtest@test.com</i>, password <i>aaaaaa</i>
-		</p>
 	</article>
 </div>
 
