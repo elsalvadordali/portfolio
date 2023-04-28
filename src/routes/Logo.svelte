@@ -19,9 +19,13 @@
 		></button
 	>
 </div>
-<div class="wrapper" in:fly={{ x: -600, duration: 900 }}>
-	<div class="brand" in:fly={{ x: -300, duration: 300 }}>
-		<a href="/"><h2 class="name">Ti<br />ja<br />na</h2></a>
+<div class="wrapper">
+	<div class="brand">
+		<a href="/">
+			<h2 class="name" in:fly={{ y: -200, duration: 200 }}>Ti</h2>
+			<h2 class="name" in:fly={{ x: -300, duration: 300 }}>ja</h2>
+			<h2 class="name" in:fly={{ x: -600, duration: 600 }}>na</h2>
+		</a>
 	</div>
 </div>
 
@@ -38,18 +42,7 @@
 		align-self: center;
 		width: 100%;
 	}
-	.brand svg {
-		height: 80px;
-		width: 80px;
-		transform: scale(0.33);
-		background-color: transparent;
-		cursor: pointer;
-	}
-	.logo {
-		stroke-width: 7;
-		stroke: #000;
-		transition: 1s;
-	}
+
 	.name {
 		font-weight: 600;
 		text-transform: uppercase;
@@ -73,7 +66,6 @@
 		padding: 6px 12px;
 	}
 	@media (prefers-color-scheme: dar) {
-		.logo,
 		.name {
 			color: white;
 			stroke: white;
