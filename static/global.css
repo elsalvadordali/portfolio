@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@300&family=DM+Serif+Display&display=swap');
 
 body {
-    background-color: #dfe7f8;
+    background-color: #f5f7fc;
     display: flex;
     flex-flow: column nowrap;
     justify-content: center;

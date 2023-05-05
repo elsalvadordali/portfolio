@@ -98,15 +98,6 @@
 		margin-left: 260px;
 	}
 	h1,
-	h2 {
-		font-size: 36px;
-		font-weight: 300;
-	}
-	h2 {
-		font-size: 20px;
-		font-style: italic;
-	}
-	h2,
 	p {
 		margin-bottom: 4vh;
 	}
