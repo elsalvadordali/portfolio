@@ -43,4 +43,4 @@ export type LinksType = {
     href: string,
     name: string,
     current: boolean
-},
+}

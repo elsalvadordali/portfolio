@@ -1,37 +1,12 @@
 <script lang="ts">
 	import { fade, fly } from 'svelte/transition';
-	import {
-		changeColor,
-		generateLilyPads,
-		MAX_NUMBER_OF_HORIZONTAL_LILY_PADS,
-		MAX_NUMBER_OF_VERTICAL_LILY_PADS,
-		PADS_SVG_PATHS,
-		COLORS
-	} from '$lib/pond';
 	import Sidebar from './Sidebar.svelte';
-	import { showLilyPads } from '$lib/store';
-	import type { LilyPadType } from '$lib/types';
 
 	const links = [
 		{ name: 'Abracadabra', href: '/abracadabra', current: false },
 		{ name: 'Bunny Money', href: '/bunny-money', current: false },
 		{ name: 'Happy Garden', href: '/happy-garden', current: false }
 	];
-	let lilyPads: LilyPadType[] = [];
-
-	for (let i = 0; i < MAX_NUMBER_OF_VERTICAL_LILY_PADS; i++) {
-		for (let j = 0; j < MAX_NUMBER_OF_HORIZONTAL_LILY_PADS; j++) {
-			let lilyPad = generateLilyPads(i, j, false);
-			lilyPads.push(lilyPad);
-		}
-	}
-	for (let i = 0; i < MAX_NUMBER_OF_VERTICAL_LILY_PADS; i++) {
-		for (let j = 0; j < MAX_NUMBER_OF_HORIZONTAL_LILY_PADS; j++) {
-			let lilyPad = generateLilyPads(i, j, true);
-			lilyPads.push(lilyPad);
-		}
-	}
-	console.log(lilyPads);
 </script>
 
 <svelte:head>
@@ -42,19 +17,7 @@
 
 <div class="body">
 	<Sidebar logoColor="#f5f7fc" backgroundColor="#f19c79" {links} />
-	{#if $showLilyPads}
-		<svg class="bg" in:fly={{ x: 500, duration: 900 }}>
-			{#each lilyPads as pad}
-				<path
-					d={'M ' + pad.x + ',' + pad.y + PADS_SVG_PATHS[pad.pathIndex]}
-					class={pad.css}
-					fill={COLORS[pad.colorIndex]}
-					on:click={() => (pad = changeColor(pad))}
-					on:keydown={() => console.log('pressed key')}
-				/>
-			{/each}
-		</svg>
-	{:else}
+	
 		<article in:fly={{ x: -100, duration: 1000 }} out:fly={{ x: 100 }}>
 			<h1>I'm Tijana</h1>
 
@@ -79,34 +42,23 @@
 			<footer>
 				<h4>My Contact Info</h4>
 				<p>
-					Are you looking for a developer? Or do you just wanna reach out? Either way, I'd love to
-					connect!
+					Do you just wanna reach out? I'd love to connect!
 				</p>
 
 				<a href="mailto:tijano@gmail.com">email me</a> &middot;
 				<a href="https://www.linkedin.com/in/tijaname/">LinkedIn</a>
 			</footer>
 		</article>
-	{/if}
+
 </div>
 
 <style>
-	.bg {
-		background-color: #16446d;
-		height: 100vh;
-		width: calc(100vw - 260px);
-		margin-left: 260px;
-	}
+	
 	h1,
 	p {
 		margin-bottom: 4vh;
 	}
-	.small {
-		stroke-width: 2;
-		stroke: #000;
-		transition: 1s;
-		cursor: pointer;
-	}
+	
 	.grid {
 		width: 100%;
 		display: flex;
@@ -125,11 +77,6 @@
 		padding-bottom: 8vw;
 	}
 	@media (max-width: 799px) {
-		.bg {
-			margin-left: 0;
-			width: 100vw;
-		}
-
 		p {
 			font-size: 16px;
 			margin-bottom: 32px;

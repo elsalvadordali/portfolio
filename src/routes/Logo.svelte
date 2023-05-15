@@ -1,22 +1,15 @@
 <script lang="ts">
 	import { fly } from 'svelte/transition';
-	import { showLilyPads } from '$lib/store';
-	import { COLORS, HEIGHT, PADS_SVG_PATHS, WIDTH } from '../lib/pond';
-	import { toggleLilyPads } from '$lib/store';
 
-	export let logoColor;
-	export let handleMobileIconClick;
+	export let logoColor: string = 'black';
 
-	console.log('COLOR', logoColor);
 </script>
 
 <div class="button">
-	<button on:click={handleMobileIconClick}
-		><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"
-			><path
-				d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"
-			/></svg
-		></button
+	<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"
+		><path
+			d="m12.45 37.65-2.1-2.1L21.9 24 10.35 12.45l2.1-2.1L24 21.9l11.55-11.55 2.1 2.1L26.1 24l11.55 11.55-2.1 2.1L24 26.1Z"
+		/></svg
 	>
 </div>
 <div class="wrapper">
@@ -54,16 +47,6 @@
 	a {
 		text-decoration: none;
 		width: fit-content;
-	}
-	.button button {
-		position: fixed;
-		top: 0;
-		left: 0;
-		z-index: 100;
-		background-color: transparent;
-		border: none;
-		box-shadow: none;
-		padding: 6px 12px;
 	}
 	@media (prefers-color-scheme: dar) {
 		.name {

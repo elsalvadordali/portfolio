@@ -32,7 +32,7 @@
 		linkShowTimer = 300;
 	};
 
-	const mediaQueryHandler = (e) => {
+	const mediaQueryHandler = (e: any) => {
 		if (!e.matches) {
 			showMobileMenu = false;
 		}
@@ -49,7 +49,7 @@
 
 {#if showMobileMenu}
 	<aside style={'background: ' + backgroundColor} out:fly={{ duration: 900, x: -600 }}>
-		<Logo {handleMobileIconClick} {logoColor} />
+		<Logo {logoColor} />
 		<div class="links">
 			{#each links as link, i}
 				<a
@@ -76,7 +76,7 @@
 		background-color: #000;
 		height: 100vh;
 		width: 260px;
-		color: white;
+		color: black;
 		padding: 2vw;
 		padding-top: 4vh;
 		padding-bottom: 4vh;
