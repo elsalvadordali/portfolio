@@ -35,9 +35,7 @@ export type LilyPadType = {
      */
     css: string
 };
-
 export type WaveCoords = [number, number];
-
 
 export type LinksType = {
     href: string,

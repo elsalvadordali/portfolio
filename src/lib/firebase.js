@@ -1,11 +1,12 @@
-import { initializeApp } from "firebase/app";
+import { initializeApp } from 'firebase/app';
+
 const firebaseConfig = {
-    apiKey: "AIzaSyBpXKdUJgblznvYiWOu96KPPWqkeUuoEH4",
-    authDomain: "academy-managment.firebaseapp.com",
-    projectId: "academy-managment",
-    storageBucket: "academy-managment.appspot.com",
-    messagingSenderId: "573989190453",
-    appId: "1:573989190453:web:0a43a73365694e4df26a7c"
+	apiKey: 'AIzaSyCasDgGMFWP5UsTY-xMFsrk-GHuRDIwjJM',
+	authDomain: 'royl-6a156.firebaseapp.com',
+	projectId: 'royl-6a156',
+	storageBucket: 'royl-6a156.appspot.com',
+	messagingSenderId: '624846490682',
+	appId: '1:624846490682:web:e876c0650dcecb948ab903'
 };
 
 export const firebaseApp = initializeApp(firebaseConfig);

@@ -22,7 +22,7 @@
 			current: false
 		}
 	];
-	export let logoColor: String;
+	export let logoColor: string;
 	export let backgroundColor = '#eaeaea';
 
 	let showMobileMenu = browser ? (window.innerWidth > 800 ? true : false) : true;

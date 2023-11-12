@@ -1,8 +1,16 @@
+import {
+    doc,
+    getDoc,
+    updateDoc,
+    setDoc,
+    getFirestore,
+  } from 'firebase/firestore'
+  const db = getFirestore()
 
-
-class Timer {
+export class Timer {
     duration: number;
     timeLeft: number;
+    isDone: boolean;
     timer: any;
     updateDatabase: any;
     minutes: string;
@@ -10,7 +18,7 @@ class Timer {
     constructor(duration: number, updateDatabase: any) {
         this.duration = duration;
         this.timeLeft = duration;
-        this.timer = null;
+        this.isDone = false;
         this.updateDatabase = updateDatabase;
         this.minutes = '00';
         this.seconds = '00';
@@ -41,15 +49,15 @@ class Timer {
     }
 }
 
-class Task {
+export class Task {
     id: number;
     name: string;
     timeLeft: number;
     icon: string;
     doneIcon: string;
     subTasks: { name: string; isDone: boolean }[];
-    timer: Timer;
-    isTimerOn: boolean = false;
+    isDone: boolean;
+    canBeDone: boolean = false;
     constructor(
         id: number,
         name: string,
@@ -64,19 +72,17 @@ class Task {
         this.icon = icon;
         this.doneIcon = doneIcon;
         this.subTasks = subTasks;
-        this.timer = new Timer(timeLeft, this.updateDatabase);
+        this.isDone = false;
+        // this.timer = new Timer(timeLeft, this.updateDatabase);
+        this.canBeDone = subTasks.length == 0 ? true : false;
     }
-    toggleTimer() {
-        if (this.isTimerOn) {
-            this.isTimerOn = false;
-            this.timer.pauseTimer();
-        } else {
-            this.isTimerOn = true;
-            this.timer.startTimer();
-        }
-    }
-    updateDatabase() {
+
+    async updateDatabase(task: string, userId: string) {
         //update db
         //firebase something something
+        const reference = doc(db, 'table', userId)
+        // fix this or perhaps use updateArray?? 
+        let res = await updateDoc(reference, {task})
+          
     }
 }

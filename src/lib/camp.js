@@ -36,6 +36,7 @@ export function authUser(e, user) {
                 })
                 .catch((error) => {
                     const errorCode = error.code;
+                    console.log("ERROR HERE?")
                     const errorMessage = error.message;
                     console.log(errorMessage);
                 });

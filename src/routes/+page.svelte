@@ -1,89 +1,97 @@
 <script lang="ts">
-	import { fade, fly } from 'svelte/transition';
-	import Sidebar from './Sidebar.svelte';
 
-	const links = [
-		{ name: 'Abracadabra', href: '/abracadabra', current: false },
-		{ name: 'Bunny Money', href: '/bunny-money', current: false },
-		{ name: 'Happy Garden', href: '/happy-garden', current: false }
-	];
 </script>
 
-<svelte:head>
-	<meta name="viewport" content="width=device-width, initial-scale=1" />
-	<title>Tijana Jung: Software Engineer</title>
-	<link rel="icon" href="/favicon.png" />
-</svelte:head>
-
-<div class="body">
-	<Sidebar logoColor="#f5f7fc" backgroundColor="#f19c79" {links} />
-	
-		<article in:fly={{ x: -100, duration: 1000 }} out:fly={{ x: 100 }}>
-			<h1>I'm Tijana</h1>
-
-			<p>I’m always tinkering on a project or two.</p>
-
-			<h4>My Skills</h4>
-			<div class="grid">
-				<p>TypeScript</p>
-				<p>CSS</p>
-				<p>Next.js</p>
-				<p>React Native</p>
-				<p>Sveltekit</p>
-				<p>Git</p>
-				<p>Swift</p>
-				<p>UX design</p>
-			</div>
-
-			<div class="arrow" />
-			<h4>My current project</h4>
-			<p>I'm currently finishing up my CS degree, and working on an iOS app.</p>
-
-			<footer>
-				<h4>My Contact Info</h4>
-				<p>
-					Do you just wanna reach out? I'd love to connect!
-				</p>
-
-				<a href="mailto:tijano@gmail.com">email me</a> &middot;
-				<a href="https://www.linkedin.com/in/tijaname/">LinkedIn</a>
-			</footer>
-		</article>
-
-</div>
+<main>
+    <div class="empty"></div>
+    <div class="name"><span class="name-font">Ti</span><span class="name-font">ja</span><span class="name-font">na</span></div>
+    <div class="blog"><ul><li>award-winning</li><li>front end developer</li><li>ui designer</li></ul></div>
+    <div class="about"><h3>About</h3><p>I'm currently working as a frontend/ux developer, and attending school.</p></div>
+    <div class="projects"><h3>Projects</h3><p>Currently, finishing up my CS degree @ WGU</p></div>
+    <div class="contact"><h3>Contact</h3><ul><li><a href="mailto:tijano+jung@gmail.com">E-mail me</a></li><li><a href="https://www.linkedin.com/in/tijaname/">LinkedIn</a></li></ul></div>
+</main>
 
 <style>
-	
-	h1,
-	p {
-		margin-bottom: 4vh;
-	}
-	
-	.grid {
-		width: 100%;
-		display: flex;
-		flex-flow: row wrap;
-	}
-	.grid p {
-		width: 25%;
-		margin-bottom: 1vw;
-	}
-	h4 {
-		font-size: 1.75em;
-		margin: 0;
-		margin-top: 2em;
-	}
-	footer {
-		padding-bottom: 8vw;
-	}
-	@media (max-width: 799px) {
-		p {
-			font-size: 16px;
-			margin-bottom: 32px;
-			line-height: 24px;
-		}
-		.grid p {
-			width: 50%;
-		}
-	}
+    main {
+        display: flex;
+        flex-flow: row wrap;
+        align-items: center;
+        justify-content: center;
+        max-width: 1000px;
+        min-height: 620px;
+        font-family: 'DM Serif Display';
+        gap: 2em;
+        padding-top: 200px;
+        padding-bottom: 200px;
+        color: #404447;
+    }
+    
+    main div {
+        min-width: 300px;
+        min-height: 300px;
+        width: 25%;
+        padding: 2em;
+        box-sizing: border-box;
+        transition: .5s;
+    }
+    .name {
+        background-color: #F0A082;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        align-items: center;
+        border-radius: 6px;
+    }
+    .name span {
+        font-size: 8em;
+        line-height: .75em;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        transition: .5s;
+    }
+    .name:hover span {
+        text-shadow: -8px -8px 0 #DCE8D9;
+    }
+    .blog {
+        background-color: #C7DBE2;
+        border-radius: 150px;
+        border-top-left-radius: 5px;
+        border-radius: 150px;
+    }
+    ul li {
+        height: 36px
+    }
+
+    .about {
+        background-color: #FFDC7C;
+        border-radius: 5px;
+        border-bottom-left-radius: 150px;
+        text-align: right;
+        box-shadow: -16px -16px 0 #BAB39C;
+    }
+    .about:hover {
+        box-shadow: none;
+    }
+    .projects {
+        background-color: #A0DBBF;
+        border-radius: 5px;
+        border-bottom-right-radius: 150px;
+        border-bottom-left-radius: 150px;
+        
+    }
+    .projects:hover, .blog:hover, .contact:hover {
+        box-shadow: -16px -16px 0 #BAB39C;
+    }
+    .contact {
+        background-color: #D1BDCF;
+        border-radius: 5px;
+    }
+    @media (max-width: 1100px) { 
+        main  {
+            max-width: 80%;
+        }
+    }
+    @media (prefers-color-scheme: dark) { 
+        body, main { background-color: #404447;}
+    }
 </style>
